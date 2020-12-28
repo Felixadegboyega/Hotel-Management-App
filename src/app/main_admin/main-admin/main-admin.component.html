@@ -1,0 +1,36 @@
+
+<div>
+	<div class="infos  pt-2 mt-md-0 ml-md-5 mr-md-5">
+		<h2>Admin Profile</h2>
+	</div>
+	<div class="border-bottom border-top mt-md-n1 pt-4 row m-2 pb-md-5 infos m-md-5">
+		<div class="col-md-5 mx-auto mb-3 fa fa-user-circle profilePics"></div>	
+		<div class="col-md-5 mx-auto"></div>
+		<div class="d-flex mx-auto col-md-5 p-2">
+			<div class="border w-100 d-flex p-3 rounded">
+				<span class="infoIcon fa fa-user-o"></span>
+				<span class="my-auto ml-2">{{mainAdminInfo.last_name}}</span>
+			</div>
+		</div>
+		<div class="d-flex mx-auto col-md-5 p-2">
+			<div class="border w-100 d-flex p-3 rounded">
+				<span class="infoIcon fa fa-user-o"></span>
+				<span class="my-auto ml-2">{{mainAdminInfo.first_name}}</span>
+			</div>
+		</div>
+		<div class="d-flex mx-auto col-md-5 p-2">
+			<div class="border w-100 d-flex p-3 rounded">
+				<span class="infoIcon fa fa-envelope-o"></span>
+				<span class="my-auto ml-2">{{mainAdminInfo.email}}</span>
+			</div>
+		</div>
+		<div class="d-flex mx-auto col-md-5 p-2">
+			<div class="border w-100 d-flex p-3 rounded">
+				<span class="infoIcon fa fa-phone"></span>
+				<span class="my-auto ml-2">{{mainAdminInfo.phone_number}}</span>
+			</div>
+		</div>
+	</div>
+</div>
+<router-outlet></router-outlet>
+				

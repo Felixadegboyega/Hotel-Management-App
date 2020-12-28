@@ -1,0 +1,25 @@
+<p>managers-profile works!</p>
+
+
+<button type="button" class="btn btn-primary" routerLink="/managers-registration/Hotel-Manager">Register Hotel Manager</button>
+<div type="button" class="btn btn-primary">Register a service manager</div>
+<button type="button" class="btn btn-primary" routerLink="/managers-registration/kitchen-Manager">Kitchen Manager</button>
+<button type="button" class="/btn btn-primary" routerLink="/managers-registration/cleaning-service-Manager">Cleaning Service Manager</button>
+<button type="button" class="btn btn-primary" routerLink="/managers-registration/customer-care-service-Manager">Customer care Service Manager</button>
+
+<div>
+	<div>
+		{{managerInfo.profile_picture}}
+	</div>
+	<div>
+		<div>
+			{{managerInfo.first_name}} {{managerInfo.last_name}}
+		</div>
+		<div>
+			{{managerInfo.phone_number}}
+		</div>
+		<div>
+			{{managerInfo.email}}
+		</div>
+	</div>
+</div>

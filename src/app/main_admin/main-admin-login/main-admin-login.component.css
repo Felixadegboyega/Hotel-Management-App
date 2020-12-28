@@ -1,0 +1,25 @@
+.submitButton{
+	border:none !important;
+	outline: none !important;
+	box-shadow: none !important;
+	width: 100% !important;
+	text-align: center !important;
+	background-color: teal;
+}
+.progress{
+	height: 40px !important;
+}
+.borderedDiv{
+	height: fit-content;
+}
+.heading{
+	color:teal;
+}
+
+input{
+	border-bottom:1px solid teal !important;
+}
+.seepassword{
+	cursor: pointer !important;
+	font-size: small;
+}

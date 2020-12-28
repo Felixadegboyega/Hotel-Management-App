@@ -1,0 +1,34 @@
+.menuBut{
+	outline: none !important;
+	box-shadow: none !important;
+}
+.menus{
+	outline: none !important;
+	box-shadow: none !important;
+	border-radius: 0% !important;
+	height: 50px;
+}
+.sidenav{
+	height: 100%;
+	overflow-y: auto;
+	max-width: 200px;
+}
+
+mat-drawer-container::-webkit-scrollbar{
+	width: 10px;
+	background-color: teal;
+	height: 10px;
+	border-radius: 5px;
+}
+.profileRow{
+	height: 90%;
+}
+.sidenav-content{
+	overflow: auto;
+}
+.sidenav-content::-webkit-scrollbar{
+	width: 5px;
+	height: 5px;
+	border-radius: 5px;
+	background-color: teal;
+}

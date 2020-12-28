@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+	<a class="navbar-brand">Brand</a>
+	<button mat-mini-fab class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav" aria-expanded="false" aria-label="Toggle navigation">
+		<mat-icon>menu</mat-icon>
+	</button>
+	<div id="my-nav" class="collapse navbar-collapse">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item" routerLinkActive="active">
+				<button mat-button class="rounded-pill nav-link" routerLink="/home">Home</button>
+			</li>
+			<li class="nav-item" routerLinkActive="active">
+				<button mat-button class="rounded-pill nav-link" routerLink="/kitchen/orders">orders</button>
+			</li>
+			<li class="nav-item" routerLinkActive="active">
+				<button mat-button class="rounded-pill nav-link dropdown-toggle" id="triggerId" data-toggle="dropdown">Register a Manager</button>
+				<div class="dropdown-menu dropdown-menu-left" aria-labelledby="triggerId">
+					<ul class="dropdown-item nav-item" routerLink="/managers-registration/1">HRM</ul>
+					<ul class="dropdown-item nav-item" routerLink="/managers-registration/2">Hotel Manager</ul>
+					<ul class="dropdown-item nav-item" routerLink="/managers-registration/3">Kitchen Manager</ul>
+					<ul class="dropdown-item nav-item" routerLink="/managers-registration/4">Cleaning Service Manager</ul>
+					<ul class="dropdown-item nav-item" routerLink="/managers-registration/5">Customer care Service Manager</ul>
+				</div>
+			</li>
+			<div class="btn-group">
+			</div>
+			<li class="nav-item" routerLinkActive="active">
+				<button mat-button class="rounded-pill nav-link" routerLink="/managers-profile/HRM/1">managers profile</button>
+			</li>
+			<li class="nav-item" routerLinkActive="active">
+				<button mat-button class="rounded-pill nav-link" routerLink="/cleaning/cleaning-service">Cleaning-service</button>
+			</li>
+			<li class="nav-item" routerLinkActive="active">
+				<button mat-button class="rounded-pill nav-link" routerLink="/customer/customer-care-service">Customer-care-service</button>
+			</li>
+			<li class="nav-item" routerLinkActive="active">
+				<button mat-button class="rounded-pill nav-link" routerLink="/main-admin/login">Login as Admin</button>
+			</li>
+			<li class="nav-item" routerLinkActive="active">
+				<button mat-button class="rounded-pill nav-link" routerLink="rooms">Book a room</button>
+			</li>
+			<li class="nav-item" routerLinkActive="active">
+				<button mat-button class="rounded-pill nav-link" routerLink="/staff/login">Login as a Staff</button>
+			</li>
+			<li class="nav-item" routerLinkActive="active">
+				<button mat-button class="rounded-pill nav-link" routerLink="/manager/login">Login as a Manager</button>
+			</li>
+			<li class="nav-item" routerLinkActive="active">
+				<button mat-button class="rounded-pill nav-link" routerLink="/profile/2">Profile</button>
+			</li>
+			<li class="nav-item" routerLinkActive="active">
+				<button mat-button class="rounded-pill nav-link" routerLink="/kitchen/orders">orders</button>
+			</li>
+		</ul>
+	</div>
+</nav>
+
+
+

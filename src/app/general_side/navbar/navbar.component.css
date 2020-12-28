@@ -1,0 +1,12 @@
+nav{
+	background-color: teal ;
+}
+.navbar-toggler{
+	border: none !important;
+	outline: none !important;
+	background-color:teal;
+	color:#fff;
+}
+button{
+	outline: none !important;
+}
