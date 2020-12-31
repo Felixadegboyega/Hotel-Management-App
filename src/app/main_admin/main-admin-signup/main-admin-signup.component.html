@@ -1,6 +1,6 @@
 
-<form [formGroup]="mainAdminSignup" class="row bg-light pt-3 pt-sm-0 h-100 w-100">
-	<div class="pt-4 pb-4 bg-white border rounded col-11 col-sm-8 mt-5 mx-auto my-sm-auto col-md-6 col-lg-5 row borderedDiv">
+<form [formGroup]="mainAdminSignup" class="bg-light pt-5 h-100 w-100">
+	<div class="pt-4 pb-4 bg-white border rounded col-11 col-sm-8 mt-5 mx-auto col-md-6 col-lg-5 row borderedDiv">
 		<div class="col-sm-11 mx-auto">
 			<h2 class="heading">Admin Registration</h2>
 		</div>
@@ -32,7 +32,7 @@
 		</mat-form-field>
 		<div class="col-sm-11 mx-auto">
 			<div class="progress mt-3">
-				<button class="btn text-white h-100 w-100 submitButton" [class.progress-bar-animated]="loading"  [class.progress-bar-striped]="loading" type="submit" (click)="register()">Register</button>
+				<button [disabled]="mainAdminSignup.invalid" class="btn text-white h-100 w-100 submitButton" [class.progress-bar-animated]="loading"  [class.progress-bar-striped]="loading" type="submit" (click)="register()">Register</button>
 			</div>
 		</div>
 		<div class="small col-sm-11 mx-auto mt-2 text-right">

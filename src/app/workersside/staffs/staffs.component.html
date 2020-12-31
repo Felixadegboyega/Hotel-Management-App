@@ -1,5 +1,33 @@
-<div>
-	<div>
-		Div for each Staffs
+
+<div [class.w-75]="!mobileQuery.matches" class="row p-0 mx-auto">
+	<div class="col-sm-6">
+		<h2 [class.mx-auto]="mobileQuery.matches" class="mt-3">List of Staffs</h2>
 	</div>
+	<div class="col-sm-6 mt-n3 mt-sm-0" [class.mx-auto]="mobileQuery.matches" >
+		<mat-form-field class="ml-auto w-100" appearance="a">
+			<mat-label class="text-dark">Filter</mat-label>
+			<input class="pb-2" matInput (keyup)="filterStaff($event)" placeholder="Kitchen Staff" #input>
+		</mat-form-field>
+	</div>
+	<div class="inside col-12">
+		<table class="table" [class.table-responsive]="mobileQuery.matches">
+			<thead>
+				<tr>
+					<th class="border-bottom-0 border-top-0">ID</th>
+					<th class="border-bottom-0 border-top-0">Name</th>
+					<th class="border-bottom-0 border-top-0">Phone Number</th>
+					<th class="border-bottom-0 border-top-0">Unit</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let staff of staffs | staffsearch:searchText">
+					<td>{{staff.staff_id}}</td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<!-- <mat-paginator class="ml-auto" [pageSizeOptions]="[5, 10, 20]"></mat-paginator> -->
 </div>

@@ -54,7 +54,6 @@ import { HomeComponent } from './general_side/home/home.component';
 import { RoomsComponent } from './general_side/rooms/rooms.component';
 import { ProfileComponent } from './users_side/profile/profile.component';
 import { StaffsComponent } from './workersside/staffs/staffs.component';
-import { SubManagersComponent } from './workersside/sub-managers/sub-managers.component';
 import { StaffProfileComponent } from './workersside/staff-profile/staff-profile.component';
 import { ManagersProfileComponent } from './workersside/managers-profile/managers-profile.component';
 import { NotfoundComponent } from './general_side/notfound/notfound.component';
@@ -68,7 +67,14 @@ import { ManagerRegistrationComponent } from './workersside/manager-registration
 import { MainAdminLoginComponent } from './main_admin/main-admin-login/main-admin-login.component';
 import { StaffRegistrationComponent } from './workersside/staff-registration/staff-registration.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { WorkerNavComponent } from './general_side/worker-nav/worker-nav.component';
+import { StaffsearchPipe } from './pipes/staffsearch.pipe';
+import { NewroomComponent } from './workersside/newroom/newroom.component';
+import { NewfoodComponent } from './workersside/newfood/newfood.component';
+import { FoodsComponent } from './general_side/foods/foods.component';
+import { MainworkerComponent } from './workersside/mainworker/mainworker.component';
+import { CleaninghistoryComponent } from './users_side/cleaninghistory/cleaninghistory.component';
+import { CustomercarehistoryComponent } from './users_side/customercarehistory/customercarehistory.component';
+import { OrderhistoryComponent } from './users_side/orderhistory/orderhistory.component';
 
 
 @NgModule({
@@ -80,7 +86,6 @@ import { WorkerNavComponent } from './general_side/worker-nav/worker-nav.compone
     RoomsComponent,
     ProfileComponent,
     StaffsComponent,
-    SubManagersComponent,
     StaffProfileComponent,
     ManagersProfileComponent,
     NotfoundComponent,
@@ -93,7 +98,14 @@ import { WorkerNavComponent } from './general_side/worker-nav/worker-nav.compone
     ManagerRegistrationComponent,
     MainAdminLoginComponent,
     StaffRegistrationComponent,
-    WorkerNavComponent,
+    StaffsearchPipe,
+    NewroomComponent,
+    NewfoodComponent,
+    FoodsComponent,
+    MainworkerComponent,
+    CleaninghistoryComponent,
+    CustomercarehistoryComponent,
+    OrderhistoryComponent
   ],
   imports: [
     CdkTreeModule,

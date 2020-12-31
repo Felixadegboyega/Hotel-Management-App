@@ -1,0 +1,29 @@
+<form [formGroup]="roomDetails" class="m-auto">
+	<div class="bg-white p-0 pb-4 border rounded col-11 col-sm-8 mt-4 mx-auto col-md-6 col-lg-5 row borderedDiv">
+		<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+		<div class="col-sm-11 mt-4 mx-auto">
+			<h2 class="heading">Add New Room</h2>
+		</div>
+		<mat-form-field appearance="a" class="mt-n2 col-sm-11 mx-auto">
+			<mat-label for="name" class="text-dark">Room Type</mat-label>
+			<input required autocomplete="name" id="name" class="pb-2" formControlName="room_type" matInput>
+		</mat-form-field>
+		<mat-form-field appearance="a" class="mt-n2 col-sm-11 mx-auto">
+			<mat-label for="price" class="text-dark">Price</mat-label>
+			<input required autocomplete="50000" id="price" class="pb-2" formControlName="room_price" matInput>
+		</mat-form-field>
+		<mat-form-field appearance="a" class="mt-n2 col-sm-11 mx-auto">
+			<mat-label for="no" class="text-dark">Number Of Rooms</mat-label>
+			<input required autocomplete="no" id="no" class="pb-2" formControlName="total_no_of_rooms" matInput>
+		</mat-form-field>
+		<input class="pb-2 pr-3 d-none" id="pics" #pics (change)="choose()" type="file" formControlName="room_picture">
+		<div class="col-sm-11 mx-auto">
+			<button (click)="pics.click()" mat-stroked-button class="w-100 chooseBut">{{statusText}}</button>
+		</div>
+		<div class="col-sm-11 mx-auto">
+			<div class="progress mt-3">
+				<button mat-button [disabled]="roomDetails.invalid" class="btn text-white h-100 w-100 submitButton" type="submit" (click)="add()">Add</button>
+			</div>
+		</div>
+	</div>
+</form>

@@ -1,14 +1,31 @@
-<div>
-	<div>
-		<div *ngFor="let room of roomArray">
-			<span>
-				{{room.room_id}}
-			</span>
-			<div>
-				{{room.room_type}}
+<div class="container-fluid">
+	<div class="row main p-0 bg-light p-sm-4">
+		<div class="col-11 row mx-auto pb-0 bg-white mainround border rounded">
+			
+			<div class="col-12 mb-n1 mt-sm-2 mb-sm-0 col-sm-6 pl-sm-4">
+				<h3 class="mt-2 mt-sm-3 font-weight-bold">Available Rooms For Booking</h3>
 			</div>
-			<div>
-				<button>Book</button>
+			<div class="col-12 mt-n5 col-sm-6 mt-sm-2 col-md-5 ml-auto pr-sm-4 col-lg-4">
+				<mat-form-field class="w-100" appearance="a">
+					<mat-label class="d-none d-sm-inline text-dark">Search Room</mat-label>
+					<input class="pb-2" matInput placeholder="Executive" #input>
+				</mat-form-field>
+			</div>
+			<div class="col-12 mainDiv row mx-auto mt-n5 p-0">
+				<div class="col-6 cardin col-sm-4 col-lg-3 p-2 p-md-3 p-lg-2 p-xl-4" *ngFor="let room of roomArray">
+					<div class="rounded bg-light card h-100">
+						<div [class.imgR]="mobileQuery.matches" class="bg-white img card-img-top">
+							<img src="../../../assets/images/room.jpg" class="w-100 h-100 rounded-top" alt="">
+						</div>
+						
+						<div class="p-3 bg-light nameDiv">
+							{{room.room_type}}
+						</div>
+						<div class="pl-3 pr-3 pb-3 bg-light buttonDiv w-100">
+							<button mat-button class="bookBut text-white w-100 mx-auto">Book</button>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

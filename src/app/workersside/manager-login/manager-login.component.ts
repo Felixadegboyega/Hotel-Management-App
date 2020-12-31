@@ -9,12 +9,24 @@ import { FormBuilder } from '@angular/forms';
 export class ManagerLoginComponent implements OnInit {
 
   constructor(public formB:FormBuilder) { }
-  public managersLogin = this.formB.group({
-    email:[],
+  public loginDetails = this.formB.group({
+    email:[''],
     password:['']
   })
-
+  public type = "passowrd";
+  public loading = false;
   ngOnInit(): void {
+  }
+
+  changetype(){
+    if(this.type === "password"){
+      this.type = "text"
+    } else{
+      this.type = "password"
+    }
+  }
+  login(){
+    this.loading = true
   }
 
 }

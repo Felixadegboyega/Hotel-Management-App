@@ -1,25 +1,33 @@
-<p>managers-profile works!</p>
-
-
-<button type="button" class="btn btn-primary" routerLink="/managers-registration/Hotel-Manager">Register Hotel Manager</button>
-<div type="button" class="btn btn-primary">Register a service manager</div>
-<button type="button" class="btn btn-primary" routerLink="/managers-registration/kitchen-Manager">Kitchen Manager</button>
-<button type="button" class="/btn btn-primary" routerLink="/managers-registration/cleaning-service-Manager">Cleaning Service Manager</button>
-<button type="button" class="btn btn-primary" routerLink="/managers-registration/customer-care-service-Manager">Customer care Service Manager</button>
-
 <div>
-	<div>
-		{{managerInfo.profile_picture}}
+	<div class="infos pl-2 pl-md-0 pt-2 mt-md-0 ml-md-5 mr-md-5">
+		<h2>Manager's Profile</h2>
 	</div>
-	<div>
-		<div>
-			{{managerInfo.first_name}} {{managerInfo.last_name}}
+	<div class="border-bottom border-top mt-md-n1 pt-4 row m-2 pb-md-5 infos m-md-5">
+		<div class="col-md-5 mx-auto mb-3 fa fa-user-circle profilePics"></div>	
+		<div class="col-md-5 mx-auto"></div>
+		<div class="d-flex mx-auto col-md-5 p-2">
+			<div class="border w-100 d-flex p-3 rounded">
+				<span class="infoIcon fa fa-user-o"></span>
+				<span class="my-auto ml-2">{{managerInfo.first_name}} {{managerInfo.last_name}}</span>
+			</div>
 		</div>
-		<div>
-			{{managerInfo.phone_number}}
+		<div class="d-flex mx-auto col-md-5 p-2">
+			<div class="border w-100 d-flex p-3 rounded">
+				<span class="infoIcon fa fa-user-o"></span>
+				<span class="my-auto ml-2">{{managerInfo.dob}}</span>
+			</div>
 		</div>
-		<div>
-			{{managerInfo.email}}
+		<div class="d-flex mx-auto col-md-5 p-2">
+			<div class="border w-100 d-flex p-3 rounded">
+				<span class="infoIcon fa fa-envelope-o"></span>
+				<span class="my-auto ml-2">{{managerInfo.email}}</span>
+			</div>
+		</div>
+		<div class="d-flex mx-auto col-md-5 p-2">
+			<div class="border w-100 d-flex p-3 rounded">
+				<span class="infoIcon fa fa-phone"></span>
+				<span class="my-auto ml-2">{{managerInfo.phone_number}}</span>
+			</div>
 		</div>
 	</div>
 </div>

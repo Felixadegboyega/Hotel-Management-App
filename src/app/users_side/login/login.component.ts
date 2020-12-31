@@ -8,14 +8,25 @@ import { FormBuilder } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public formBuild:FormBuilder) { }
-
-  public userLogin = this.formBuild.group({
+  constructor(public formB:FormBuilder) { }
+  public loginDetails = this.formB.group({
     email:[''],
     password:['']
   })
-
+  public type = "passowrd";
+  public loading = false;
   ngOnInit(): void {
+  }
+
+  changetype(){
+    if(this.type === "password"){
+      this.type = "text"
+    } else{
+      this.type = "password"
+    }
+  }
+  login(){
+    this.loading = true
   }
 
 }

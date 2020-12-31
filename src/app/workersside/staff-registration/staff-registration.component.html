@@ -1,1 +1,51 @@
-<p>staff-registration works!</p>
+
+<form [formGroup]="signupDetails" class="pt-4 pb-4 bg-white border rounded col-11 col-sm-10 mt-2 mx-auto my-sm-auto col-md-8 row borderedDiv">
+	<div class="col-sm-11 mx-auto">
+		<h2 class="heading">Staff Registration</h2>
+	</div>
+	<mat-form-field appearance="a" class="mt-n2  col-sm-5 mx-auto">
+		<mat-label for="first_name" class="text-dark">First Name</mat-label>
+		<input required id="first_name" type="text" class="input pb-2" formControlName="first_name" matInput>
+	</mat-form-field>
+	<mat-form-field appearance="a" class="mt-n2 col-sm-5 mx-auto">
+		<mat-label for="last_name" class="text-dark">Last Name</mat-label>
+		<input required id="last_name" type="text" class="pb-2" formControlName="last_name" matInput>
+	</mat-form-field>
+	<mat-form-field appearance="a" class="mt-n2 col-sm-11 mx-auto">
+		<mat-label for="phone_number" class="text-dark">Phone Number</mat-label>
+		<input required id="phone_number" type="text" class="pb-2" formControlName="phone_number" matInput>
+	</mat-form-field>
+	<mat-form-field appearance="a" class="mt-n2 col-sm-5 mx-auto">
+		<mat-label for="unit" class=" text-dark">Unit</mat-label>
+		<mat-select class="pb-2" formControlName="unit" [errorStateMatcher]="matcher" >
+			<mat-option>-- Unit --</mat-option>
+			<mat-option value="0">Kitchen Staff</mat-option>
+			<mat-option value="1">Cleaning Service</mat-option>
+			<mat-option value="2">Customer Care serive</mat-option>
+		</mat-select>
+	</mat-form-field>
+	<mat-form-field appearance="a" class="mt-n2 col-sm-5 mx-auto">
+		<mat-label for="dob" class="text-dark">Date of Birth</mat-label>
+		<input required id="dob" type="date" class="pb-2" formControlName="dob" matInput>
+	</mat-form-field>
+	<mat-form-field appearance="a" class="mt-n2 col-sm-11 mx-auto">
+		<mat-label for="email" class="text-dark">Email</mat-label>
+		<input required autocomplete="email" id="email" class="pb-2" type="email" formControlName="email" matInput>
+		<!-- <mat-error *ngIf="email.invalid">Must enter an</mat-error> -->
+	</mat-form-field>
+	<mat-form-field appearance="a" class="mt-n2 col-sm-5 mx-auto">
+		<mat-label for="password" class="text-dark">Password</mat-label>
+		<input required autocomplete="new-password" class="pb-2 pr-3" id="password" type={{type}} formControlName="password" matInput>
+		<mat-icon matSuffix (click)="changetype()" [class.fa-eye]="type=='password'" [class.fa-eye-slash]="type=='text'" class="mr-n2 seepassword ml-n3 float-right fa"></mat-icon>
+	</mat-form-field>
+	<mat-form-field appearance="a" class="mt-n2 col-sm-5 mx-auto">
+		<mat-label for="confirm_password" class="text-dark">Confirm Password</mat-label>
+		<input required autocomplete="new-password" class=" pb-2 pr-3" id="confirm_password" type="{{type2}}" formControlName="confirm_password" matInput>
+		<mat-icon matSuffix (click)="changetype2()" [class.fa-eye]="type2=='password'" [class.fa-eye-slash]="type2=='text'" class="seepassword mr-n2 ml-n3 float-right fa fa-eye"></mat-icon>
+	</mat-form-field>
+	<div class="col-sm-11 mx-auto">
+		<div class="progress mt-3">
+			<button [disabled]="signupDetails.invalid" class="btn text-white h-100 w-100 submitButton" [class.progress-bar-animated]="loading"  [class.progress-bar-striped]="loading" type="submit" (click)="register()">Register</button>
+		</div>
+	</div>
+</form>

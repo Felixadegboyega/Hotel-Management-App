@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WorkerNavComponent } from './worker-nav.component';
+import { CleaninghistoryComponent } from './cleaninghistory.component';
 
-describe('WorkerNavComponent', () => {
-  let component: WorkerNavComponent;
-  let fixture: ComponentFixture<WorkerNavComponent>;
+describe('CleaninghistoryComponent', () => {
+  let component: CleaninghistoryComponent;
+  let fixture: ComponentFixture<CleaninghistoryComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WorkerNavComponent ]
+      declarations: [ CleaninghistoryComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WorkerNavComponent);
+    fixture = TestBed.createComponent(CleaninghistoryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

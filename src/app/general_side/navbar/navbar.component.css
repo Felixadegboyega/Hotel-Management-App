@@ -1,5 +1,6 @@
-nav{
-	background-color: teal ;
+.row{
+	background-color: teal !important;
+	/* width: 100vw; */
 }
 .navbar-toggler{
 	border: none !important;

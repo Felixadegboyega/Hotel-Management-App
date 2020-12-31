@@ -1,1 +1,45 @@
-<p>staff-profile works!</p>
+<div>
+	<div class="pl-2 pl-md-0 pt-2 mt-md-0 ml-md-5 mr-md-5">
+		<h2>Staff Profile</h2>
+	</div>
+	<div class="border-bottom border-top mt-md-n1 pt-2 row m-2 pb-1 infos m-md-3">
+		<div class="col-md-5 mx-auto mb-2 fa fa-user-circle profilePics"></div>	
+		<div class="col-md-5 mx-auto"></div>
+		<div class="d-flex mx-auto col-md-5 p-2">
+			<div class="border w-100 d-flex p-3 rounded">
+				<span class="infoIcon fa fa-user-o"></span>
+				<span class="my-auto ml-2">{{staff.first_name}} {{staff.last_name}}</span>
+			</div>
+		</div>
+		<div class="d-flex mx-auto col-md-5 p-2">
+			<div class="border w-100 d-flex p-3 rounded">
+				<span class="infoIcon fa fa-phone"></span>
+				<span class="my-auto ml-2">{{staff.phone_number}}</span>
+			</div>
+		</div>
+		<div class="d-flex mx-auto col-md-5 p-2">
+			<div class="border w-100 d-flex p-3 rounded">
+				<span class="infoIcon fa fa-envelope-o"></span>
+				<span class="my-auto ml-2">{{staff.email}}</span>
+			</div>
+		</div>
+		<div class="d-flex mx-auto col-md-5 p-2">
+			<div class="border w-100 p-3 rounded">
+				<span class="font-weight-bold">Date of Birth</span> <br/>
+				<span class="my-auto">{{staff.dob}}</span>
+			</div>
+		</div>
+		<div class="d-flex mx-auto col-md-5 p-2">
+			<div class="border w-100 p-3 rounded">
+				<span class="font-weight-bold">Unit</span><br/>
+				<span class="my-auto">{{staff.unit}}</span>
+			</div>
+		</div>
+		<div class="d-flex mx-auto col-md-5 p-2">
+			<div class="border w-100 p-3 rounded">
+				<span class="font-weight-bold">Date Employed</span> <br/>
+				<span class="my-auto">{{staff.date_employed}}</span>
+			</div>
+		</div>
+	</div>
+</div>

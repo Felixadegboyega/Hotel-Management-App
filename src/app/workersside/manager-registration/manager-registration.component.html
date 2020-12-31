@@ -1,35 +1,40 @@
-
-<form [formGroup]="mangerSignup">
-	<div>
-		<h2>Dynamic Manager Registration</h2>
+<form [formGroup]="mangerSignup" class="pt-4 pb-4 bg-white border rounded col-11 col-sm-10 mt-2 mx-auto my-sm-auto col-md-8 row borderedDiv">
+	<div class="col-sm-11 mx-auto">
+		<h2 class="heading">Manager Registration</h2>
 	</div>
-	<div class="form-group">
-		<label for="first_name" class="mr-2">First Name</label>
-		<input id="first_name" class="form-control" type="text" formControlName="first_name">
-	</div>
-	<div class="form-group">
-		<label for="last_name" class="mr-2">Last Name</label>
-		<input id="last_name" class="form-control" type="text" formControlName="last_name">
-	</div>
-	<div class="form-group">
-		<label for="dob" class="mr-2">Date of Birth</label>
-		<input id="dob" class="form-control" type="text" formControlName="dob">
-	</div>
-	<div class="form-group">
-		<label for="phone_number" class="mr-2">Phone Number</label>
-		<input id="phone_number" class="form-control" type="text" formControlName="phone_number">
-	</div>
-	<div class="form-group">
-		<label for="email" class="mr-2">Email</label>
-		<input id="email" class="form-control" type="text" formControlName="email">
-	</div>
-	<div class="form-group">
-		<label for="password" class="mr-2">Password</label>
-		<input id="password" class="form-control" type="password" formControlName="password">
-	</div>
-	<div class="form-group">
-		<label for="confirm_password" class="mr-2">Confirm Password</label>
-		<input id="confirm_password" class="form-control" type="text" formControlName="confirm_password">
+	<mat-form-field appearance="a" class="mt-n2  col-sm-5 mx-auto">
+		<mat-label for="first_name" class="text-dark">First Name</mat-label>
+		<input required id="first_name" type="text" class="input pb-2" formControlName="first_name" matInput>
+	</mat-form-field>
+	<mat-form-field appearance="a" class="mt-n2 col-sm-5 mx-auto">
+		<mat-label for="last_name" class="text-dark">Last Name</mat-label>
+		<input required id="last_name" type="text" class="pb-2" formControlName="last_name" matInput>
+	</mat-form-field>
+	<mat-form-field appearance="a" class="mt-n2 col-sm-5 mx-auto">
+		<mat-label for="phone_number" class="text-dark">Phone Number</mat-label>
+		<input required id="phone_number" type="text" class="pb-2" formControlName="phone_number" matInput>
+	</mat-form-field>
+	<mat-form-field appearance="a" class="mt-n2 col-sm-5 mx-auto">
+		<mat-label for="dob" class="text-dark">Date of Birth</mat-label>
+		<input required id="dob" type="date" class="pb-2" formControlName="dob" matInput>
+	</mat-form-field>
+	<mat-form-field appearance="a" class="mt-n2 col-sm-11 mx-auto">
+		<mat-label for="email" class="text-dark">Email</mat-label>
+		<input required autocomplete="email" id="email" class="pb-2" type="email" formControlName="email" matInput>
+	</mat-form-field>
+	<mat-form-field appearance="a" class="mt-n2 col-sm-5 mx-auto">
+		<mat-label for="password" class="text-dark">Password</mat-label>
+		<input required autocomplete="new-password" class="pb-2 pr-3" id="password" type={{type}} formControlName="password" matInput>
+		<mat-icon matSuffix (click)="changetype()" [class.fa-eye]="type=='password'" [class.fa-eye-slash]="type=='text'" class="mr-n2 seepassword ml-n3 float-right fa"></mat-icon>
+	</mat-form-field>
+	<mat-form-field appearance="a" class="mt-n2 col-sm-5 mx-auto">
+		<mat-label for="confirm_password" class="text-dark">Confirm Password</mat-label>
+		<input required autocomplete="new-password" class=" pb-2 pr-3" id="confirm_password" type="{{type2}}" formControlName="confirm_password" matInput>
+		<mat-icon matSuffix (click)="changetype2()" [class.fa-eye]="type=='password'" [class.fa-eye-slash]="type=='text'" class="seepassword mr-n2 ml-n3 float-right fa"></mat-icon>
+	</mat-form-field>
+	<div class="col-sm-11 mx-auto">
+		<div class="progress mt-3">
+			<button [disabled]="mangerSignup.invalid" class="btn text-white h-100 w-100 submitButton" [class.progress-bar-animated]="loading"  [class.progress-bar-striped]="loading" type="submit" (click)="register()">Register</button>
+		</div>
 	</div>
 </form>
-

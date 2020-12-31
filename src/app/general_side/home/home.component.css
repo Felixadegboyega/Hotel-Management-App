@@ -1,0 +1,10 @@
+.imgRow{
+	background-image: url('../../../assets/images/room.jpg');
+	background-blend-mode: color-burn;
+	background-color: rgba(3, 45, 45, 0.783);
+	height:100vh;
+}
+.bookBut{
+	background-color: teal;
+	outline: none;
+}

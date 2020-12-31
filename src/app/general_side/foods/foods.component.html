@@ -1,0 +1,32 @@
+<div class="container-fluid">
+	<div class="row main p-0 bg-light p-sm-4">
+		<div class="col-11 row mx-auto pb-0 bg-white mainround border rounded">
+			
+			<div class="col-12 mb-n1 mt-sm-2 mb-sm-0 col-sm-6 pl-sm-4">
+				<h2 class="mt-2 mt-sm-3">Available Foods</h2>
+			</div>
+			<div class="col-12 mt-n5 col-sm-6 mt-sm-2 col-md-5 ml-auto pr-sm-4 col-lg-4">
+				<mat-form-field class="w-100" appearance="a">
+					<mat-label class="d-none d-sm-inline text-dark">Search Food</mat-label>
+					<input class="pb-2" matInput placeholder="Rice" #input>
+				</mat-form-field>
+			</div>
+			<div class="col-12 mainDiv row mx-auto mt-n5 p-0">
+				<div class="col-6 cardin col-sm-4 col-lg-3 p-2 p-md-3 p-lg-2 p-xl-4" *ngFor="let food of foods">
+					<div class="rounded bg-light card h-100">
+						<div [class.imgR]="mobileQuery.matches" class="bg-white img card-img-top">
+							<img src="../../../assets/images/rice.jpg" class="w-100 h-100 rounded-top" alt="">
+						</div>
+						
+						<div class="p-3 bg-light nameDiv">
+							{{food.food_name}}
+						</div>
+						<div class="pl-3 pr-3 pb-3 bg-light buttonDiv w-100">
+							<button mat-button class="bookBut text-white w-100 mx-auto">Order</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

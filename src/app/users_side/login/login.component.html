@@ -1,11 +1,25 @@
-<form [formGroup]="userLogin">
-	<h3>User Login</h3>
-	<div class="form-group">
-		<label for="email">Email: </label>
-		<input type="email" required formControlName="email" id="email" class="form-control" placeholder="">
-	</div>
-	<div class="form-group">
-		<label for="password">Password: </label>
-		<input type="password" required formControlName="password" id="password" class="form-control" placeholder="">
+<form [formGroup]="loginDetails" class="bg-light h-100 w-100 pt-5">
+	<div class="p-0 bg-white pb-4 border rounded col-11 col-sm-8 mx-auto mt-5 col-md-6 col-lg-5 col-xl-4 row borderedDiv">
+		<!-- <mat-progress-bar mode="indeterminate"></mat-progress-bar> -->
+		<div class="col-sm-11 mt-4 mx-auto">
+			<h2 class="heading">User Login</h2>
+		</div>
+		<mat-form-field appearance="a" class="mt-n2 col-sm-11 mx-auto">
+			<mat-label for="email" class="text-dark">Email</mat-label>
+			<input required autocomplete="email" id="email" class="pb-2" type="email" formControlName="email" matInput>
+		</mat-form-field>
+		<mat-form-field appearance="a" class="mt-n2 col-sm-11 mx-auto">
+			<mat-label for="password" class="text-dark">Password</mat-label>
+			<input required autocomplete="new-password" class="pb-2 pr-3" id="password" type={{type}} formControlName="password" matInput>
+			<mat-icon matSuffix (click)="changetype()" [class.fa-eye]="type=='password'" [class.fa-eye-slash]="type=='text'" class="mr-n2 seepassword float-right ml-n3 fa"></mat-icon>
+		</mat-form-field>
+		<div class="col-sm-11 mx-auto">
+			<div class="progress mt-3">
+				<button [disabled]="loginDetails.invalid" class="btn text-white h-100 w-100 submitButton" [class.progress-bar-animated]="loading"  [class.progress-bar-striped]="loading" type="submit" (click)="login()">Login</button>
+			</div>
+		</div>
+		<div class="small col-sm-11 mx-auto mt-2 text-right">
+			<span>Don't have an Account? <a class="font-weight-bold" routerLink="/user/signup">SignUp</a></span>
+		</div>
 	</div>
 </form>

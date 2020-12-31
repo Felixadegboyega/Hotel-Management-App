@@ -1,0 +1,33 @@
+<div class="container-fluid h-100 w-100 bg-light pt-5">
+	<div class="row mt-4 profileRow">
+		<div class="col-sm-11 mx-auto row h-100 w-100" [class.pl-2]="mobileQuery.matches" [class.pr-2]="mobileQuery.matches">
+			<mat-sidenav-container class="h-100 w-100 example-container" autosize>
+				<mat-sidenav #sidenav class="border-left bg-light sidenav" [opened]="mobileQuery.matches ? false : true" [mode]="mobileQuery.matches ? 'over' : 'side'"  >
+					<mat-nav-list>
+						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./main-admin" routerLinkActive="active">Profile</button>
+						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./manager-registration" routerLinkActive="active">Register a Manager</button>
+						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./staff-registration" routerLinkActive="active">Register a Staff</button>
+						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./manager-profile/1" routerLinkActive="active">Manager</button>
+						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./newroom" routerLinkActive="active">Add Room</button>
+						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./newfood" routerLinkActive="active">Add Food</button>
+						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./orders">Food orders</button>
+						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./cleaning-service">Cleaning service</button>
+						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./customer-care-service">Customer care service</button>
+						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./staff-profile/3" routerLinkActive="active">Kitchen Manager</button>
+						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./staff-profile/4" routerLinkActive="active">Cleaning Service Manager</button>
+						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./staff-profile/5" routerLinkActive="active">Customer care Service Manager</button>
+						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./staffs" routerLinkActive="active">All Staffs</button>
+						<button mat-list-item class="menus btn-sm w-100 btn-light text-left">Logout <span class="fa fa-sign-out ml-2"></span></button>
+					</mat-nav-list>
+				</mat-sidenav>
+				<div class="sidenav-content bg-white w-100 h-100">
+					<button class="ml-2 mt-2 d-inline-block small btn-sm menuBut btn-light rounded btn" (click)="sidenav.toggle()">
+						<span class="fa fa-bars"></span>
+					</button>
+					<router-outlet></router-outlet>
+				</div>
+			</mat-sidenav-container>
+		</div>
+	</div>
+</div>
+<div>

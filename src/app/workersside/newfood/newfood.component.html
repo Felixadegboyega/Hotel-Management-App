@@ -1,0 +1,21 @@
+<form [formGroup]="foodDetails" class="m-auto">
+	<div class="bg-white p-0 pb-4 border rounded col-11 col-sm-8 mt-5 mx-auto col-md-6 col-lg-5 row borderedDiv">
+		<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+		<div class="col-sm-11 mt-4 mx-auto">
+			<h2 class="heading">Add New Food</h2>
+		</div>
+		<mat-form-field appearance="a" class="mt-n2 col-sm-11 mx-auto">
+			<mat-label for="name" class="text-dark">Food Name</mat-label>
+			<input required autocomplete="name" id="name" class="pb-2" formControlName="food_name" matInput>
+		</mat-form-field>
+		<input class="pb-2 pr-3 d-none" id="pics" #pics (change)="choose()" type="file" formControlName="food_picture">
+		<div class="col-sm-11 mx-auto">
+			<button (click)="pics.click()" mat-stroked-button class="w-100 chooseBut">{{statusText}}</button>
+		</div>
+		<div class="col-sm-11 mx-auto">
+			<div class="progress mt-3">
+				<button mat-button [disabled]="foodDetails.invalid" class="btn text-white h-100 w-100 submitButton" type="submit" (click)="add()">Add</button>
+			</div>
+		</div>
+	</div>
+</form>

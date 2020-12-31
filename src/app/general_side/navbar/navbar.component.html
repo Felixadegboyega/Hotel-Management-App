@@ -1,58 +1,45 @@
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-	<a class="navbar-brand">Brand</a>
-	<button mat-mini-fab class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav" aria-expanded="false" aria-label="Toggle navigation">
-		<mat-icon>menu</mat-icon>
-	</button>
-	<div id="my-nav" class="collapse navbar-collapse">
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item" routerLinkActive="active">
-				<button mat-button class="rounded-pill nav-link" routerLink="/home">Home</button>
-			</li>
-			<li class="nav-item" routerLinkActive="active">
-				<button mat-button class="rounded-pill nav-link" routerLink="/kitchen/orders">orders</button>
-			</li>
-			<li class="nav-item" routerLinkActive="active">
-				<button mat-button class="rounded-pill nav-link dropdown-toggle" id="triggerId" data-toggle="dropdown">Register a Manager</button>
-				<div class="dropdown-menu dropdown-menu-left" aria-labelledby="triggerId">
-					<ul class="dropdown-item nav-item" routerLink="/managers-registration/1">HRM</ul>
-					<ul class="dropdown-item nav-item" routerLink="/managers-registration/2">Hotel Manager</ul>
-					<ul class="dropdown-item nav-item" routerLink="/managers-registration/3">Kitchen Manager</ul>
-					<ul class="dropdown-item nav-item" routerLink="/managers-registration/4">Cleaning Service Manager</ul>
-					<ul class="dropdown-item nav-item" routerLink="/managers-registration/5">Customer care Service Manager</ul>
-				</div>
-			</li>
-			<div class="btn-group">
+<div class="container-fluid">
+	<div class="row fixed-top">
+		<nav class="col-sm-11 mx-auto bg-transparent navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand ml-2" routerLink="/home">LIKZ HOTEL</a>
+			<button mat-button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav" aria-expanded="false" aria-label="Toggle navigation">
+				<mat-icon>menu</mat-icon>
+			</button>
+			<div id="my-nav" class="collapse mr-2 navbar-collapse">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item" routerLinkActive="active">
+						<button mat-button class="nav-link fa fa-home" routerLink="/home"></button>
+					</li>
+					<li class="nav-item" routerLinkActive="active">
+						<button mat-button class="nav-link" routerLink="/main-admin/login">Admin Login</button>
+					</li>
+					<li class="nav-item" routerLinkActive="active">
+						<button mat-button class="nav-link" routerLink="/staff/login">Staff Login</button>
+					</li>
+					<li class="nav-item" routerLinkActive="active">
+						<button mat-button class="nav-link" routerLink="/manager/login">Manager Login</button>
+					</li>
+					<li class="nav-item" routerLinkActive="active">
+						<button mat-button class="nav-link" routerLink="rooms">Book a room</button>
+					</li>
+					<li class="nav-item" routerLinkActive="active">
+						<button mat-button class="nav-link" routerLink="foods">Order food</button>
+					</li>
+					<li class="nav-item" routerLinkActive="active">
+						<button mat-button class="nav-link" routerLink="user/signup">Sign Up</button>
+					</li>
+					<li class="nav-item" routerLinkActive="active">
+						<button mat-button class="nav-link" routerLink="user/login">Sign In</button>
+					</li>
+					<li class="nav-item" routerLinkActive="active">
+						<button matTooltip="Profile" matTooltipPosition="below" aria-label="Profile" mat-button class="nav-link fa fa-user-circle" routerLink="user/profile/2"></button>
+					</li>
+				</ul>
 			</div>
-			<li class="nav-item" routerLinkActive="active">
-				<button mat-button class="rounded-pill nav-link" routerLink="/managers-profile/HRM/1">managers profile</button>
-			</li>
-			<li class="nav-item" routerLinkActive="active">
-				<button mat-button class="rounded-pill nav-link" routerLink="/cleaning/cleaning-service">Cleaning-service</button>
-			</li>
-			<li class="nav-item" routerLinkActive="active">
-				<button mat-button class="rounded-pill nav-link" routerLink="/customer/customer-care-service">Customer-care-service</button>
-			</li>
-			<li class="nav-item" routerLinkActive="active">
-				<button mat-button class="rounded-pill nav-link" routerLink="/main-admin/login">Login as Admin</button>
-			</li>
-			<li class="nav-item" routerLinkActive="active">
-				<button mat-button class="rounded-pill nav-link" routerLink="rooms">Book a room</button>
-			</li>
-			<li class="nav-item" routerLinkActive="active">
-				<button mat-button class="rounded-pill nav-link" routerLink="/staff/login">Login as a Staff</button>
-			</li>
-			<li class="nav-item" routerLinkActive="active">
-				<button mat-button class="rounded-pill nav-link" routerLink="/manager/login">Login as a Manager</button>
-			</li>
-			<li class="nav-item" routerLinkActive="active">
-				<button mat-button class="rounded-pill nav-link" routerLink="/profile/2">Profile</button>
-			</li>
-			<li class="nav-item" routerLinkActive="active">
-				<button mat-button class="rounded-pill nav-link" routerLink="/kitchen/orders">orders</button>
-			</li>
-		</ul>
+		</nav>
+		
+		
+		
+		
 	</div>
-</nav>
-
-
-
+</div>

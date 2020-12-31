@@ -1,34 +1,50 @@
-.menuBut{
+.submitButton{
+	border:none !important;
 	outline: none !important;
 	box-shadow: none !important;
+	width: 100% !important;
+	text-align: center !important;
+	background-color: teal;
 }
-.menus{
-	outline: none !important;
-	box-shadow: none !important;
-	border-radius: 0% !important;
-	height: 50px;
-}
-.sidenav{
-	height: 100%;
-	overflow-y: auto;
-	max-width: 200px;
+.progress{
+	height: 40px !important;
 }
 
-mat-drawer-container::-webkit-scrollbar{
-	width: 10px;
-	background-color: teal;
-	height: 10px;
-	border-radius: 5px;
+.borderedDiv{
+	height: fit-content;
 }
-.profileRow{
-	height: 90%;
+.heading{
+	color:teal;
 }
-.sidenav-content{
-	overflow: auto;
+
+input, mat-select{
+	border-bottom:1px solid teal !important;
 }
-.sidenav-content::-webkit-scrollbar{
+.seepassword{
+	cursor: pointer !important;
+	font-size: small;
+}
+
+::-webkit-scrollbar {
 	width: 5px;
 	height: 5px;
-	border-radius: 5px;
-	background-color: teal;
+}
+::-webkit-scrollbar-thumb{
+	background: teal !important;
+	border-radius: 10px !important;
+}
+.profilePics{
+	font-size: 8rem;
+	color: teal;
+}
+.infos{
+	border-color: rgb(222, 227, 227) !important;
+	/* max-height: 80%;
+	overflow: auto; */
+}
+.infos div div{
+	overflow: hidden;
+}
+.infoIcon{
+	font-size: 2rem;
 }
