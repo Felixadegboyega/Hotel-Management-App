@@ -1,6 +1,8 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { PostService } from 'src/app/services/post.service';
 
 @Component({
   selector: 'app-manager-registration',
@@ -9,10 +11,10 @@ import { FormBuilder } from '@angular/forms';
 })
 export class ManagerRegistrationComponent implements OnInit {
 
-  constructor(public formB:FormBuilder, public changeDetectorRef: ChangeDetectorRef, public media: MediaMatcher) { }
+  constructor(public formB:FormBuilder, public changeDetectorRef: ChangeDetectorRef, public media: MediaMatcher, public postService:PostService, public router:Router) { }
 
   public mangerSignup = this.formB.group({
-    first_name:[''],
+    first_name:['', Validators.required],
     last_name:[''],
     phone_number:[''],
     email:[''],
@@ -21,6 +23,7 @@ export class ManagerRegistrationComponent implements OnInit {
     password:[''],
     confirm_password:['']
   })
+  public error;
   public type = "password"
   public type2 = "password"
   public loading = false;
@@ -35,6 +38,16 @@ export class ManagerRegistrationComponent implements OnInit {
 
   register(){
     this.loading = true;
+    this.postService.managerSignUp(this.mangerSignup.value).subscribe(
+      (data:any)=>{
+        if(data.query_status){
+          this.router.navigate(["/manager/login"])
+        } else {
+          this.error = "You can't signup as an admin for this application, kindly Login"
+          this.loading = false;
+        }
+      }
+    )
   }
   changetype(){
     if(this.type === "password"){

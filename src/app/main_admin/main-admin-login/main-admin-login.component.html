@@ -4,6 +4,9 @@
 		<div class="col-sm-11 mx-auto">
 			<h2 class="heading">Admin Login</h2>
 		</div>
+		<div class="text-center col-11 mx-auto mb-3 text-danger small">
+			{{loginError}}
+		</div>
 		<mat-form-field appearance="a" class="mt-n2 col-sm-11 mx-auto">
 			<mat-label for="email" class="text-dark">Email</mat-label>
 			<input required autocomplete="email" id="email" class="pb-2" type="email" formControlName="email" matInput>

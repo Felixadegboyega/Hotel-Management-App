@@ -22,8 +22,8 @@ export class NewfoodComponent implements OnInit {
     this.loading = true
   }
   choose(){
-    if(this.foodDetails.value.pics != ""){
-      this.statusText = this.foodDetails.value.pics.slice(12);
+    if(this.foodDetails.value.food_picture != ""){
+      this.statusText = this.foodDetails.value.food_picture.slice(12);
     }
   }
 

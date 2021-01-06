@@ -28,14 +28,14 @@ export class SignupComponent implements OnInit {
   }
   register(){
     this.loading = true;
-    this.postService.sendDetails("main_admin/signup.php", this.signupDetails.value).subscribe(
-      (data:any)=>{
-        console.log(data)
-        this.router.navigate(["/main-admin"])
-      }, (err:HttpErrorResponse)=>{
-        console.log(err.error)
-      }
-      )
+    // this.postService.sendDetails("main_admin/signup.php", this.signupDetails.value).subscribe(
+    //   (data:any)=>{
+    //     console.log(data)
+    //     this.router.navigate(["/main-admin"])
+    //   }, (err:HttpErrorResponse)=>{
+    //     console.log(err.error)
+    //   }
+    //   )
   }
   changetype(){
     if(this.type === "password"){

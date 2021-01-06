@@ -24,4 +24,12 @@ input{
 .seepassword{
 	cursor: pointer !important;
 	font-size: small;
+	width: fit-content !important;
+	height: fit-content !important;
+	border: none;
+	box-shadow: none !important;
+	outline: none;
+}
+.error{
+	z-index: 1000 !important;
 }

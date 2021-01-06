@@ -8,14 +8,23 @@
 						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./manager-registration" routerLinkActive="active">Register a Manager</button>
 						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./staff-registration" routerLinkActive="active">Register a Staff</button>
 						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./manager-profile/1" routerLinkActive="active">Manager</button>
-						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./newroom" routerLinkActive="active">Add Room</button>
-						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./newfood" routerLinkActive="active">Add Food</button>
-						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./orders">Food orders</button>
-						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./cleaning-service">Cleaning service</button>
-						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./customer-care-service">Customer care service</button>
-						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./staff-profile/3" routerLinkActive="active">Kitchen Manager</button>
-						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./staff-profile/4" routerLinkActive="active">Cleaning Service Manager</button>
-						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./staff-profile/5" routerLinkActive="active">Customer care Service Manager</button>
+						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" data-toggle="collapse" data-target="#manage">Manage</button>
+						<div class="collapse w-100" id="manage">
+							<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./newroom" routerLinkActive="active">Add Room</button>
+							<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./newfood" routerLinkActive="active">Add Food</button>
+						</div>
+						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" data-toggle="collapse" data-target="#requests">User Request</button>
+						<div class="collapse w-100" id="requests">
+							<button mat-list-item class="submenus btn-sm w-100 btn-light text-left" routerLinkActive="active" routerLink="./orders"> - Food orders</button>
+							<button mat-list-item class="submenus btn-sm w-100 btn-light text-left" routerLinkActive="active" routerLink="./cleaning-service"> - Cleaning service</button>
+							<button mat-list-item class="submenus btn-sm w-100 btn-light text-left" routerLinkActive="active" routerLink="./customer-care-service"> - Customer care service</button>
+						</div>
+						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" data-toggle="collapse" data-target="#unitsmanager">Units Manager</button>
+						<div class="collapse w-100" id="unitsmanager">
+							<button mat-list-item class="submenus btn-sm w-100 btn-light text-left" routerLink="./staff-profile/3" routerLinkActive="active"> - Kitchen Manager</button>
+							<button mat-list-item class="submenus btn-sm w-100 btn-light text-left" routerLink="./staff-profile/4" routerLinkActive="active"> - Cleaning Service Manager</button>
+							<button mat-list-item class="submenus btn-sm w-100 btn-light text-left" routerLink="./staff-profile/5" routerLinkActive="active"> - Customer care Service Manager</button>
+						</div>
 						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./staffs" routerLinkActive="active">All Staffs</button>
 						<button mat-list-item class="menus btn-sm w-100 btn-light text-left">Logout <span class="fa fa-sign-out ml-2"></span></button>
 					</mat-nav-list>
