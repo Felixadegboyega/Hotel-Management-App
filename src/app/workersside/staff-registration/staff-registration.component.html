@@ -3,17 +3,31 @@
 	<div class="col-sm-11 mx-auto">
 		<h2 class="heading">Staff Registration</h2>
 	</div>
-	<mat-form-field appearance="a" class="mt-n2  col-sm-5 mx-auto">
+	<mat-form-field appearance="a" class="mt-n2 col-sm-5 mx-auto">
 		<mat-label for="first_name" class="text-dark">First Name</mat-label>
-		<input required id="first_name" type="text" class="input pb-2" formControlName="first_name" matInput>
+		<input id="first_name" type="text" class="input pb-2" formControlName="first_name" matInput>
+		<div *ngIf="form.first_name.errors?.required && signupDetails.get('first_name')?.touched" class="mb-n3 mt-1 error small text-danger">First Name field can't be empty</div>
 	</mat-form-field>
 	<mat-form-field appearance="a" class="mt-n2 col-sm-5 mx-auto">
 		<mat-label for="last_name" class="text-dark">Last Name</mat-label>
 		<input required id="last_name" type="text" class="pb-2" formControlName="last_name" matInput>
+		<div *ngIf="form.last_name.errors?.required && signupDetails.get('last_name')?.touched" class="mb-n3 mt-1 error small text-danger">Last Name field can't be empty</div>
 	</mat-form-field>
-	<mat-form-field appearance="a" class="mt-n2 col-sm-11 mx-auto">
+	<mat-form-field appearance="a" class="mt-n2 col-sm-5 mx-auto">
 		<mat-label for="phone_number" class="text-dark">Phone Number</mat-label>
 		<input required id="phone_number" type="text" class="pb-2" formControlName="phone_number" matInput>
+		<div *ngIf="form.phone_number.errors?.required && signupDetails.get('phone_number')?.touched" class="mb-n3 mt-1 error small text-danger">Phone Number field can't be empty</div>
+	</mat-form-field>
+	<mat-form-field appearance="a" class="mt-n2 col-sm-5 mx-auto">
+		<mat-label for="dob" class="text-dark">Date of Birth</mat-label>
+		<input required id="dob" type="date" class="pb-2" formControlName="date_of_birth" matInput>
+		<div *ngIf="form.date_of_birth.errors?.required && signupDetails.get('date_of_birth')?.touched" class="mb-n3 mt-1 error small text-danger">Date of Birth field can't be empty</div>
+	</mat-form-field>
+	<mat-form-field appearance="a" class="mt-n2 col-sm-5 mx-auto">
+		<mat-label for="email" class="text-dark">Email</mat-label>
+		<input required autocomplete="email" id="email" class="pb-2" type="email" formControlName="email" matInput>
+		<div *ngIf="form.email.errors?.required && signupDetails.get('email')?.touched" class="mb-n3 mt-1 error small text-danger">Email field can't be empty</div>
+		<div *ngIf="form.email.errors?.email && signupDetails.get('email')?.touched" class="mb-n3 mt-1 error small text-danger">Must enter a valid email</div>
 	</mat-form-field>
 	<mat-form-field appearance="a" class="mt-n2 col-sm-5 mx-auto">
 		<mat-label for="unit" class=" text-dark">Unit</mat-label>
@@ -25,23 +39,22 @@
 		</mat-select>
 	</mat-form-field>
 	<mat-form-field appearance="a" class="mt-n2 col-sm-5 mx-auto">
-		<mat-label for="dob" class="text-dark">Date of Birth</mat-label>
-		<input required id="dob" type="date" class="pb-2" formControlName="dob" matInput>
-	</mat-form-field>
-	<mat-form-field appearance="a" class="mt-n2 col-sm-11 mx-auto">
-		<mat-label for="email" class="text-dark">Email</mat-label>
-		<input required autocomplete="email" id="email" class="pb-2" type="email" formControlName="email" matInput>
-		<!-- <mat-error *ngIf="email.invalid">Must enter an</mat-error> -->
-	</mat-form-field>
-	<mat-form-field appearance="a" class="mt-n2 col-sm-5 mx-auto">
 		<mat-label for="password" class="text-dark">Password</mat-label>
 		<input required autocomplete="new-password" class="pb-2 pr-3" id="password" type={{type}} formControlName="password" matInput>
-		<mat-icon matSuffix (click)="changetype()" [class.fa-eye]="type=='password'" [class.fa-eye-slash]="type=='text'" class="mr-n2 seepassword ml-n3 float-right fa"></mat-icon>
+		<span class="btn btn-light p-1 rounded-circle seepassword mr-n2 ml-n3 float-right" matSuffix (click)="changetype()">
+			<mat-icon  class="fa {{type == 'password' ? 'fa-eye' : 'fa-eye-slash'}}"></mat-icon>
+		</span>
+		<div *ngIf="form.password.errors?.required && signupDetails.get('password')?.touched" class="mb-n3 mt-1 error small text-danger">Password field can't be empty</div>
+		<div *ngIf="signupDetails.get('password').errors?.minlength && signupDetails.get('password')?.dirty" class="mb-n3 mt-1 error small text-danger">Password must be at least 6 characters</div>
 	</mat-form-field>
 	<mat-form-field appearance="a" class="mt-n2 col-sm-5 mx-auto">
 		<mat-label for="confirm_password" class="text-dark">Confirm Password</mat-label>
-		<input required autocomplete="new-password" class=" pb-2 pr-3" id="confirm_password" type="{{type2}}" formControlName="confirm_password" matInput>
-		<mat-icon matSuffix (click)="changetype2()" [class.fa-eye]="type2=='password'" [class.fa-eye-slash]="type2=='text'" class="seepassword mr-n2 ml-n3 float-right fa fa-eye"></mat-icon>
+		<input required autocomplete="new-password" class="pb-2 pr-3" id="confirm_password" type="{{type2}}" formControlName="confirm_password" matInput>
+		<span class="btn btn-light p-1 rounded-circle seepassword mr-n2 ml-n3 float-right" matSuffix (click)="changetype2()">
+			<mat-icon  class="fa {{type2 == 'password' ? 'fa-eye' : 'fa-eye-slash'}}"></mat-icon>
+		</span>
+		<div *ngIf="form.confirm_password.errors?.confirm_password &&  form.confirm_password?.dirty" class="mb-n3 mt-1 error small text-danger">Password does not match</div>
+		<div *ngIf="form.confirm_password.errors?.required && signupDetails.get('confirm_password')?.touched" class="mb-n3 mt-1 error small text-danger">Confirm Passowrd field can't be empty</div>
 	</mat-form-field>
 	<div class="col-sm-11 mx-auto">
 		<div class="progress mt-3">

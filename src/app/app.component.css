@@ -48,3 +48,36 @@ input, mat-select{
 .infoIcon{
 	font-size: 2rem;
 }
+::ng-deep .snackBarSuccess{
+	color: teal;
+	bottom: 1rem;
+	position: relative;
+	text-align: center;
+	background: #fff;
+	border: 1px solid teal;
+}
+::ng-deep .snackBarDanger{
+	color: red;
+	bottom: 1rem;
+	position: relative;
+	text-align: center;
+	background: #fff;
+	border: 1px solid teal;
+}
+::ng-deep .mat-simple-snackbar-action{
+	color: teal;
+	font-weight: bold;
+	border-radius: 3px;
+	background-color: #00808027;
+	border: none;
+	outline: none;
+}
+::ng-deep .mat-progress-bar-fill::after {
+    background-color: teal;
+}
+::ng-deep .mat-progress-bar-buffer {
+    background: #d1ecec;
+}
+.infoIcon img{
+	user-select: none;
+}

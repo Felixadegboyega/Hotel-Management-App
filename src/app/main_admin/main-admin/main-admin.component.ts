@@ -1,4 +1,5 @@
 import { MediaMatcher } from '@angular/cdk/layout';
+import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { GetService } from 'src/app/services/get.service';
 
@@ -9,9 +10,10 @@ import { GetService } from 'src/app/services/get.service';
 })
 export class MainAdminComponent implements OnInit {
 
-  public mainAdminInfo = {admin_id:0, first_name:"Felix", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", profile_picture:""}
+  public mainAdminInfo;
   public mobileQuery :MediaQueryList;
   private _mobileQueryListener: () => void;
+  public loading = true;
   
   constructor(public changeDetectorRef: ChangeDetectorRef, public media: MediaMatcher, public getService : GetService) {}
 
@@ -21,6 +23,12 @@ export class MainAdminComponent implements OnInit {
     this.mobileQuery.addListener(this._mobileQueryListener);
     this.getService.getMainAdminInfo().subscribe(data=>{
       console.log(data);
+      this.mainAdminInfo = data.admin_details
+      this.loading = false;
+    }, (err:HttpErrorResponse)=>{
+      if(err){
+        console.log(err.error)
+      }
     })
   }
   ngOnDestroy(): void {

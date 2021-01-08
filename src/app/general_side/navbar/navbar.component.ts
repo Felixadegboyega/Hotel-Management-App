@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
   constructor(public changeDetectorRef: ChangeDetectorRef, public media: MediaMatcher) {}
 
   ngOnInit(): void {
-    this.mobileQuery = this.media.matchMedia('(max-width: 600px)');
+    this.mobileQuery = this.media.matchMedia('(max-width: 800px)');
     this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
 

@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PostService } from 'src/app/services/post.service';
 
@@ -13,14 +13,16 @@ export class MainAdminLoginComponent implements OnInit {
 
   constructor(public formB:FormBuilder, public postService : PostService, public router:Router) { }
   public mainAdminLogin = this.formB.group({
-    email:[''],
-    password:['']
+    email:['',[Validators.required, Validators.email]],
+    password:['', Validators.required],
   })
   public type = "password";
   public loading = false;
   public loginError;
   ngOnInit(): void {
   }
+  get form() { return this.mainAdminLogin.controls; }
+
 
   changetype(){
     if(this.type == "password"){
@@ -32,10 +34,10 @@ export class MainAdminLoginComponent implements OnInit {
   login(){
     this.loading = true;
     this.postService.mainAdminSignIn(this.mainAdminLogin.value).subscribe(
-      (data:any)=>{
+      async (data:any)=>{
         if(data.token != null){
           localStorage.setItem("token", data.token);
-          this.router.navigate(["/worker/main-admin"])
+          await this.router.navigate(["/worker/main-admin"])
         } else if(data.email_verify && !data.verify_password){
           this.loginError = "Invalid Details"
           this.loading = false;

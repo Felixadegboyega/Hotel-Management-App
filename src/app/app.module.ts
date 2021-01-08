@@ -66,7 +66,7 @@ import { MainAdminSignupComponent } from './main_admin/main-admin-signup/main-ad
 import { ManagerRegistrationComponent } from './workersside/manager-registration/manager-registration.component';
 import { MainAdminLoginComponent } from './main_admin/main-admin-login/main-admin-login.component';
 import { StaffRegistrationComponent } from './workersside/staff-registration/staff-registration.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StaffsearchPipe } from './pipes/staffsearch.pipe';
 import { NewroomComponent } from './workersside/newroom/newroom.component';
 import { NewfoodComponent } from './workersside/newfood/newfood.component';
@@ -75,6 +75,10 @@ import { MainworkerComponent } from './workersside/mainworker/mainworker.compone
 import { CleaninghistoryComponent } from './users_side/cleaninghistory/cleaninghistory.component';
 import { CustomercarehistoryComponent } from './users_side/customercarehistory/customercarehistory.component';
 import { OrderhistoryComponent } from './users_side/orderhistory/orderhistory.component';
+import { ApiInterceptor } from './interceptors/api.interceptor';
+import { HrComponent } from './workersside/hr/hr.component';
+import { HrLoginComponent } from './workersside/hr-login/hr-login.component';
+import { HrRegistrationComponent } from './workersside/hr-registration/hr-registration.component';
 
 
 @NgModule({
@@ -98,14 +102,18 @@ import { OrderhistoryComponent } from './users_side/orderhistory/orderhistory.co
     ManagerRegistrationComponent,
     MainAdminLoginComponent,
     StaffRegistrationComponent,
-    StaffsearchPipe,
     NewroomComponent,
+    StaffsearchPipe,
     NewfoodComponent,
     FoodsComponent,
     MainworkerComponent,
     CleaninghistoryComponent,
     CustomercarehistoryComponent,
-    OrderhistoryComponent
+    OrderhistoryComponent,
+    HrComponent,
+    HrLoginComponent,
+    HrRegistrationComponent,
+    
   ],
   imports: [
     CdkTreeModule,
@@ -160,7 +168,13 @@ import { OrderhistoryComponent } from './users_side/orderhistory/orderhistory.co
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiInterceptor,
+      multi: true
+    }
+  ],
 })
 export class AppModule { }

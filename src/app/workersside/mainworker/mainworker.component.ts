@@ -1,5 +1,6 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { NavService } from 'src/app/services/nav.service';
 
 @Component({
   selector: 'app-mainworker',
@@ -32,17 +33,23 @@ export class MainworkerComponent implements OnInit {
   public kitchenManagerLink;
   public cleaningServiceManagerLink;
   public customerCareServiceManagerLink;
+  public profileLink = ''
 
   public mobileQuery :MediaQueryList;
   private _mobileQueryListener: () => void;
   
-  constructor(public changeDetectorRef: ChangeDetectorRef, public media: MediaMatcher) {}
+  constructor(public navService:NavService, public changeDetectorRef: ChangeDetectorRef, public media: MediaMatcher) {}
 
   ngOnInit(): void {
     this.mobileQuery = this.media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
-
+    let data = this.navService.yeah()
+    if(data){
+      if(data.for == 'admin'){
+        this.profileLink = './main-admin'
+      }
+    }
 
      // let kitchen = this.staffs.find(each=>each.status=="manager"&&each.unit=="kitchen")
     // // if(kitchen){

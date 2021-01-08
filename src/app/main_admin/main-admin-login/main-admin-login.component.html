@@ -10,11 +10,16 @@
 		<mat-form-field appearance="a" class="mt-n2 col-sm-11 mx-auto">
 			<mat-label for="email" class="text-dark">Email</mat-label>
 			<input required autocomplete="email" id="email" class="pb-2" type="email" formControlName="email" matInput>
+			<div *ngIf="form.email.errors?.required && mainAdminLogin.get('email')?.touched" class="mb-n3 mt-1 error small text-danger">Email field can't be empty</div>
+			<div *ngIf="form.email.errors?.email && mainAdminLogin.get('email')?.touched" class="mb-n3 mt-1 error small text-danger">Must enter a valid email</div>
 		</mat-form-field>
 		<mat-form-field appearance="a" class="mt-n2 col-sm-11 mx-auto">
 			<mat-label for="password" class="text-dark">Password</mat-label>
 			<input required autocomplete="new-password" class="pb-2 pr-3" id="password" type={{type}} formControlName="password" matInput>
-			<mat-icon matSuffix (click)="changetype()" class="mr-n2 seepassword float-right ml-n3 fa fa-eye"></mat-icon>
+			<span class="btn btn-light p-1 rounded-circle seepassword mr-n2 ml-n3 float-right" matSuffix (click)="changetype()">
+				<mat-icon  class="fa {{type == 'password' ? 'fa-eye' : 'fa-eye-slash'}}"></mat-icon>
+			</span>
+			<div *ngIf="form.password.errors?.required && mainAdminLogin.get('password')?.touched" class="mb-n3 mt-1 error small text-danger">Password field can't be empty</div>
 		</mat-form-field>
 		<div class="col-sm-11 mx-auto">
 			<div class="progress mt-3">
