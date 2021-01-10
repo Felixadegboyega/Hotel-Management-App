@@ -64,6 +64,14 @@ input, mat-select{
 	background: #fff;
 	border: 1px solid teal;
 }
+::ng-deep .snackBarWarning{
+	color: yellow;
+	bottom: 1rem;
+	position: relative;
+	text-align: center;
+	background: #fff;
+	border: 1px solid teal;
+}
 ::ng-deep .mat-simple-snackbar-action{
 	color: teal;
 	font-weight: bold;
@@ -80,4 +88,8 @@ input, mat-select{
 }
 .infoIcon img{
 	user-select: none;
+	width: 2rem;
+}
+.status{
+	font-size: 1.3rem !important;
 }

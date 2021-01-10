@@ -1,8 +1,34 @@
-.imgRow{
-	background-image: url('../../../assets/images/room.jpg');
-	background-blend-mode: color-burn;
-	background-color: rgba(3, 45, 45, 0.783);
-	height:100vh;
+.bigImg{
+	border-radius: 20px;
+	border-top-left-radius:100px 100px ;
+	max-width: 400px !important;
+}
+.welcome{
+	font-size: 2rem;
+	animation-name: welcome;
+	animation-duration: 1s;
+}
+.welcomebig{
+	font-size: 3rem;
+	animation-name: welcome;
+	animation-duration: 01s;
+}
+.row{
+	user-select: none;
+	background-color: #0080800d;
+	animation-name: Text;
+	animation-duration: 2s;
+}
+@keyframes Text {
+    from {opacity: 0.2;}
+    to {opacity:  1;}
+}
+@keyframes welcome {
+    from {margin-bottom: -10px;}
+    to {margin-bottom:  0px;}
+}
+.textCol{
+	max-width: 600px !important;
 }
 .bookBut{
 	background-color: teal;

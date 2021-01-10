@@ -79,6 +79,7 @@ import { ApiInterceptor } from './interceptors/api.interceptor';
 import { HrComponent } from './workersside/hr/hr.component';
 import { HrLoginComponent } from './workersside/hr-login/hr-login.component';
 import { HrRegistrationComponent } from './workersside/hr-registration/hr-registration.component';
+import { ManagerProfileExpComponent } from './workersside/manager-profile-exp/manager-profile-exp.component';
 
 
 @NgModule({
@@ -113,6 +114,7 @@ import { HrRegistrationComponent } from './workersside/hr-registration/hr-regist
     HrComponent,
     HrLoginComponent,
     HrRegistrationComponent,
+    ManagerProfileExpComponent,
     
   ],
   imports: [

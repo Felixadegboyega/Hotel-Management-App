@@ -31,6 +31,7 @@ import { HrComponent } from './workersside/hr/hr.component';
 import { HrRegistrationComponent } from './workersside/hr-registration/hr-registration.component';
 import { HrLoginComponent } from './workersside/hr-login/hr-login.component';
 import { AdminGuard } from './guards/admin.guard';
+import { ManagerProfileExpComponent } from './workersside/manager-profile-exp/manager-profile-exp.component';
 
 const routes: Routes = [
   {path:"", redirectTo:"/home", pathMatch:"full"},
@@ -43,7 +44,7 @@ const routes: Routes = [
     {path:"main-admin", component:MainAdminComponent, canActivate:[AdminGuard]},
     {path:"manager-registration", component:ManagerRegistrationComponent},
     {path:"manager-profile/:id", component:ManagersProfileComponent},
-    {path:"hr", component:HrComponent},
+    {path:"hr/:id", component:HrComponent},
     {path:"hr-registration", component:HrRegistrationComponent},
     {path:"staffs", component:StaffsComponent},
     {path:"staff-registration", component:StaffRegistrationComponent},
@@ -56,6 +57,8 @@ const routes: Routes = [
 
   {path:"rooms", component:RoomsComponent},
   {path:"foods", component:FoodsComponent},
+
+  {path:"manager-profile-exp", component:ManagerProfileExpComponent},
 
   {path:"main-admin/signup", component:MainAdminSignupComponent},
   {path:"main-admin/login", component:MainAdminLoginComponent},

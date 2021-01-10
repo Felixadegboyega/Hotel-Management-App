@@ -11,3 +11,12 @@
 button{
 	outline: none !important;
 }
+.navbar-nav{
+	flex-direction: unset !important;
+}
+.navbar-collapse{
+	overflow-x: auto !important;
+}
+.navbar-collapse::-webkit-scrollbar-thumb{
+	background-color: #dbfafa !important;
+}

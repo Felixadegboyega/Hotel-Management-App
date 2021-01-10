@@ -5,37 +5,39 @@
 			<button mat-button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav" aria-expanded="false" aria-label="Toggle navigation">
 				<mat-icon>menu</mat-icon>
 			</button>
-			<div id="my-nav" class="collapse mr-2 navbar-collapse">
+			<div id="my-nav" class="collapse mr-2 ml-2 pb-2 navbar-collapse">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item" routerLinkActive="active">
-						
-						<button mat-button [class.text-left]="mobileQuery.matches" [class.ml-3]="mobileQuery.matches" class="nav-link small" routerLink="/home">
+						<button mat-button class="pl-1 pr-1 mr-2 nav-link small" routerLink="/home">
 							<mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
 						</button>
 					</li>
 					<li class="nav-item" routerLinkActive="active">
-						<button mat-button [class.text-left]="mobileQuery.matches" [class.ml-3]="mobileQuery.matches" class="nav-link" routerLink="/main-admin/login">Admin Login</button>
+						<button mat-button class="pl-1 pr-1 mr-2 nav-link" routerLink="/main-admin/login">Admin Login</button>
 					</li>
 					<li class="nav-item" routerLinkActive="active">
-						<button mat-button [class.text-left]="mobileQuery.matches" [class.ml-3]="mobileQuery.matches" class="nav-link" routerLink="/staff/login">Staff Login</button>
+						<button mat-button class="pl-1 pr-1 mr-2 nav-link" routerLink="/manager/login">Manager Login</button>
 					</li>
 					<li class="nav-item" routerLinkActive="active">
-						<button mat-button [class.text-left]="mobileQuery.matches" [class.ml-3]="mobileQuery.matches" class="nav-link" routerLink="/manager/login">Manager Login</button>
+						<button mat-button class="pl-1 pr-1 mr-2 nav-link" routerLink="/hr/login">HR Login</button>
 					</li>
 					<li class="nav-item" routerLinkActive="active">
-						<button mat-button [class.text-left]="mobileQuery.matches" [class.ml-3]="mobileQuery.matches" class="nav-link" routerLink="rooms">Book a room</button>
+						<button mat-button class="pl-1 pr-1 mr-2 nav-link" routerLink="/staff/login">Staff Login</button>
 					</li>
 					<li class="nav-item" routerLinkActive="active">
-						<button mat-button [class.text-left]="mobileQuery.matches" [class.ml-3]="mobileQuery.matches" class="nav-link" routerLink="foods">Order food</button>
+						<button mat-button class="pl-1 pr-1 mr-2 nav-link" routerLink="rooms">Book a room</button>
 					</li>
 					<li class="nav-item" routerLinkActive="active">
-						<button mat-button [class.text-left]="mobileQuery.matches" [class.ml-3]="mobileQuery.matches" class="nav-link" routerLink="user/signup">Sign Up</button>
+						<button mat-button class="pl-1 pr-1 mr-2 nav-link" routerLink="foods">Order food</button>
 					</li>
 					<li class="nav-item" routerLinkActive="active">
-						<button mat-button [class.text-left]="mobileQuery.matches" [class.ml-3]="mobileQuery.matches" class="nav-link" routerLink="user/login">Sign In</button>
+						<button mat-button class="pl-1 pr-1 mr-2 nav-link" routerLink="user/signup">Sign Up</button>
 					</li>
 					<li class="nav-item" routerLinkActive="active">
-						<button matTooltip="Profile" matTooltipPosition="below" aria-label="Profile" mat-button [class.text-left]="mobileQuery.matches" [class.ml-3]="mobileQuery.matches" class="nav-link" routerLink="user/profile/2">
+						<button mat-button class="pl-1 pr-1 mr-2 nav-link" routerLink="user/login">Sign In</button>
+					</li>
+					<li class="nav-item" routerLinkActive="active">
+						<button matTooltip="Profile" matTooltipPosition="below" aria-label="Profile" mat-button class="pl-1 pr-1 mr-2 nav-link" routerLink="user/profile/2">
 							<mat-icon aria-hidden="false" aria-label="Example home icon">account_circle</mat-icon>
 						</button>
 					</li>

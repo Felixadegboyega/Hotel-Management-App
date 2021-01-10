@@ -18,7 +18,9 @@
 	height: 90%;
 }
 
-
+.sidenav-content{
+	min-height: 100%;
+}
 
 .menus{
 	outline: none !important;

@@ -16,4 +16,9 @@ export class GetService {
   getManagersInfo(){
     return this.connect.get<any>(`${environment.connectToBackEnd}worker/managers/alldetails.php`);
   }
+
+
+  getHrsInfo(){
+    return this.connect.get<any>(`${environment.connectToBackEnd}worker/hr/details.php`);
+  }
 }

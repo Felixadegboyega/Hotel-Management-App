@@ -32,15 +32,15 @@ export class PostService {
   }
   
   
-  // HRSignUp(user_info){
-    //   return this.connect.post<any>(`${this.baseUrl}worker/managers/register.php`, user_info);
-    // }
-  // HRSignIn(user_info){
-    //   return this.connect.post<any>(`${this.baseUrl}worker/managers/signin.php`, user_info);
-    // }
-    // updateHRInfo(user_info){
-      //   return this.connect.post<any>(`${this.baseUrl}worker/managers/editprofile.php`, user_info);
-      // }
+  HRSignUp(user_info){
+      return this.connect.post<any>(`${this.baseUrl}worker/hr/register.php`, user_info);
+    }
+  HRSignIn(user_info){
+      return this.connect.post<any>(`${this.baseUrl}worker/hr/signin.php`, user_info);
+    }
+  updateHRInfo(user_info){
+      return this.connect.post<any>(`${this.baseUrl}worker/hr/editprofile.php`, user_info);
+    }
 
 
 
