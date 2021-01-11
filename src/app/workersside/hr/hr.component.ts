@@ -34,10 +34,13 @@ export class HrComponent implements OnInit {
       (data)=>{
 
         console.log(data)
+        if(!data.verify){
+          this.router.navigate(['hr-profile-exp'])
+        }
         this.HrInfo = data.hr_details.find((each)=>each.hr_id == this.actRoute.snapshot.params.id)
         this.loading = false
       },(error:HttpErrorResponse)=>{
-        this.router.navigate(['manager-profile-exp'])
+        this.router.navigate(['hr-profile-exp'])
       }
     )
     

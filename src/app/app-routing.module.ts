@@ -32,6 +32,8 @@ import { HrRegistrationComponent } from './workersside/hr-registration/hr-regist
 import { HrLoginComponent } from './workersside/hr-login/hr-login.component';
 import { AdminGuard } from './guards/admin.guard';
 import { ManagerProfileExpComponent } from './workersside/manager-profile-exp/manager-profile-exp.component';
+import { HrProfileExpComponent } from './workersside/hr-profile-exp/hr-profile-exp.component';
+import { StaffProfileExpComponent } from './workersside/staff-profile-exp/staff-profile-exp.component';
 
 const routes: Routes = [
   {path:"", redirectTo:"/home", pathMatch:"full"},
@@ -59,6 +61,8 @@ const routes: Routes = [
   {path:"foods", component:FoodsComponent},
 
   {path:"manager-profile-exp", component:ManagerProfileExpComponent},
+  {path:"hr-profile-exp", component:HrProfileExpComponent},
+  {path:"staff-profile-exp", component:StaffProfileExpComponent},
 
   {path:"main-admin/signup", component:MainAdminSignupComponent},
   {path:"main-admin/login", component:MainAdminLoginComponent},

@@ -80,6 +80,8 @@ import { HrComponent } from './workersside/hr/hr.component';
 import { HrLoginComponent } from './workersside/hr-login/hr-login.component';
 import { HrRegistrationComponent } from './workersside/hr-registration/hr-registration.component';
 import { ManagerProfileExpComponent } from './workersside/manager-profile-exp/manager-profile-exp.component';
+import { HrProfileExpComponent } from './workersside/hr-profile-exp/hr-profile-exp.component';
+import { StaffProfileExpComponent } from './workersside/staff-profile-exp/staff-profile-exp.component';
 
 
 @NgModule({
@@ -115,6 +117,8 @@ import { ManagerProfileExpComponent } from './workersside/manager-profile-exp/ma
     HrLoginComponent,
     HrRegistrationComponent,
     ManagerProfileExpComponent,
+    HrProfileExpComponent,
+    StaffProfileExpComponent,
     
   ],
   imports: [

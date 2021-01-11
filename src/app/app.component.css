@@ -86,6 +86,9 @@ input, mat-select{
 ::ng-deep .mat-progress-bar-buffer {
     background: #d1ecec;
 }
+::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: teal;
+}
 .infoIcon img{
 	user-select: none;
 	width: 2rem;

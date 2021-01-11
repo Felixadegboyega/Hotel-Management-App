@@ -21,4 +21,8 @@ export class GetService {
   getHrsInfo(){
     return this.connect.get<any>(`${environment.connectToBackEnd}worker/hr/details.php`);
   }
+
+  getUnits(){
+    return this.connect.get<any>(`${environment.connectToBackEnd}general/units.php`);
+  }
 }
