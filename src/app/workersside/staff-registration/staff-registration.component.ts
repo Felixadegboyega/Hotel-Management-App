@@ -71,17 +71,19 @@ export class StaffRegistrationComponent implements OnInit {
     // console.log(this.signupDetails.value)
     this.postService.staffSignUp(this.signupDetails.value).subscribe(
       (data:any)=>{
+        this.loading = false;
         if(data.verify && data.query_status){
           this.snackBarService.snack("Staff Registration successful", "snackBarSuccess")
         } else if(!data.verify){
-          // this.router.navigate(['/manager/login'])
+          this.router.navigate(['/manager/login'])
         } else if(!data.query_status){
           this.snackBarService.snack("Email is taken", "snackBarDanger")
         } else {
           this.snackBarService.snack("An error occured", "snackBarDanger")
         }
       },(error:HttpErrorResponse)=>{
-        // this.router.navigate(['/manager/login'])
+        this.loading = false;
+        this.router.navigate(['/manager/login'])
       }
     )
   }

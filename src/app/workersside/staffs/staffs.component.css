@@ -4,3 +4,8 @@
 	overflow: auto;
 	/* min-width: 500px; */
 }
+.staffLink{
+	cursor: pointer;
+	outline: none;
+	color: teal;
+}

@@ -6,25 +6,56 @@
 	<div class="col-sm-6 mt-n3 mt-sm-0" [class.mx-auto]="mobileQuery.matches" >
 		<mat-form-field class="ml-auto w-100" appearance="a">
 			<mat-label class="text-dark">Filter</mat-label>
-			<input class="pb-2" matInput (keyup)="filterStaff($event)" placeholder="Kitchen Staff" #input>
+			<input class="pb-2" matInput [(ngModel)]='searchText' placeholder="Kitchen Staff" #input>
 		</mat-form-field>
 	</div>
 	<div class="inside col-12">
-		<table class="table" [class.table-responsive]="mobileQuery.matches">
+		<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+		<table *ngIf="!loading" class="table">
 			<thead>
 				<tr>
-					<th class="border-bottom-0 border-top-0">ID</th>
 					<th class="border-bottom-0 border-top-0">Name</th>
 					<th class="border-bottom-0 border-top-0">Phone Number</th>
 					<th class="border-bottom-0 border-top-0">Unit</th>
+					<th class="border-bottom-0 border-top-0"></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr *ngFor="let staff of staffs | staffsearch:searchText">
-					<td>{{staff.staff_id}}</td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td>{{staff.first_name}} {{staff.last_name}}</td>
+					<td>{{staff.phone_number}}</td>
+					<td>{{staff.unit_name}}</td>
+					<td class="staffLink" routerLink="/worker/staff-profile/{{staff.staff_id}}">View more</td>
+				</tr>
+				<tr *ngFor="let staff of staffs | staffsearch:searchText">
+					<td>{{staff.first_name}} {{staff.last_name}}</td>
+					<td>{{staff.phone_number}}</td>
+					<td>{{staff.unit_name}}</td>
+					<td class="staffLink" routerLink="/worker/staff-profile/{{staff.staff_id}}">View more</td>
+				</tr>
+				<tr *ngFor="let staff of staffs | staffsearch:searchText">
+					<td>{{staff.first_name}} {{staff.last_name}}</td>
+					<td>{{staff.phone_number}}</td>
+					<td>{{staff.unit_name}}</td>
+					<td class="staffLink" routerLink="/worker/staff-profile/{{staff.staff_id}}">View more</td>
+				</tr>
+				<tr *ngFor="let staff of staffs | staffsearch:searchText">
+					<td>{{staff.first_name}} {{staff.last_name}}</td>
+					<td>{{staff.phone_number}}</td>
+					<td>{{staff.unit_name}}</td>
+					<td class="staffLink" routerLink="/worker/staff-profile/{{staff.staff_id}}">View more</td>
+				</tr>
+				<tr *ngFor="let staff of staffs | staffsearch:searchText">
+					<td>{{staff.first_name}} {{staff.last_name}}</td>
+					<td>{{staff.phone_number}}</td>
+					<td>{{staff.unit_name}}</td>
+					<td class="staffLink" routerLink="/worker/staff-profile/{{staff.staff_id}}">View more</td>
+				</tr>
+				<tr *ngFor="let staff of staffs | staffsearch:searchText">
+					<td>{{staff.first_name}} {{staff.last_name}}</td>
+					<td>{{staff.phone_number}}</td>
+					<td>{{staff.unit_name}}</td>
+					<td class="staffLink" routerLink="/worker/staff-profile/{{staff.staff_id}}">View more</td>
 				</tr>
 			</tbody>
 		</table>

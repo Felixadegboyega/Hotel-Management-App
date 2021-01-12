@@ -22,7 +22,16 @@ export class GetService {
     return this.connect.get<any>(`${environment.connectToBackEnd}worker/hr/details.php`);
   }
 
+
   getUnits(){
-    return this.connect.get<any>(`${environment.connectToBackEnd}general/units.php`);
+    return this.connect.get<any>(`${environment.connectToBackEnd}general/units/units.php`);
+  }
+  
+  getAllStaffs(){
+    return this.connect.get<any>(`${environment.connectToBackEnd}worker/staffs/allstaff.php`);
+  }
+  
+  getRooms(){
+  return this.connect.get<any>(`${environment.connectToBackEnd}general/rooms/all_rooms.php`);
   }
 }

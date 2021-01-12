@@ -44,11 +44,10 @@ export class PostService {
 
 
 
-
     staffSignUp(user_info){
       return this.connect.post<any>(`${this.baseUrl}worker/staffs/register.php`, user_info);
     }
-    staffUserSignIn(user_info){
+    staffSignIn(user_info){
       return this.connect.post<any>(`${this.baseUrl}worker/staffs/signin.php`, user_info);
     }
     updateStaffInfo(user_info){
@@ -65,6 +64,11 @@ export class PostService {
     }
     updateUserInfo(user_info){
       return this.connect.post<any>(`${this.baseUrl}users/editprofile.php`, user_info);
+    }
+    
+    
+    createRoom(room_info){
+      return this.connect.post<any>(`${this.baseUrl}/general/rooms/addnewroom.php`, room_info);
     }
       
 }

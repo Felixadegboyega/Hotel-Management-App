@@ -11,18 +11,19 @@
 					<input class="pb-2" matInput placeholder="Executive" #input>
 				</mat-form-field>
 			</div>
-			<div class="col-12 mainDiv row mx-auto mt-n5 p-0">
+			<div class="col-12 mainDiv row mt-n5 p-0">
 				<div class="col-6 cardin col-sm-4 col-lg-3 p-2 p-md-3 p-lg-2 p-xl-4" *ngFor="let room of roomArray">
-					<div class="rounded bg-light card h-100">
+					<div class="rounded bg-light card">
 						<div [class.imgR]="mobileQuery.matches" class="bg-white img card-img-top">
 							<img src="../../../assets/images/room.jpg" class="w-100 h-100 rounded-top" alt="">
 						</div>
 						
 						<div class="p-3 bg-light nameDiv">
-							{{room.room_type}}
+							Type: {{room.room_type}} <br/>
+							Price per day: {{room.room_price}}
 						</div>
 						<div class="pl-3 pr-3 pb-3 bg-light buttonDiv w-100">
-							<button mat-button class="bookBut text-white w-100 mx-auto">Book</button>
+							<button mat-button (click)="book(room.room_id)" class="bookBut text-white w-100 mx-auto">Book</button>
 						</div>
 					</div>
 				</div>

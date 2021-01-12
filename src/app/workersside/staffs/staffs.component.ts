@@ -1,8 +1,11 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { Router } from '@angular/router';
+import { GetService } from 'src/app/services/get.service';
 
 @Component({
   selector: 'app-staffs',
@@ -19,38 +22,31 @@ export class StaffsComponent implements OnInit {
   // @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   
-  public staffs =[
-     {staff_id:0, first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-     {staff_id:1, first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-     {staff_id:2, first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-     {staff_id:3, first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-     {staff_id:4, first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-     {staff_id:5, first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-     {staff_id:6, first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-     {staff_id:0, first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-     {staff_id:0, first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-     {staff_id:0, first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-     {staff_id:0, first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-     {staff_id:0, first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-     {staff_id:0, first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-     {staff_id:0, first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-     {staff_id:0, first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-     {staff_id:0, first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-     {staff_id:0, first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-     {staff_id:0, first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-     {staff_id:0, first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-     {staff_id:0, first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""}
-  ]
-  public searchText;
+  public staffs =[]
+  public searchText = ""
+  public loading = true
   public mobileQuery :MediaQueryList;
   private _mobileQueryListener: () => void;
   
-  constructor(public changeDetectorRef: ChangeDetectorRef, public media: MediaMatcher) {}
+  constructor(
+    public changeDetectorRef: ChangeDetectorRef, 
+    public media: MediaMatcher,
+    public router:Router,
+    public getService:GetService
+  ) {}
 
   ngOnInit(): void {
     this.mobileQuery = this.media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    this.getService.getAllStaffs().subscribe(
+      (data:any)=>{
+        this.loading = false;
+        this.staffs = data.staffs_details
+      },(err:HttpErrorResponse)=>{
+        this.router.navigate(['/staff-profile-exp'])
+      }
+    )
   }
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);

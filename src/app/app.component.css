@@ -91,7 +91,7 @@ input, mat-select{
 }
 .infoIcon img{
 	user-select: none;
-	width: 2rem;
+	-webkit-user-drag: none;
 }
 .status{
 	font-size: 1.3rem !important;
