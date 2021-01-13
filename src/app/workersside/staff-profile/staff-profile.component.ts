@@ -12,8 +12,7 @@ import { GetService } from 'src/app/services/get.service';
 export class StaffProfileComponent implements OnInit {
 
 
-  public staff = {manager_id:0, first_name:"Felix", date_employed:"21/21/2121", unit:"Cleaning Service", last_name:"Adegboyega", dob:"21/21/2121", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", profile_picture:""}
-
+  public staff;
   public mobileQuery :MediaQueryList;
   private _mobileQueryListener: () => void;
   

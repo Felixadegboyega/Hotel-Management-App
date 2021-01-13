@@ -59,7 +59,7 @@ export class PostService {
     UserSignUp(user_info){
       return this.connect.post<any>(`${this.baseUrl}users/signup.php`, user_info);
     }
-    managerUserSignIn(user_info){
+    UserSignIn(user_info){
       return this.connect.post<any>(`${this.baseUrl}users/signin.php`, user_info);
     }
     updateUserInfo(user_info){
@@ -69,6 +69,10 @@ export class PostService {
     
     createRoom(room_info){
       return this.connect.post<any>(`${this.baseUrl}/general/rooms/addnewroom.php`, room_info);
+    }
+
+    newFood(food_info){
+      return this.connect.post<any>(`${this.baseUrl}/general/foods/addnewfood.php`, food_info);
     }
       
 }

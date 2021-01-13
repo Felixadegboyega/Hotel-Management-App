@@ -1,0 +1,20 @@
+
+<h1 mat-dialog-title>Order {{data.food_name}}</h1>
+<div mat-dialog-content>
+	<form [formGroup]="orderDetails" action="" class="pt-3 row">
+		<mat-form-field appearance="a" class="mt-n2 col-sm-12 mx-auto">
+			<mat-label class="text-dark">Number of plates</mat-label>
+			<input required class="pb-2" type="number" formControlName="qty" matInput>
+			<!-- <div *ngIf="orderDetails.get('food_name').errors?.required && foodDetails.get('food_name')?.touched" class="mb-n3 mt-1 error small text-danger">Field can not be empty</div> -->
+		</mat-form-field>
+		<mat-form-field appearance="a" class="mt-n2 col-sm-12 mx-auto">
+			<mat-label class="text-dark">Order note</mat-label>
+			<textarea class="pb-2" formControlName="order_note" matInput></textarea>
+			<!-- <div *ngIf="orderDetails.get('food_name').errors?.required && foodDetails.get('food_name')?.touched" class="mb-n3 mt-1 error small text-danger">Field can not be empty</div> -->
+		</mat-form-field>
+	</form>
+</div>
+<div mat-dialog-actions class="mb-3">
+  <button class="mr-auto" mat-stroked-button (click)="onNoClick()">Cancel</button>
+  <button class="ml-auto" mat-stroked-button (click)='order(data.food_id)' cdkFocusInitial>Order</button>
+</div>

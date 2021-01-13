@@ -34,4 +34,12 @@ export class GetService {
   getRooms(){
   return this.connect.get<any>(`${environment.connectToBackEnd}general/rooms/all_rooms.php`);
   }
+
+  getFoods(){
+  return this.connect.get<any>(`${environment.connectToBackEnd}general/foods/allfood.php`);
+}
+
+getAllUsers(){
+    return this.connect.get<any>(`${environment.connectToBackEnd}users/allusers.php`);
+  }
 }

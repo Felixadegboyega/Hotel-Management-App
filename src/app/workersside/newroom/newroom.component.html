@@ -1,5 +1,5 @@
 <form [formGroup]="roomDetails" class="m-auto">
-	<div class="bg-white p-0 pb-4 border rounded col-11 col-sm-8 mt-4 mx-auto col-md-6 col-lg-5 row borderedDiv">
+	<div class="bg-white p-0 pb-4 border rounded col-11 col-sm-10 mt-4 mx-auto col-md-8 col-lg-5 row borderedDiv">
 		<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
 		<div class="col-sm-11 mt-4 mx-auto">
 			<h2 class="heading">Add New Room</h2>
@@ -7,14 +7,19 @@
 		<mat-form-field appearance="a" class="mt-n2 col-sm-11 mx-auto">
 			<mat-label for="name" class="text-dark">Room Type</mat-label>
 			<input required autocomplete="name" id="name" class="pb-2" formControlName="room_type" matInput>
+			<div *ngIf="roomDetails.get('room_type').errors?.required && roomDetails.get('room_type')?.touched" class="mb-n3 mt-1 error small text-danger">Field can not be empty</div>
 		</mat-form-field>
 		<mat-form-field appearance="a" class="mt-n2 col-sm-11 mx-auto">
-			<mat-label for="price" class="text-dark">Price</mat-label>
+			<mat-label for="price" class="text-dark">Price in Naira</mat-label>
 			<input required autocomplete="50000" type="number" id="price" class="pb-2" formControlName="room_price" matInput>
+			<div *ngIf="roomDetails.get('room_price').errors?.required && roomDetails.get('room_price')?.touched" class="mb-n3 mt-1 error small text-danger">Field can not be empty</div>
+			<div *ngIf="roomDetails.get('room_price').errors?.min && roomDetails.get('room_price')?.dirty" class="mb-n3 mt-1 error small text-danger">Price can not be less than zero</div>
 		</mat-form-field>
 		<mat-form-field appearance="a" class="mt-n2 col-sm-11 mx-auto">
 			<mat-label for="no" class="text-dark">Number Of Rooms</mat-label>
-			<input required autocomplete="no" id="no" class="pb-2" formControlName="total_no_of_rooms" matInput>
+			<input required autocomplete="no" id="no" type="number" class="pb-2" formControlName="total_no_of_rooms" matInput>
+			<div *ngIf="roomDetails.get('total_no_of_rooms').errors?.required && roomDetails.get('total_no_of_rooms')?.touched" class="mb-n3 mt-1 error small text-danger">Field can not be empty</div>
+			<div *ngIf="roomDetails.get('total_no_of_rooms').errors?.min && roomDetails.get('total_no_of_rooms')?.dirty" class="mb-n3 mt-1 error small text-danger">Value can not be less than zero</div>
 		</mat-form-field>
 		<input class="pb-2 pr-3 d-none" id="pics" #pics (change)="choose()" type="file" formControlName="room_picture">
 		<div class="col-sm-11 mx-auto">
@@ -22,7 +27,7 @@
 		</div>
 		<div class="col-sm-11 mx-auto">
 			<div class="progress mt-3">
-				<button mat-button [disabled]="roomDetails.invalid && loading" class="btn text-white h-100 w-100 submitButton" type="submit" (click)="add()">Add</button>
+				<button mat-button [disabled]="roomDetails.invalid && !loading" class="btn text-white h-100 w-100 submitButton" type="submit" (click)="add()">Add</button>
 			</div>
 		</div>
 	</div>

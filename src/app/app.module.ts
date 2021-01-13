@@ -70,7 +70,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StaffsearchPipe } from './pipes/staffsearch.pipe';
 import { NewroomComponent } from './workersside/newroom/newroom.component';
 import { NewfoodComponent } from './workersside/newfood/newfood.component';
-import { FoodsComponent } from './general_side/foods/foods.component';
+import { FoodsComponent, OrderComponent } from './general_side/foods/foods.component';
 import { MainworkerComponent } from './workersside/mainworker/mainworker.component';
 import { CleaninghistoryComponent } from './users_side/cleaninghistory/cleaninghistory.component';
 import { CustomercarehistoryComponent } from './users_side/customercarehistory/customercarehistory.component';
@@ -119,6 +119,7 @@ import { StaffProfileExpComponent } from './workersside/staff-profile-exp/staff-
     ManagerProfileExpComponent,
     HrProfileExpComponent,
     StaffProfileExpComponent,
+    OrderComponent
     
   ],
   imports: [

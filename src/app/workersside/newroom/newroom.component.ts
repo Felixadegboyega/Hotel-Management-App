@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PostService } from 'src/app/services/post.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
@@ -14,9 +14,9 @@ export class NewroomComponent implements OnInit {
 
   constructor(public formB:FormBuilder, public postService:PostService, public snackService:SnackbarService, public router:Router) { }
   public roomDetails = this.formB.group({
-    room_type:[''],
-    room_price:[''],
-    total_no_of_rooms:[''],
+    room_type:['', Validators.required],
+    room_price:['', [Validators.required, Validators.min(0)]],
+    total_no_of_rooms:['', [Validators.required, Validators.min(0)]],
     room_picture:['']
   })
   public loading = false;

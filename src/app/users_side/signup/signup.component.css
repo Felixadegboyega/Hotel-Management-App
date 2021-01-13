@@ -1,1 +1,19 @@
 @import "../../app.component.css";
+form{
+	/* background-image: url('../../../assets/images/back.png'); */
+	background-position: center;
+	background-size: 100% 100%;
+	background-color: rgba(0, 128, 128, 0.16);
+
+}
+.bgdiv{
+	background-color: white;
+	width: 400vh;
+	height: 100vw;
+	border-radius: 100%;
+	position: fixed;
+	bottom:0px;
+	right: 10%;
+	/* transform: rotateX(50deg); */
+	/* transform: rotate3d(200deg); */
+}
