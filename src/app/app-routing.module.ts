@@ -34,6 +34,7 @@ import { AdminGuard } from './guards/admin.guard';
 import { ManagerProfileExpComponent } from './workersside/manager-profile-exp/manager-profile-exp.component';
 import { HrProfileExpComponent } from './workersside/hr-profile-exp/hr-profile-exp.component';
 import { StaffProfileExpComponent } from './workersside/staff-profile-exp/staff-profile-exp.component';
+import { BookroomComponent } from './users_side/bookroom/bookroom.component';
 
 const routes: Routes = [
   {path:"", redirectTo:"/home", pathMatch:"full"},
@@ -72,6 +73,9 @@ const routes: Routes = [
   {path:"staff/login", component:StaffLoginComponent},
   {path:"user/signup", component:SignupComponent},
   {path:"user/login", component:LoginComponent},
+
+
+  {path:"rooms/:id/book", component:BookroomComponent},
 
 
   {path:"user/profile/:id",  component:ProfileComponent},

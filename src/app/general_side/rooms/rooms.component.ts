@@ -36,6 +36,7 @@ export class RoomsComponent implements OnInit {
   }
   book(id){
     console.log(id)
+    this.router.navigate([`/rooms/${id}/book`])
   }
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);

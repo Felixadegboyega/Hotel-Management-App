@@ -1,11 +1,16 @@
 import { MediaMatcher } from '@angular/cdk/layout';
+import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { GetService } from 'src/app/services/get.service';
+import { PostService } from 'src/app/services/post.service';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 
 export interface DialogData {
-  foods :[];
+    food_name:string,
+    food_id:string,
 }
 
 @Component({
@@ -86,17 +91,36 @@ export class FoodsComponent implements OnInit {
 export class OrderComponent {
   constructor(
     public dialogRef: MatDialogRef<OrderComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData, public formB:FormBuilder) {}
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    public formB:FormBuilder,
+    public snackService:SnackbarService,
+    public postService:PostService,
+    public router:Router
+  ) {}
 
   public orderDetails = this.formB.group({
     qty:['', [Validators.required,  Validators.max(3),  Validators.min(0)]],
-    order_note:['', Validators.maxLength(1000)],
+    order_note:['', Validators.maxLength(500)],
   })
 
   order(food_id){
     let food = this.orderDetails.value;
-    food = {...food, food_id};
-    console.log(food)
+    food = {...food, food_id}; 
+    this.postService.newOrder(food).subscribe(
+      (data:any)=>{
+        if(!data.verify_online){
+          this.router.navigate(['/user/login'])
+        } else if(!data.verify_room){
+          this.snackService.snack("Couldn't find room", "snackBarDanger")
+        } else if(data.order_status){
+          this.snackService.snack("Order successfully placed", "snackBarSuccess")
+          this.onNoClick()
+        }
+      },(err:HttpErrorResponse)=>{
+        this.router.navigate(['/user/login'])
+      }
+    )
+
 
   }
 

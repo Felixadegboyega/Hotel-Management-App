@@ -68,11 +68,20 @@ export class PostService {
     
     
     createRoom(room_info){
-      return this.connect.post<any>(`${this.baseUrl}/general/rooms/addnewroom.php`, room_info);
+      return this.connect.post<any>(`${this.baseUrl}general/rooms/addnewroom.php`, room_info);
     }
 
     newFood(food_info){
-      return this.connect.post<any>(`${this.baseUrl}/general/foods/addnewfood.php`, food_info);
+      return this.connect.post<any>(`${this.baseUrl}general/foods/addnewfood.php`, food_info);
+    }
+    
+    newOrder(order_info){
+      return this.connect.post<any>(`${this.baseUrl}general/orders/makeneworder.php`, order_info);
+    }
+    
+    
+    BookRoom(room_info){
+      return this.connect.post<any>(`${this.baseUrl}general/rooms/bookroom.php`, room_info);
     }
       
 }

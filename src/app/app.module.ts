@@ -82,6 +82,7 @@ import { HrRegistrationComponent } from './workersside/hr-registration/hr-regist
 import { ManagerProfileExpComponent } from './workersside/manager-profile-exp/manager-profile-exp.component';
 import { HrProfileExpComponent } from './workersside/hr-profile-exp/hr-profile-exp.component';
 import { StaffProfileExpComponent } from './workersside/staff-profile-exp/staff-profile-exp.component';
+import { BookroomComponent } from './users_side/bookroom/bookroom.component';
 
 
 @NgModule({
@@ -119,7 +120,8 @@ import { StaffProfileExpComponent } from './workersside/staff-profile-exp/staff-
     ManagerProfileExpComponent,
     HrProfileExpComponent,
     StaffProfileExpComponent,
-    OrderComponent
+    OrderComponent,
+    BookroomComponent
     
   ],
   imports: [

@@ -1,0 +1,20 @@
+@import "../../app.component.css";
+.big{
+	height: fit-content !important;
+	/* background-color: teal; */
+}
+mat-label{
+	/* color: white !important; */
+}
+.ImgDiv{
+	background-image: url('../../../assets/images/room.jpg');
+	background-color: rgba(0, 0, 0, 0.598);
+	background-size: cover;
+	background-blend-mode: color-burn;
+}
+input {
+	/* border-color: white !important; */
+}
+.submitButton{
+	/* border:0.3px solid #f3f3f3 !important */
+}
