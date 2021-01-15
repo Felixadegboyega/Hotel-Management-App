@@ -1,8 +1,8 @@
 <div class="bg-light h-100 w-100 pt-5">
-	<div>
+	<div class="m-5">
 		{{userProfile.profile_picture}}
 	</div>
-	<div>
+	<div class="p-5">
 		<div>
 			{{userProfile.first_name}} {{userProfile.last_name}}
 		</div>
@@ -11,6 +11,14 @@
 		</div>
 		<div>
 			{{userProfile.email}}
+		</div>
+		<div class="dropdown">
+			<button id="request" class="dropdown-toggle" mat-stroked-button data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Make a request</button>
+			<div class="dropdown-menu" aria-labelledby="request">
+				<button mat-button class="d-block w-100" routerLink="/foods">Order food</button>
+				<button mat-button class="d-block w-100" (click)="clean()">Cleaning service</button>
+				<button mat-button class="d-block w-100" (click)="comp()">Make a complain</button>
+			</div>
 		</div>
 	</div>
 </div>

@@ -43,7 +43,7 @@ export class BookroomComponent implements OnInit {
     // return parseInt(this.room.room_price)*(parseInt(this.roomDetails.value.check_in_date))
   }
   proceedToP(room_id){
-    this.book(room_id)
+    this.book(room_id);
   }
   
   book(room_id){

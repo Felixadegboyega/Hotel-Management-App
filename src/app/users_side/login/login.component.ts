@@ -41,7 +41,6 @@ export class LoginComponent implements OnInit {
     this.loading = true
     this.postService.UserSignIn(this.loginDetails.value).subscribe(
       (data:any)=>{
-        console.log(data)
         this.loading = false;
         if(!data.email_verify){
           this.snackBarService.snack("Email does not exist", "snackBarDanger")

@@ -80,8 +80,8 @@ const routes: Routes = [
 
   {path:"user/profile/:id",  component:ProfileComponent},
   {path:"user/orders/:id",  component:OrderhistoryComponent},
-  {path:"user/customer-care-service/:id",  component:CustomercarehistoryComponent},
-  {path:"user/cleaning-service/:id",  component:CleaninghistoryComponent},
+  {path:"user/customer-care-services/:id",  component:CustomercarehistoryComponent},
+  {path:"user/cleaning-services/:id",  component:CleaninghistoryComponent},
 
   {path:"**", component:NotfoundComponent},
 

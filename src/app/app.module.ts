@@ -52,7 +52,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './general_side/navbar/navbar.component';
 import { HomeComponent } from './general_side/home/home.component';
 import { RoomsComponent } from './general_side/rooms/rooms.component';
-import { ProfileComponent } from './users_side/profile/profile.component';
+import { CustomerService, ProfileComponent, RequestCleaning } from './users_side/profile/profile.component';
 import { StaffsComponent } from './workersside/staffs/staffs.component';
 import { StaffProfileComponent } from './workersside/staff-profile/staff-profile.component';
 import { ManagersProfileComponent } from './workersside/managers-profile/managers-profile.component';
@@ -83,6 +83,7 @@ import { ManagerProfileExpComponent } from './workersside/manager-profile-exp/ma
 import { HrProfileExpComponent } from './workersside/hr-profile-exp/hr-profile-exp.component';
 import { StaffProfileExpComponent } from './workersside/staff-profile-exp/staff-profile-exp.component';
 import { BookroomComponent } from './users_side/bookroom/bookroom.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 @NgModule({
@@ -121,7 +122,10 @@ import { BookroomComponent } from './users_side/bookroom/bookroom.component';
     HrProfileExpComponent,
     StaffProfileExpComponent,
     OrderComponent,
-    BookroomComponent
+    BookroomComponent,
+    AdminComponent,
+    CustomerService,
+    RequestCleaning
     
   ],
   imports: [

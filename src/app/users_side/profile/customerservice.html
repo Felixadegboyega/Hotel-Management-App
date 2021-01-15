@@ -1,0 +1,25 @@
+
+<h1 mat-dialog-title>Make a Complain</h1>
+<div mat-dialog-content>
+	<form [formGroup]="serviceDetails" action="" class="row pt-3">
+		<mat-form-field appearance="a" class="mt-n2 col-sm-12 mx-auto">
+			<mat-label class="text-dark">Needed part to be clean</mat-label>
+			<mat-select placeholder="placeholder" formControlName="type">
+				<mat-option> -- type --</mat-option>
+				<mat-option value="food">Food</mat-option>
+				<mat-option value="room">Room</mat-option>
+				<mat-option value="payment">Payment</mat-option>
+			</mat-select>
+			<div *ngIf="serviceDetails.get('type').errors?.required && serviceDetails.get('type')?.touched" class="mb-n3 mt-1 error small text-danger">Field can not be empty</div>
+		</mat-form-field>
+		<mat-form-field appearance="a" class="mt-n2 col-sm-12 mx-auto">
+			<mat-label class="text-dark">Service note</mat-label>
+			<textarea class="pb-2" maxlength="500" formControlName="careservice_note" matInput></textarea>
+			<div *ngIf="serviceDetails.get('careservice_note').errors?.maxLength" class="mb-n3 mt-1 error small text-danger">Field can not be empty</div>
+		</mat-form-field>
+	</form>
+</div>
+<div mat-dialog-actions class="mb-1">
+  <button class="mr-auto" mat-stroked-button (click)="onNoClick()">Cancel</button>
+  <button class="ml-auto" mat-stroked-button (click)='complain()' cdkFocusInitial>>>>>>>>>>>>>>>></button>
+</div>

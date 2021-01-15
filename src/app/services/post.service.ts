@@ -83,6 +83,11 @@ export class PostService {
     BookRoom(room_info){
       return this.connect.post<any>(`${this.baseUrl}general/rooms/bookroom.php`, room_info);
     }
+    
+    
+    cleaningRequest(request_info){
+      return this.connect.post<any>(`${this.baseUrl}general/cleaningService/newrequest.php`, request_info);
+    }
       
 }
     

@@ -42,4 +42,12 @@ export class GetService {
 getAllUsers(){
     return this.connect.get<any>(`${environment.connectToBackEnd}users/allusers.php`);
   }
+  
+  getOrders(){
+    return this.connect.get<any>(`${environment.connectToBackEnd}general/orders/allorders.php`);
+  }
+  
+  getCleaningServiceRequest(){
+    return this.connect.get<any>(`${environment.connectToBackEnd}general/cleaningService/allrequest.phpks`);
+  }
 }

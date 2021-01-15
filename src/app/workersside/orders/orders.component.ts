@@ -1,5 +1,6 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { GetService } from 'src/app/services/get.service';
 
 @Component({
   selector: 'app-orders',
@@ -18,12 +19,17 @@ export class OrdersComponent implements OnInit {
   public mobileQuery :MediaQueryList;
   private _mobileQueryListener: () => void;
   
-  constructor(public changeDetectorRef: ChangeDetectorRef, public media: MediaMatcher) {}
+  constructor(public getService:GetService, public changeDetectorRef: ChangeDetectorRef, public media: MediaMatcher) {}
 
   ngOnInit(): void {
     this.mobileQuery = this.media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    this.getService.getOrders().subscribe(
+      (data:any)=>{
+        this.ordersArray = data.orders
+      }
+    )
   }
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);

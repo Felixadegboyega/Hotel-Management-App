@@ -108,16 +108,19 @@ export class OrderComponent {
     food = {...food, food_id}; 
     this.postService.newOrder(food).subscribe(
       (data:any)=>{
-        if(!data.verify_online){
+        if(!data.online_status){
           this.router.navigate(['/user/login'])
+          this.onNoClick()
         } else if(!data.verify_room){
           this.snackService.snack("Couldn't find room", "snackBarDanger")
+          this.onNoClick()
         } else if(data.order_status){
           this.snackService.snack("Order successfully placed", "snackBarSuccess")
           this.onNoClick()
         }
       },(err:HttpErrorResponse)=>{
         this.router.navigate(['/user/login'])
+        this.onNoClick()
       }
     )
 

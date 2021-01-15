@@ -17,6 +17,10 @@ button{
 .navbar-collapse{
 	overflow-x: auto !important;
 }
-.navbar-collapse::-webkit-scrollbar-thumb{
-	background-color: #dbfafa !important;
+::-webkit-scrollbar-thumb{
+	background-color: #ccc !important;
+}
+::-webkit-scrollbar{
+	width: 0px !important;
+	height: 0px !important;
 }

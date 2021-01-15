@@ -26,8 +26,9 @@ input, textarea, mat-select{
 }
 
 ::-webkit-scrollbar {
-	width: 5px;
-	height: 5px;
+	width: 5px !important;
+	height: 5px !important;
+	background-color: #ccc !important;
 }
 ::-webkit-scrollbar-thumb{
 	background: teal !important;
