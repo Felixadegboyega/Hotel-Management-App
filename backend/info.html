@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<div>
+		<h3>Main admin</h3>
+		<div>
+			<h4>Sign up</h4>
+			connect: localhost/Hotel Management/backend/main_admin/signup.php
+			<p>Details to send: first_name, last_name, phone_number, email, password</p>
+		</div>
+		<div>
+			<h4>Sign In</h4>
+			connect: localhost/Hotel Management/backend/main_admin/signin.php
+			<p>Details to send:email, password</p>
+		</div>
+		<div>
+			<h4>For Main Admin Details</h4>
+			connect: localhost/Hotel Management/backend/main_admin/details.php
+			<!-- <p>Details: first_name, last_name, phone_number, email</p> -->
+		</div>
+	</div>
+
+	<hr>
+
+	<div>
+		<h3>Managers</h3>
+		<div>
+			<h4>Registration</h4>
+			connect: localhost/Hotel Management/backend/worker/managers/register.php
+			<p>Details to send: first_name, last_name, phone_number, $email, date_of_birth, password</p>
+		</div>
+		<div>
+			<h4>Sign In</h4>
+			connect: localhost/Hotel Management/backend/worker/managers/signin.php
+			<p>Details to send:email, password</p>
+		</div>
+		<div>
+			<h4>For All Managers Details</h4>
+			connect: localhost/Hotel Management/backend/worker/managers/alldetails.php
+			<!-- <p>Details: first_name, last_name, phone_number, email, dob</p> -->
+		</div>
+	</div>
+
+
+
+	<div>
+		<h3>HR</h3>
+		<div>
+			<h4>Registration</h4>
+			connect: localhost/Hotel Management/backend/worker/hr/register.php
+			<p>Details to send: first_name, last_name, phone_number, $email, date_of_birth, password</p>
+		</div>
+		<div>
+			<h4>Sign In</h4>
+			connect: localhost/Hotel Management/backend/worker/hr/signin.php
+			<p>Details to send:email, password</p>
+		</div>
+		<div>
+			<h4>For All Managers Details</h4>
+			<!-- connect: localhost/Hotel Management/backend/worker/managers/alldetails.php -->
+			<!-- <p>Details: first_name, last_name, phone_number, email, dob</p> -->
+		</div>
+	</div>
+
+	<hr>
+
+	<div>
+		<h3>Staffs</h3>
+		<div>
+			<h4>Registration</h4>
+			connect: localhost/Hotel Management/backend/worker/staffs/register.php
+			<p>Details to send: first_name, last_name, phone_number, dob (date of birth) email, password, type_id</p>
+		</div>
+		<div>
+			<h4>Sign In</h4>
+			connect: localhost/Hotel Management/backend/worker/staffs/signin.php
+			<p>Details to send:email, password</p>
+		</div>
+		<div>
+			<h4>For All Staffs Details</h4>
+			connect: localhost/Hotel Management/backend/worker/staffs/allstaff.php
+			<p>Details: first_name, last_name, phone_number, email, dob</p>
+		</div>
+	</div>
+
+	<hr>
+
+
+	<div>
+		<h3>Units</h3>
+			connect: localhost/Hotel Management/backend/general/units/units.php
+			<p>Details: unit_id,unit_name</p>
+	</div>
+	<hr>
+	<div>
+		<div>
+			<h3>New Room</h3>
+			connect: localhost/Hotel Management/backend/general/rooms/addnewroom.php
+			<p>Details to send: room_type, total_no_of_rooms, room_price</p>
+		</div>
+		<div>
+			<h3>All Room</h3>
+			connect: localhost/Hotel Management/backend/general/rooms/all_rooms.php
+			<p>Details: room_type, total_no_of_rooms, no_of_rooms_available, room_price</p>
+		</div>
+	</div>
+
+
+	<hr>
+	<div>
+		<div>
+			<h3>New Food</h3>
+			connect: localhost/Hotel Management/backend/general/foods/addnewfood.php
+			<p>Details to send: food_name, time-available (from, to)</p>
+		</div>
+		<div>
+			<h3>All Foods</h3>
+			connect: localhost/Hotel Management/backend/general/foods/allfood.php
+			<p>Details: food_name,time_available</p>
+		</div>
+	</div>
+
+	<hr>
+
+
+	<div>
+		<h3>Users</h3>
+		<div>
+			<h4>Sign up</h4>
+			connect: localhost/Hotel Management/backend/users/signup.php
+			<p>Details to send: first_name, last_name, phone_number, email, password</p>
+		</div>
+		<div>
+			<h4>Sign In</h4>
+			connect: localhost/Hotel Management/backend/users/signin.php
+			<p>Details to send:email, password</p>
+		</div>
+		<div>
+			<h4>For Users Details</h4>
+			connect: localhost/Hotel Management/backend/users/allusers.php
+			<!-- <p>Details: first_name, last_name, phone_number, email</p> -->
+		</div>
+	</div>
+	
+	<hr>
+	
+	<div>
+		<h3>Orders</h3>
+		<div>
+			<h4>New Orders</h4>
+			connect: localhost/Hotel Management/backend/general/orders/makeneworder.php
+			<p>Details to send: qty, order_note, user_id</p>
+		</div>
+		
+		<div>
+			<h4>All Orders</h4>
+			connect: localhost/Hotel Management/backend/general/orders/allorders.php
+			<!-- <p>Details to send: qty, order_note, user_id</p> -->
+		</div>
+	</div>
+	
+	
+	<hr>
+	
+	<div>
+		<h3>Cleaning Service</h3>
+		<div>
+			<h4>New Request</h4>
+			connect: localhost/Hotel Management/backend/general/cleaningService/newrequest.php
+			<p>Details to send: parts (parts to be cleaned), service_note</p>
+		</div>
+		
+		<div>
+			<h4>All Requests</h4>
+			connect: localhost/Hotel Management/backend/general/cleaningService/allrequest.php
+			<!-- <p>Details to send: qty, order_note, user_id</p> -->
+		</div>
+	</div>
+	<hr>
+
+
+	<div>
+		<h3>Customer care</h3>
+		<div>
+			<h4>New Request</h4>
+			connect: localhost/Hotel Management/backend/general/customercareservice/newrequest.php
+			<p>Details to send: type (type of complain), service_note</p>
+		</div>
+		
+		<div>
+			<h4>All Requests</h4>
+			connect: localhost/Hotel Management/backend/general/customercareservice/allrequest.php
+			<!-- <p>Details to send: qty, order_note, user_id</p> -->
+		</div>
+	</div>
+
+	<!-- // $details = (object)["first_name"=>"fname"];
+	// // fd = new FormData()
+	//  formData.append('name', this.name);
+	//  fd.append('submit', true)
+	// axios.post(url, fd)
+	
+	// // if(isset($_POST['submit'])) {
+	// 	$name = $_POST['name'];
+	// } -->
+</body>
+</html>

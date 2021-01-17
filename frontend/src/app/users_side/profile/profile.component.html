@@ -1,0 +1,34 @@
+<div class="bg-light h-100 w-100 pt-5">
+	<div class="m-5">
+		{{userProfile.profile_picture}}
+	</div>
+	<div class="p-5">
+		<div>
+			{{userProfile.first_name}} {{userProfile.last_name}}
+		</div>
+		<div>
+			{{userProfile.phone_number}}
+		</div>
+		<div>
+			{{userProfile.email}}
+		</div>
+		<div class="d-flex">
+			<div class="dropdown">
+				<button id="request" class="dropdown-toggle" mat-stroked-button data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Make a request</button>
+				<div class="dropdown-menu" aria-labelledby="request">
+					<button mat-button class="d-block w-100" routerLink="/foods">Order food</button>
+					<button mat-button class="d-block w-100" (click)="clean()">Cleaning service</button>
+					<button mat-button class="d-block w-100" (click)="comp()">Make a complain</button>
+				</div>
+			</div>	
+			<div class="dropdown ml-3">
+				<button id="history" class="dropdown-toggle" mat-stroked-button data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">History</button>
+				<div class="dropdown-menu" aria-labelledby="history">
+					<button mat-button class="d-block w-100" routerLink="/user/{{userProfile.user_id}}/orders">Orders</button>
+					<button mat-button class="d-block w-100" routerLink="/user/{{userProfile.user_id}}/cleaning-services">Cleaning service</button>
+					<button mat-button class="d-block w-100" routerLink="/user/{{userProfile.user_id}}/customer-care-services">Complaints</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
