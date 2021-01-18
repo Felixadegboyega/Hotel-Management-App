@@ -3,7 +3,7 @@
 		<div class="col-sm-11 mx-auto row h-100 w-100" [class.pl-2]="mobileQuery.matches" [class.pr-2]="mobileQuery.matches">
 			<mat-sidenav-container class="h-100 w-100 example-container" autosize>
 				<mat-sidenav #sidenav class="border-left bg-light sidenav" [opened]="mobileQuery.matches ? false : true" [mode]="mobileQuery.matches ? 'over' : 'side'"  >
-					<mat-nav-list>
+					<div>
 						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./main-admin" routerLinkActive="active">Profile</button>
 						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./manager-registration" routerLinkActive="active">Register a Manager</button>
 						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./hr-registration" routerLinkActive="active">Register a HR</button>
@@ -29,7 +29,7 @@
 						</div>
 						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./staffs" routerLinkActive="active">All Staffs</button>
 						<button mat-list-item class="menus btn-sm w-100 btn-light text-left">Logout <span class="fa fa-sign-out ml-2"></span></button>
-					</mat-nav-list>
+					</div>
 				</mat-sidenav>
 				<div class="sidenav-content bg-white w-100">
 					<button class="ml-2 mt-2 d-inline-block small btn-sm menuBut btn-light rounded btn" (click)="sidenav.toggle()">

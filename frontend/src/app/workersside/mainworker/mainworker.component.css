@@ -1,4 +1,4 @@
-/* @import "../../app.component.css"; */
+@import "../../app.component.css";
 
 .menuBut{
 	outline: none !important;
@@ -8,6 +8,10 @@
 	height: 100%;
 	overflow-y: auto;
 	width: 200px;
+}
+
+::ng-deep.mat-drawer-inner-container{
+	overflow: unset !important;
 }
 
 .example-container{

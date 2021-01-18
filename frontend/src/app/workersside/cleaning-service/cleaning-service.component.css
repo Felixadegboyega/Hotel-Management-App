@@ -4,3 +4,6 @@
 	overflow: auto;
 	/* min-width: 500px; */
 }
+.tr{
+	vertical-align: middle;
+}

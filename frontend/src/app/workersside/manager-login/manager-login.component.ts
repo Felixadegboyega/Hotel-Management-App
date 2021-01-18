@@ -35,7 +35,6 @@ export class ManagerLoginComponent implements OnInit {
     this.loading = true;
     this.postSerice.managerSignIn(this.loginDetails.value).subscribe(
       (data)=>{
-        console.log(data)
         if(data.token && data.id){
           this.snackBarService.snack('Login Successful', 'snackBarSuccess')
           localStorage.setItem('token', data.token)

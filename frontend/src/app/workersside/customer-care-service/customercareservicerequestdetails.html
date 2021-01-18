@@ -1,0 +1,28 @@
+
+<div mat-dialog-content>
+	<div>
+		<div>
+			<b>Sender Information</b> <br>
+			Full Name: {{data.first_name}} {{data.last_name}} <br>
+			Email: {{data.email}}
+			<hr>
+		</div>
+		<div>
+			<b>Service Information</b> <br>
+			Time: {{data.careservice_time}}<br>
+			Complain type: {{data.type}}
+			Service Note: {{data.careservice_note}}
+			<hr>
+		</div>
+		<div>
+			<b>Room Information</b> <br>
+			Type: {{data.room_type}}<br>
+			<!-- Service Note: {{data.careservice_note}} -->
+			<hr>
+		</div>
+	</div>
+</div>
+<div mat-dialog-actions class="mb-1">
+  <button class="ml-auto" mat-stroked-button (click)="onNoClick()">Cancel</button>
+  <!-- <button class="ml-auto" mat-stroked-button (click)='attendto()' cdkFocusInitial>Attent to</button> -->
+</div>

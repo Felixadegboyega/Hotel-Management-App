@@ -10,60 +10,66 @@ export class PostService {
 
   constructor(public connect:HttpClient) { }
   public baseUrl = environment.connectToBackEnd;
-  mainAdminSignup(user_info){
-    return this.connect.post<any>(`${this.baseUrl}main_admin/signup.php`, user_info);
+  mainAdminSignup(info){
+    return this.connect.post<any>(`${this.baseUrl}main_admin/signup.php`, info);
   }
-  mainAdminSignIn(user_info){
-    return this.connect.post<any>(`${this.baseUrl}main_admin/signin.php`, user_info);
+  mainAdminSignIn(info){
+    return this.connect.post<any>(`${this.baseUrl}main_admin/signin.php`, info);
   }
-  updateAdminProfile(user_info){
-    return this.connect.post<any>(`${this.baseUrl}main_admin/editprofile.php`, user_info);
+  updateAdminProfile(info){
+    return this.connect.post<any>(`${this.baseUrl}main_admin/editprofile.php`, info);
   }
 
 
-  managerSignUp(user_info){
-    return this.connect.post<any>(`${this.baseUrl}worker/managers/register.php`, user_info);
+  managerSignUp(info){
+    return this.connect.post<any>(`${this.baseUrl}worker/managers/register.php`, info);
   }
-  managerSignIn(user_info){
-    return this.connect.post<any>(`${this.baseUrl}worker/managers/signin.php`, user_info);
+  managerSignIn(info){
+    return this.connect.post<any>(`${this.baseUrl}worker/managers/signin.php`, info);
   }
-  updateManagerInfo(user_info){
-    return this.connect.post<any>(`${this.baseUrl}worker/managers/editprofile.php`, user_info);
+  updateManagerInfo(info){
+    return this.connect.post<any>(`${this.baseUrl}worker/managers/editprofile.php`, info);
   }
   
   
-  HRSignUp(user_info){
-      return this.connect.post<any>(`${this.baseUrl}worker/hr/register.php`, user_info);
+  HRSignUp(info){
+      return this.connect.post<any>(`${this.baseUrl}worker/hr/register.php`, info);
     }
-  HRSignIn(user_info){
-      return this.connect.post<any>(`${this.baseUrl}worker/hr/signin.php`, user_info);
+  HRSignIn(info){
+      return this.connect.post<any>(`${this.baseUrl}worker/hr/signin.php`, info);
     }
-  updateHRInfo(user_info){
-      return this.connect.post<any>(`${this.baseUrl}worker/hr/editprofile.php`, user_info);
-    }
-
-
-
-    staffSignUp(user_info){
-      return this.connect.post<any>(`${this.baseUrl}worker/staffs/register.php`, user_info);
-    }
-    staffSignIn(user_info){
-      return this.connect.post<any>(`${this.baseUrl}worker/staffs/signin.php`, user_info);
-    }
-    updateStaffInfo(user_info){
-      return this.connect.post<any>(`${this.baseUrl}worker/staffs/editprofile.php`, user_info);
+  updateHRInfo(info){
+      return this.connect.post<any>(`${this.baseUrl}worker/hr/editprofile.php`, info);
     }
 
 
 
-    UserSignUp(user_info){
-      return this.connect.post<any>(`${this.baseUrl}users/signup.php`, user_info);
+    staffSignUp(info){
+      return this.connect.post<any>(`${this.baseUrl}worker/staffs/register.php`, info);
     }
-    UserSignIn(user_info){
-      return this.connect.post<any>(`${this.baseUrl}users/signin.php`, user_info);
+    staffSignIn(info){
+      return this.connect.post<any>(`${this.baseUrl}worker/staffs/signin.php`, info);
     }
-    updateUserInfo(user_info){
-      return this.connect.post<any>(`${this.baseUrl}users/editprofile.php`, user_info);
+    makeUnitManager(info){
+      return this.connect.post<any>(`${this.baseUrl}worker/staffs/editstage.php`, info);
+    }
+    makeStaffFormal(info){
+      return this.connect.post<any>(`${this.baseUrl}worker/staffs/editstatus.php`, info);
+    }
+    updateStaffInfo(info){
+      return this.connect.post<any>(`${this.baseUrl}worker/staffs/editprofile.php`, info);
+    }
+
+
+
+    UserSignUp(info){
+      return this.connect.post<any>(`${this.baseUrl}users/signup.php`, info);
+    }
+    UserSignIn(info){
+      return this.connect.post<any>(`${this.baseUrl}users/signin.php`, info);
+    }
+    updateUserInfo(info){
+      return this.connect.post<any>(`${this.baseUrl}users/editprofile.php`, info);
     }
     
     
@@ -88,9 +94,15 @@ export class PostService {
     cleaningRequest(request_info){
       return this.connect.post<any>(`${this.baseUrl}general/cleaningService/newrequest.php`, request_info);
     }
+    attendToCleaningServiceRequests(info){
+      return this.connect.post<any>(`${this.baseUrl}general/cleaningService/attendto.php`, info);
+    }
     
     customerCareRequest(info){
       return this.connect.post<any>(`${this.baseUrl}general/customercareservice/newrequest.php`, info);
+    }
+    attendTocustomerCareRequests(info){
+      return this.connect.post<any>(`${this.baseUrl}general/customercareservice/attendto.php`, info);
     }
       
 }

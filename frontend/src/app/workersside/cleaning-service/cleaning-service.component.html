@@ -9,23 +9,25 @@
 		</mat-form-field> -->
 	</div>
 	<div class="inside col-12">
-		<table class="table" [class.table-responsive]="mobileQuery.matches">
+		<table class="table table-hover" [class.table-responsive]="mobileQuery.matches">
 			<thead>
 				<tr>
-					<th class="border-bottom-0 border-top-0">ID</th>
+					<th class="border-bottom-0 border-top-0">#</th>
 					<th class="border-bottom-0 border-top-0">User Name</th>
-					<th class="border-bottom-0 border-top-0">Service Name</th>
-					<th class="border-bottom-0 border-top-0">Status</th>
 					<th class="border-bottom-0 border-top-0">Request Time</th>
+					<th class="border-bottom-0 border-top-0">Status</th>
+					<th class="border-bottom-0 border-top-0"></th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr *ngFor="let request of cleaningServiceRequests">
-					<td>{{request.service_id}}</td>
-					<td>Name</td>
-					<td>{{request.service_time}}</td>
-					<td>{{order.status}}</td>
-					<td>{{request.service_note}}</td>
+			<tbody *ngIf="cleaningServiceRequests">
+				<tr *ngFor="let request of cleaningServiceRequests;let i=index">
+					<td (click)="viewmore(request)">{{i+1}}</td>
+					<td (click)="viewmore(request)">{{request.first_name}} {{request.last_name}}</td>
+					<td (click)="viewmore(request)">{{request.service_time}}</td>
+					<td (click)="viewmore(request)">{{request.status}}</td>
+					<td>
+						<button mat-stroked-button (click)="attendto(request.service_id)">Attend To</button>
+					</td>
 				</tr>
 			</tbody>
 		</table>

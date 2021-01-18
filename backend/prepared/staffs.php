@@ -32,6 +32,10 @@
 		}
 
 
+
+
+
+
 		public function staffsignin($email, $enteredPass)
 		{
 			$this->connection();
@@ -50,12 +54,15 @@
 		}
 
 
+
+
+
 		public function allStaffsDetails()
 		{
 			$this->connection();
 			$decodedInfo = $this->decodeJwt();
 			if($decodedInfo->for == 'main_admin' || $decodedInfo->for == 'hr' || $decodedInfo->for == 'manager' || $decodedInfo->for == 'staff'){
-				$querystaff = "SELECT staff_id, first_name, last_name, email, phone_number, profile_picture, status, date_of_birth, date_employed, unit_id, unit_name from staffs join units using(unit_id)";
+				$querystaff = "SELECT staff_id, first_name, last_name, email, phone_number, profile_picture, status, stage, date_of_birth, date_employed, unit_id, unit_name from staffs join units using(unit_id)";
 				$staffs = $this->Query($querystaff, null)->fetch_all(MYSQLI_ASSOC);
 				$this->response["verify"]=true;
 				$this->response["staffs_details"] = $staffs;
@@ -80,17 +87,85 @@
 		}
 		
 		
+
 		
 			
-		public function hreditDetails($fname, $lname, $profile_picture)
+		public function EditStage($staff_id)
 		{
 			$this->connection();
-			// $header = $this->getHeaders();
-			$querydb = "UPDATE hr set first_name = ?, last_name = ?, profile_picture = ? WHERE email = $header";
-			$binder = array('sssss', $fname, $lname, $profile_picture);
-			$this->Query($querydb, $binder);
+			$decodedInfo = $this->decodeJwt();
+			if($decodedInfo->for == 'manager'){
+				$queryM = "SELECT status, email from manager WHERE email = ?";
+				$Mbinder = array('s', $decodedInfo->email);
+				$manager = $this->Query($queryM, $Mbinder)->fetch_assoc();
+				if($manager['status'] == 'current'){
+					$this->response['access'] = true;
+					$selectStaff = "SELECT stage, status, unit_id from staffs join units using(unit_id) WHERE staff_id = ?";
+					$selectBinder = array('s', $staff_id);
+					$SelectedStaff = $this->Query($selectStaff, $selectBinder)->fetch_assoc();
+					if($SelectedStaff['stage'] == 'staff' && $SelectedStaff['status'] == 'current'){
+						$a =  "UPDATE staffs set stage = ?  WHERE unit_id = ?";
+						$b = array('ss', 'staff', $SelectedStaff['unit_id']);
+						$this->Query($a, $b);
+						$updateStaff = "UPDATE staffs set stage = ? WHERE staff_id = ?";
+						$updateBinder = array('ss', 'manager', $staff_id);
+						$manager = $this->Query($updateStaff, $updateBinder);
+						$this->response['updated'] = true;
+					} else if($SelectedStaff['stage'] == 'manager' && $SelectedStaff['status'] == 'current'){
+						$updateStaff = "UPDATE staffs set stage = ? WHERE staff_id = ?";
+						$updateBinder = array('ss', 'staff', $staff_id);
+						$manager = $this->Query($updateStaff, $updateBinder);
+						$this->response['updated'] = true;
+					} else {
+						$this->response['current_staff'] = false;
+					}
+				} else{
+					$this->response['access'] = false;
+				}
+			} else{
+				$this->response['access'] = false;
+			}
 			echo JSON_encode($this->response);
+		}
 
+
+
+
+
+
+		public function EditStatus($staff_id)
+		{
+			$this->connection();
+			$decodedInfo = $this->decodeJwt();
+			if($decodedInfo->for == 'manager'){
+				$queryM = "SELECT status, email from manager WHERE email = ?";
+				$Mbinder = array('s', $decodedInfo->email);
+				$manager = $this->Query($queryM, $Mbinder)->fetch_assoc();
+				if($manager['status'] == 'current'){
+					$this->response['access'] = true;
+					$selectStaff = "SELECT stage, status from staffs WHERE staff_id = ?";
+					$selectBinder = array('s', $staff_id);
+					$SelectedStaff = $this->Query($selectStaff, $selectBinder)->fetch_assoc();
+					if($SelectedStaff['status'] == 'current'){
+						$updateStaff = "UPDATE staffs set status = ? WHERE staff_id = ?";
+						$updateBinder = array('ss', 'formal', $staff_id);
+						$manager = $this->Query($updateStaff, $updateBinder);
+						$this->response['updated'] = true;
+					} else if($SelectedStaff['status'] == 'formal'){
+						$updateStaff = "UPDATE staffs set status = ? WHERE staff_id = ?";
+						$updateBinder = array('ss', 'current', $staff_id);
+						$manager = $this->Query($updateStaff, $updateBinder);
+						$this->response['updated'] = true;
+					} else {
+						$this->response['current_staff'] = false;
+					}
+				} else{
+					$this->response['access'] = false;
+				}
+			} else{
+				$this->response['access'] = false;
+			}
+			echo JSON_encode($this->response);
 		}
 	}
 ?>

@@ -1,0 +1,8 @@
+<div mat-dialog-content>
+	<div>Are you sure you want to remove this staff from current Staffs list</div>
+	<small class="text-warning">This will stop this staff from being performing any task</small>
+</div>
+<div mat-dialog-actions>
+	<button (click)="onNoClick()" class="ml-auto" mat-stroked-button>Cancel</button>
+	<button (click)="changeStatus()" class="mr-auto" mat-stroked-button color="warn">Confirm</button>
+</div>

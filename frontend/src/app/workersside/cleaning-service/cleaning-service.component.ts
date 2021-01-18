@@ -1,5 +1,21 @@
 import { MediaMatcher } from '@angular/cdk/layout';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { GetService } from 'src/app/services/get.service';
+import { PostService } from 'src/app/services/post.service';
+import { SnackbarService } from 'src/app/services/snackbar.service';
+
+export interface DialogData {
+  first_name:string,
+  last_name:string,
+  service_note:string,
+  email:string,
+  service_time:string,
+  room_type:string,
+  service_id:string,
+  parts:String,
+  getRequest:Function
+}
 
 @Component({
   selector: 'app-cleaning-service',
@@ -7,20 +23,40 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
   styleUrls: ['./cleaning-service.component.css']
 })
 export class CleaningServiceComponent implements OnInit {
-  public cleaningServiceRequests = [
-    {service_id:0, service_time:"23/12/2020", service_note:"needed to cleaning specifically for wardrobes", status:"not attended to", staff_id:0, user_id:0},
-    {service_id:0, service_time:"23/12/2020", service_note:"cleaning of floors", status:"not attended to", staff_id:0, user_id:0}
-  ]
+  public cleaningServiceRequests;
   public searchText;
   public mobileQuery :MediaQueryList;
   private _mobileQueryListener: () => void;
   
-  constructor(public changeDetectorRef: ChangeDetectorRef, public media: MediaMatcher) {}
+  constructor(public changeDetectorRef: ChangeDetectorRef, public media: MediaMatcher, public getService:GetService, public postService:PostService, public snackService:SnackbarService, public matDialog:MatDialog) {}
 
   ngOnInit(): void {
     this.mobileQuery = this.media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    this.getRequest();
+  }
+  getRequest(){
+    this.getService.getCleaningServiceRequest().subscribe((data:any)=>{
+      this.cleaningServiceRequests = data.requests
+    })
+  }
+  attendto(service_id){
+    this.postService.attendToCleaningServiceRequests({service_id}).subscribe((data:any)=>{
+      if(data.access){
+        this.snackService.snack("You have successfully taken this service", "snackBarSuccess")
+        this.getRequest()
+      } else{
+        this.snackService.snack("Access denied", "snackBarDanger")
+      }
+    })
+  }
+  
+  viewmore(request){
+    const dialogRef = this.matDialog.open(CleaningServiceRequestDetails, {
+      width: '450px',
+      data: {...request, getRequest(){this.getRequest()}},
+    });
   }
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
@@ -29,4 +65,36 @@ export class CleaningServiceComponent implements OnInit {
     this.searchText = e.target.value
   }
 
+}
+
+
+
+
+
+
+
+
+
+
+@Component({
+  selector: 'Cleaningservicerequestdetails',
+  templateUrl: './Cleaningservicerequestdetails.html',
+  styleUrls: ['./cleaning-service.component.css']
+})
+export class CleaningServiceRequestDetails {
+  
+  constructor( public snackService:SnackbarService, public postService:PostService, public changeDetectorRef: ChangeDetectorRef, public dialogRef:MatDialogRef<CleaningServiceRequestDetails>, public media: MediaMatcher, public getService:GetService, public matDialog:MatDialog, @Inject(MAT_DIALOG_DATA) public data: DialogData,) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  // attendto(){
+  //   this.postService.attendTocustomerRequests({service_id:this.data.service_id}).subscribe((data:any)=>{
+  //     if(data.access){
+  //       this.snackService.snack("You have successfully taken this service", "snackBarSuccess")
+  //       this.data.getRequest()
+  //     }
+  //   })
+  // }
 }

@@ -19,7 +19,11 @@ export class OrdersComponent implements OnInit {
   public mobileQuery :MediaQueryList;
   private _mobileQueryListener: () => void;
   
-  constructor(public getService:GetService, public changeDetectorRef: ChangeDetectorRef, public media: MediaMatcher) {}
+  constructor(
+    public getService:GetService, 
+    public changeDetectorRef: ChangeDetectorRef, 
+    public media: MediaMatcher,
+  ) {}
 
   ngOnInit(): void {
     this.mobileQuery = this.media.matchMedia('(max-width: 600px)');

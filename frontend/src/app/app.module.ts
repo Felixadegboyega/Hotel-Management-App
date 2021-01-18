@@ -53,7 +53,7 @@ import { NavbarComponent } from './general_side/navbar/navbar.component';
 import { HomeComponent } from './general_side/home/home.component';
 import { RoomsComponent } from './general_side/rooms/rooms.component';
 import { ProfileComponent } from './users_side/profile/profile.component';
-import { StaffsComponent } from './workersside/staffs/staffs.component';
+import { ConfirmStatusDialogue, StaffsComponent } from './workersside/staffs/staffs.component';
 import { StaffProfileComponent } from './workersside/staff-profile/staff-profile.component';
 import { ManagersProfileComponent } from './workersside/managers-profile/managers-profile.component';
 import { NotfoundComponent } from './general_side/notfound/notfound.component';
@@ -86,6 +86,8 @@ import { BookroomComponent } from './users_side/bookroom/bookroom.component';
 import { AdminComponent } from './admin/admin.component';
 import { CustomerServiceComponent } from './users_side/customer-service/customer-service.component';
 import { RequestCleaningComponent } from './users_side/request-cleaning/request-cleaning.component';
+import { CleaningServiceComponent, CleaningServiceRequestDetails } from './workersside/cleaning-service/cleaning-service.component';
+import { CustomerCareServiceComponent, Customercareservicerequest } from './workersside/customer-care-service/customer-care-service.component';
 
 
 @NgModule({
@@ -127,7 +129,12 @@ import { RequestCleaningComponent } from './users_side/request-cleaning/request-
     BookroomComponent,
     AdminComponent,
     CustomerServiceComponent,
-    RequestCleaningComponent
+    RequestCleaningComponent,
+    CleaningServiceComponent,
+    CustomerCareServiceComponent,
+    Customercareservicerequest,
+    CleaningServiceRequestDetails,
+    ConfirmStatusDialogue
   ],
   imports: [
     CdkTreeModule,

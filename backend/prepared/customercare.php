@@ -17,9 +17,9 @@
 				if($user['room_id']){
 					$this->response["verify_room"] = true;
 					$details[2] = $user['user_id'];
-					$queryorders = "INSERT into customer_care_services (type, careservice_note, user_id) VALUES (?, ?, ?)";
+					$queryrequests = "INSERT into customer_care_services (type, careservice_note, user_id) VALUES (?, ?, ?)";
 					$orderbinder = array('sss', ...$details);
-					$this->Query($queryorders, $orderbinder);
+					$this->Query($queryrequests, $orderbinder);
 					$this->response['request_status']=true;
 				} else {	
 					$this->response["verify_room"] = false;
@@ -38,14 +38,35 @@
 			$queryStaff = "SELECT unit_name, status, stage from staffs join units using(unit_id) WHERE email = ?";
 			$staffbinder = array('s', $decodedinfo->email);
 			$staff = $this->Query($queryStaff, $staffbinder)->fetch_assoc();
-			if($decodedinfo->for == 'manager' || ($staff['unit_name'] == "Customer care service" && $staff['status'] == "current")){
-				$queryOrders = "SELECT * from customer_care_services";
-				$orders = $this->Query($queryOrders, null)->fetch_all(MYSQLI_ASSOC);
-				$this->response['orders'] = $orders;
+			if($decodedinfo->for == 'manager' || ($decodedinfo->for == 'staff' && $staff['unit_name'] == "Customer care service" && $staff['status'] == "current")){
+				$queryrequests = "SELECT careservice_id, careservice_time, careservice_time, careservice_note, user_id, first_name, last_name, phone_number, profile_picture, room_id, status, staff_id, type, email, room_id, room_type from customer_care_services join users using(user_id) join rooms using(room_id)";
+				$requests = $this->Query($queryrequests, null)->fetch_all(MYSQLI_ASSOC);
+				$this->response['requests'] = $requests;
+				$this->response['access'] = true;
+			} else {
+				$this->response['access'] = false;
 			}
 			echo JSON_encode($this->response);
 		}
+		
+		
+		
+		public function AttendTo($careservice_id){
+			$this->connection();
+			$decodedinfo = $this->decodeJwt();
+			$queryStaff = "SELECT unit_name, staff_id, status, stage from staffs join units using(unit_id) WHERE email = ?";
+			$staffbinder = array('s', $decodedinfo->email);
+			$staff = $this->Query($queryStaff, $staffbinder)->fetch_assoc();
+			if($decodedinfo->for == 'staff' && $staff['unit_name'] == "Customer care service" && $staff['status'] == "current"){
+				$queryrequests = "UPDATE customer_care_services set status = ?, staff_id = ? WHERE careservice_id = ?";
+				$servicebinder = array('sss', 'taken', $staff['staff_id'], $careservice_id);
+				$this->Query($queryrequests, $servicebinder);
+				$this->response['access'] = true;
+			} else {
+				$this->response['access'] = false;
+			}
+			echo JSON_encode($this->response);
 
-
+		}
 	}
 ?>

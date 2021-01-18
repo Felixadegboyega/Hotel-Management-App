@@ -4,3 +4,9 @@
 	overflow: auto;
 	/* min-width: 500px; */
 }
+.tr{
+	cursor: pointer;
+}
+.tr td{
+	vertical-align: middle;
+}

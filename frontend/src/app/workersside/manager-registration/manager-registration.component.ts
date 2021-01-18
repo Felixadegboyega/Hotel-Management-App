@@ -64,7 +64,10 @@ export class ManagerRegistrationComponent implements OnInit {
           this.navSerice.confirm(data)
           this.snackBarService.snack("Manager Registration successful", "snackBarSuccess")
           this.loading = false;
-        } else if(!data.query_status){
+        } else if(!data.verify){
+          this.snackBarService.snack("Access Denied", "snackBarDanger")
+          this.loading = false;
+        }else if(!data.query_status){
           this.snackBarService.snack("Email is taken", "snackBarDanger")
           this.loading = false;
         } else {
