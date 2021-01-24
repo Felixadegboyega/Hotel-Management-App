@@ -38,7 +38,7 @@ export class HrLoginComponent implements OnInit {
         console.log(data)
         if(data.token && data.id){
           localStorage.setItem('token', data.token)
-          this.router.navigate([`worker/hr/${data.id}`])
+          this.router.navigate([`admin/hr/${data.id}`])
         } else {
           this.loading = false
           this.snackBarService.snack('Invalid Details', 'snackBarDanger')

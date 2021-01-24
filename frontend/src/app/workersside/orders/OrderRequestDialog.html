@@ -1,6 +1,6 @@
 
 <div mat-dialog-content>
-	<div>
+	<div class="foodInfo">
 		<div>
 			<b>Sender Information</b> <br>
 			Full Name: {{data.first_name}} {{data.last_name}} <br>
@@ -9,9 +9,9 @@
 		</div>
 		<div>
 			<b>Service Information</b> <br>
-			Time: {{data.careservice_time}}<br>
-			Complain type: {{data.type}} <br>
-			Service Note: {{data.careservice_note}}
+			Time: {{data.order_time}}<br>
+			Food Name: {{data.food_name}} <br>
+			Service Note: {{data.order_note}}
 			<hr>
 		</div>
 		<div>

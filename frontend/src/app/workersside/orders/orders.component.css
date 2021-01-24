@@ -1,6 +1,8 @@
 @import "../../app.component.css";
 .inside{
-	max-height: 350px !important;
+	height: 440px !important;
 	overflow: auto;
-	/* min-width: 500px; */
+}
+.foodInfo{
+	word-wrap:break-word;
 }

@@ -41,7 +41,7 @@ const routes: Routes = [
   {path:"home", component:HomeComponent},
 
 
-  {path:"worker", component:MainworkerComponent, children:[
+  {path:"admin", component:MainworkerComponent, children:[
     {path:"customer-care-service", component:CustomerCareServiceComponent},
     {path:"cleaning-service", component:CleaningServiceComponent},
     {path:"main-admin", component:MainAdminComponent, canActivate:[AdminGuard]},

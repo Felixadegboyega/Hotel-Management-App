@@ -9,7 +9,7 @@
 						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./hr-registration" routerLinkActive="active">Register a HR</button>
 						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./staff-registration" routerLinkActive="active">Register a Staff</button>
 						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./manager-profile/1" routerLinkActive="active">Manager</button>
-						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="/worker/hr/8" routerLinkActive="active">HR</button>
+						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./hr/8" routerLinkActive="active">HR</button>
 						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" data-toggle="collapse" data-target="#manage">Manage</button>
 						<div class="collapse w-100" id="manage">
 							<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./newroom" routerLinkActive="active">Add Room</button>
@@ -17,24 +17,47 @@
 						</div>
 						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" data-toggle="collapse" data-target="#requests">User Request</button>
 						<div class="collapse w-100" id="requests">
-							<button mat-list-item class="submenus btn-sm w-100 btn-light text-left" routerLinkActive="active" routerLink="./orders"> - Food orders</button>
+							<button mat-list-item class="submenus btn-sm w-100 btn-light text-left" routerLinkActive="active"routerLink="./orders"> - Food orders</button>
 							<button mat-list-item class="submenus btn-sm w-100 btn-light text-left" routerLinkActive="active" routerLink="./cleaning-service"> - Cleaning service</button>
 							<button mat-list-item class="submenus btn-sm w-100 btn-light text-left" routerLinkActive="active" routerLink="./customer-care-service"> - Customer care service</button>
 						</div>
 						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" data-toggle="collapse" data-target="#unitsmanager">Units Manager</button>
 						<div class="collapse w-100" id="unitsmanager">
-							<button mat-list-item class="submenus btn-sm w-100 btn-light text-left" routerLink="./staff-profile/3" routerLinkActive="active"> - Kitchen Manager</button>
-							<button mat-list-item class="submenus btn-sm w-100 btn-light text-left" routerLink="./staff-profile/4" routerLinkActive="active"> - Cleaning Service Manager</button>
-							<button mat-list-item class="submenus btn-sm w-100 btn-light text-left" routerLink="./staff-profile/5" routerLinkActive="active"> - Customer care Service Manager</button>
+							<button mat-list-item class="submenus btn-sm w-100 btn-light text-left"	 (click)="route('kitchen')"  routerLinkActive="active"> - Kitchen Manager</button>
+							<button mat-list-item class="submenus btn-sm w-100 btn-light text-left"  (click)="route('cleaning')" routerLinkActive="active"> - Cleaning Service Manager</button>
+							<button mat-list-item class="submenus btn-sm w-100 btn-light text-left"  (click)="route('customer')" routerLinkActive="active"> - Customer care Service Manager</button>
 						</div>
 						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./staffs" routerLinkActive="active">All Staffs</button>
 						<button mat-list-item class="menus btn-sm w-100 btn-light text-left">Logout <span class="fa fa-sign-out ml-2"></span></button>
 					</div>
 				</mat-sidenav>
 				<div class="sidenav-content bg-white w-100">
-					<button class="ml-2 mt-2 d-inline-block small btn-sm menuBut btn-light rounded btn" (click)="sidenav.toggle()">
-						<span class="fa fa-bars"></span>
-					</button>
+					<div class="d-flex border-bottom mb-2 bg-light">
+						<button class=" ml-2 my-auto d-inline-block small btn-sm menuBut btn-light rounded btn" (click)="sidenav.toggle()">
+							<span class="fa fa-bars"></span>
+						</button>
+						<nav class="navbar ml-auto navbar-expand-sm navbar-light">
+							<button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+							aria-expanded="false" aria-label="Toggle navigation"></button>
+								<div class="collapse navbar-collapse" id="collapsibleNavId">
+									<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+									<li class="nav-item active">
+										<a class="nav-link text-dark" routerLink="/main-admin/login" routerLinkActive="active">Admin Login</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link text-dark" routerLink="/manager/login" routerLinkActive="active">Manager Login</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link text-dark" routerLink="/hr/login" routerLinkActive="active">HR Login</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link text-dark" routerLink="/staff/login" routerLinkActive="active">Staff Login</a>
+									</li>
+								</ul>
+							</div>
+						</nav>
+					</div>
+					
 					<router-outlet></router-outlet>
 				</div>
 			</mat-sidenav-container>

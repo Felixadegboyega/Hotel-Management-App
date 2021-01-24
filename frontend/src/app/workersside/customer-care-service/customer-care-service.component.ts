@@ -83,7 +83,7 @@ export class CustomerCareServiceComponent implements OnInit {
 })
 export class Customercareservicerequest {
   
-  constructor( public snackService:SnackbarService, public postService:PostService, public changeDetectorRef: ChangeDetectorRef, public dialogRef:MatDialogRef<Customercareservicerequest>, public media: MediaMatcher, public getService:GetService, public matDialog:MatDialog, @Inject(MAT_DIALOG_DATA) public data: DialogData,) {}
+  constructor( public dialogRef:MatDialogRef<Customercareservicerequest>, @Inject(MAT_DIALOG_DATA) public data: DialogData,) {}
 
   onNoClick(): void {
     this.dialogRef.close();

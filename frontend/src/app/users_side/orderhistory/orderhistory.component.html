@@ -1,1 +1,28 @@
-<p>orderhistory works!</p>
+<div class="container-fluid p-5">
+	<div class="row">
+		<div class="mx-auto">
+			<table class="table w-100 mt-5">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Order Time</th>
+						<th>Order Note</th>
+						<th>Food Name</th>
+						<th>QTY</th>
+						<th>Order status</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let order of Orders; let i=index">
+						<td>{{i+1}}</td>
+						<td>{{order.order_time}}</td>
+						<td>{{order.order_note}}</td>
+						<td>{{order.food_name}}</td>
+						<td>{{order.qty}}</td>
+						<td>{{order.status}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

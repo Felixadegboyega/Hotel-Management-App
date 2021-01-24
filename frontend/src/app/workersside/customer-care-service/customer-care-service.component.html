@@ -28,7 +28,7 @@
 					<td (click)="viewmore(request)">{{request.status}}</td>
 					<td (click)="viewmore(request)">{{request.careservice_time}}</td>
 					<td>
-						<button (click)="attendto(request.careservice_id)" mat-stroked-button>Attend to</button>
+						<button *ngIf="request.status == 'not_taken'" (click)="attendto(request.careservice_id)" mat-stroked-button>Attend to</button>
 					</td>
 				</tr>
 			</tbody>

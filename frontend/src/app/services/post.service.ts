@@ -84,6 +84,9 @@ export class PostService {
     newOrder(order_info){
       return this.connect.post<any>(`${this.baseUrl}general/orders/makeneworder.php`, order_info);
     }
+    attendToOrders(info){
+      return this.connect.post<any>(`${this.baseUrl}general/orders/attendto.php`, info);
+    }
     
     
     BookRoom(room_info){

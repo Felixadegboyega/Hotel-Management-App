@@ -1,5 +1,7 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { GetService } from 'src/app/services/get.service';
 import { NavService } from 'src/app/services/nav.service';
 
 @Component({
@@ -8,37 +10,15 @@ import { NavService } from 'src/app/services/nav.service';
   styleUrls: ['./mainworker.component.css']
 })
 export class MainworkerComponent implements OnInit {
-  public staffs =[
-    {staff_id:0, unit: "kitchen", status:"staff", first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-    {staff_id:1, unit: "kitchen", status:"staff", first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-    {staff_id:2, unit: "customer_care_service", status:"staff", first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-    {staff_id:3, unit: "kitchen", status:"staff", first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-    {staff_id:4, unit: "customer_care_service", status:"manager", first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-    {staff_id:5, unit: "kitchen", status:"staff", first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-    {staff_id:6, unit: "customer_care_service", status:"staff", first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-    {staff_id:0, unit: "cleaning_service", status:"staff", first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-    {staff_id:0, unit: "cleaning_service", status:"staff", first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-    {staff_id:0, unit: "cleaning_service", status:"manager", first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-    {staff_id:0, unit: "customer_care_service", status:"staff", first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-    {staff_id:0, unit: "cleaning_service", status:"staff", first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-    {staff_id:0, unit: "cleaning_service", status:"staff", first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-    {staff_id:0, unit: "customer_care_service", status:"staff", first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-    {staff_id:0, unit: "customer_care_service", status:"staff", first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-    {staff_id:0, unit: "customer_care_service", status:"manager", first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-    {staff_id:0, unit: "customer_care_service", status:"staff", first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-    {staff_id:0, unit: "customer_care_service", status:"staff", first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-    {staff_id:0, unit: "customer_care_service", status:"staff", first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""},
-    {staff_id:0, unit: "customer_care_service", status:"staff", first_name:"Felix", dob:"21/21/2121", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", type:"Kitchen Staff", profile_picture:""}
- ]
+  public staffs;
   public kitchenManagerLink;
   public cleaningServiceManagerLink;
   public customerCareServiceManagerLink;
-  public profileLink = ''
 
   public mobileQuery :MediaQueryList;
   private _mobileQueryListener: () => void;
   
-  constructor(public navService:NavService, public changeDetectorRef: ChangeDetectorRef, public media: MediaMatcher) {}
+  constructor(public navService:NavService, public changeDetectorRef: ChangeDetectorRef, public media: MediaMatcher, public getService:GetService, public router :Router) {}
 
   ngOnInit(): void {
     this.mobileQuery = this.media.matchMedia('(max-width: 600px)');
@@ -46,20 +26,37 @@ export class MainworkerComponent implements OnInit {
     this.mobileQuery.addListener(this._mobileQueryListener);
     let data = this.navService.yeah()
     if(data){
-      if(data.for == 'admin'){
-        this.profileLink = './main-admin'
-      }
+      // if(data.for == 'admin'){
+      //   this.profileLink = './main-admin'
+      // }
     }
-
-     // let kitchen = this.staffs.find(each=>each.status=="manager"&&each.unit=="kitchen")
-    // // if(kitchen){
-    //   console.log(kitchen)
-    // // }
-    // this.kitchenManagerLink = `/staff-profile/${kitchen.staff_id}`
-    // let cleaning = this.staffs.find(each=>each.status=="manager"&&each.unit=="cleaning_service")
-    // this.cleaningServiceManagerLink = `/staff-profile/${cleaning.staff_id}`
-    // let customer = this.staffs.find(each=>each.status=="manager"&&each.unit=="customer_care_service")
-    // this.customerCareServiceManagerLink = `staff-profile/${customer.staff_id}`
+    this.getService.getAllStaffs().subscribe((data:any)=>{
+      if(data.staffs_details){
+        // console.log(data.staffs_details)
+        let kit =  data.staffs_details.find((each,i)=>each.status == 'current' && each.stage == 'manager' && each.unit_name == "Kitchen")
+        this.kitchenManagerLink = `worker/staff-profile/${kit.staff_id}`
+        // let clean =  data.staffs_details.find((each,i)=>each.status == 'current' && each.stage == 'manager' && each.unit_name == "Cleaning service")
+        // this.cleaningServiceManagerLink = `worker/staff-profile/${clean.staff_id}`
+        // let cust =  data.staffs_details.find((each,i)=>each.status == 'current' && each.stage == 'manager' && each.unit_name == "Customer care service")
+        // this.customerCareServiceManagerLink = `worker/staff-profile/${cust.staff_id}`
+      }
+    })
+    
+  }
+  route(p){
+    // if(p=='kitchen'){
+    //   this.router.navigateByUrl(`/worker`, { skipLocationChange: false }).then(() => {
+    //     this.router.navigate([this.kitchenManagerLink]);
+    //  });
+    // } else if(p=='cleaning'){
+    //   this.router.navigateByUrl(`/worker`, { skipLocationChange: false }).then(() => {
+    //     // this.router.navigate([this.cleaningServiceManagerLink]);
+    //  });
+    // } else if(p=='customer'){
+    //   this.router.navigateByUrl(`/worker`, { skipLocationChange: false }).then(() => {
+    //     this.router.navigate([this.customerCareServiceManagerLink]);
+    //  });
+    // }
   }
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);

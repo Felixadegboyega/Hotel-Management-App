@@ -61,7 +61,7 @@ export class FoodsComponent implements OnInit {
   }
 
   order(id):void{
-    const dialogRef = this.dialog.open(OrderComponent, {
+    const dialogRef = this.dialog.open(OrderDialogueComponent, {
       width: '400px',
       data: this.foods.find((each,i)=>each.food_id==id)
     });
@@ -88,9 +88,9 @@ export class FoodsComponent implements OnInit {
   templateUrl: './orderdialogue.html',
   styleUrls: ['./foods.component.css']
 })
-export class OrderComponent {
+export class OrderDialogueComponent {
   constructor(
-    public dialogRef: MatDialogRef<OrderComponent>,
+    public dialogRef: MatDialogRef<OrderDialogueComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     public formB:FormBuilder,
     public snackService:SnackbarService,

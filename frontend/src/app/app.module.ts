@@ -70,7 +70,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StaffsearchPipe } from './pipes/staffsearch.pipe';
 import { NewroomComponent } from './workersside/newroom/newroom.component';
 import { NewfoodComponent } from './workersside/newfood/newfood.component';
-import { FoodsComponent, OrderComponent } from './general_side/foods/foods.component';
+import { FoodsComponent, OrderDialogueComponent } from './general_side/foods/foods.component';
 import { MainworkerComponent } from './workersside/mainworker/mainworker.component';
 import { CleaninghistoryComponent } from './users_side/cleaninghistory/cleaninghistory.component';
 import { CustomercarehistoryComponent } from './users_side/customercarehistory/customercarehistory.component';
@@ -83,11 +83,11 @@ import { ManagerProfileExpComponent } from './workersside/manager-profile-exp/ma
 import { HrProfileExpComponent } from './workersside/hr-profile-exp/hr-profile-exp.component';
 import { StaffProfileExpComponent } from './workersside/staff-profile-exp/staff-profile-exp.component';
 import { BookroomComponent } from './users_side/bookroom/bookroom.component';
-import { AdminComponent } from './admin/admin.component';
 import { CustomerServiceComponent } from './users_side/customer-service/customer-service.component';
 import { RequestCleaningComponent } from './users_side/request-cleaning/request-cleaning.component';
 import { CleaningServiceComponent, CleaningServiceRequestDetails } from './workersside/cleaning-service/cleaning-service.component';
 import { CustomerCareServiceComponent, Customercareservicerequest } from './workersside/customer-care-service/customer-care-service.component';
+import { OrderRequestDialog, OrdersComponent } from './workersside/orders/orders.component';
 
 
 @NgModule({
@@ -125,16 +125,17 @@ import { CustomerCareServiceComponent, Customercareservicerequest } from './work
     ManagerProfileExpComponent,
     HrProfileExpComponent,
     StaffProfileExpComponent,
-    OrderComponent,
+    OrderDialogueComponent,
+    OrdersComponent,
     BookroomComponent,
-    AdminComponent,
     CustomerServiceComponent,
     RequestCleaningComponent,
     CleaningServiceComponent,
     CustomerCareServiceComponent,
     Customercareservicerequest,
     CleaningServiceRequestDetails,
-    ConfirmStatusDialogue
+    ConfirmStatusDialogue,
+    OrderRequestDialog
   ],
   imports: [
     CdkTreeModule,
@@ -187,7 +188,7 @@ import { CustomerCareServiceComponent, Customercareservicerequest } from './work
     A11yModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
+    HttpClientModule, 
   ],
   bootstrap: [AppComponent],
   providers: [

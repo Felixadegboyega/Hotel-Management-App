@@ -37,7 +37,7 @@ export class MainAdminLoginComponent implements OnInit {
       async (data:any)=>{
         if(data.token != null){
           localStorage.setItem("token", data.token);
-          await this.router.navigate(["/worker/main-admin"])
+          await this.router.navigate(["/admin/main-admin"])
         } else if(data.email_verify && !data.verify_password){
           this.loginError = "Invalid Details"
           this.loading = false;

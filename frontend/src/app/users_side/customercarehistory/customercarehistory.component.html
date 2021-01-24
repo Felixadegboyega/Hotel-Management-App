@@ -1,31 +1,33 @@
-<div [class.w-75]="!mobileQuery.matches" class="row p-0 mx-auto">
+<div class="row p-0 mx-auto">
 	<div class="col-sm-6">
-		<h2 [class.mx-auto]="mobileQuery.matches" class="mt-3">Customer Care Service Request</h2>
+		<h2  class="mt-3">Customer Care Service Request</h2>
 	</div>
-	<div class="col-sm-6 mt-n3 mt-sm-0" [class.mx-auto]="mobileQuery.matches" >
+	<div class="col-sm-6 mt-n3 mt-sm-0">
 		<!-- <mat-form-field class="ml-auto w-100" appearance="a">
 			<mat-label class="text-dark">Filter</mat-label>
 			<input class="pb-2" matInput (keyup)="filterStaff($event)" placeholder="Kitchen Staff" #input>
 		</mat-form-field> -->
 	</div>
 	<div class="inside col-12">
-		<table class="table" [class.table-responsive]="mobileQuery.matches">
+		<table class="table">
 			<thead>
 				<tr>
-					<th class="border-bottom-0 border-top-0">ID</th>
-					<th class="border-bottom-0 border-top-0">User Full Name</th>
-					<th class="border-bottom-0 border-top-0">Service Name</th>
-					<th class="border-bottom-0 border-top-0">Status</th>
-					<th class="border-bottom-0 border-top-0">Request Time</th>
+					<th>#</th>
+					<th>service Time</th>
+					<th>service Note</th>
+					<!-- <th>Food Name</th> -->
+					<!-- <th>QTY</th> -->
+					<th>service status</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr *ngFor="let request of customerCareServiceRequests">
-					<td>{{request.service_id}}</td>
-					<td>User name</td>
-					<td>Name</td>
-					<td>{{request.status}}</td>
-					<td>{{request.service_time}}</td>
+				<tr *ngFor="let service of customerCareServiceRequests; let i=index">
+					<td>{{i+1}}</td>
+					<td>{{service.careservice_time}}</td>
+					<td>{{service.careservice_note}}</td>
+					<!-- <td>{{service.food_name}}</td> -->
+					<!-- <td>{{service.qty}}</td> -->
+					<td>{{service.status}}</td>
 				</tr>
 			</tbody>
 		</table>

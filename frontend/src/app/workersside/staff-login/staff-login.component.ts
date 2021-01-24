@@ -48,7 +48,7 @@ export class StaffLoginComponent implements OnInit {
         } else if(!data.verify_password){
           this.snackBarService.snack("Password is not correct", "snackBarDanger")
         } else if(data.verify_password){
-          this.router.navigate([`/worker/staff-profile/${data.id}`])
+          this.router.navigate([`/admin/staff-profile/${data.id}`])
           localStorage.setItem('token', data.token)
           this.snackBarService.snack("Signin Successful", "snackBarSuccess")
         } else{

@@ -38,7 +38,7 @@ export class ManagerLoginComponent implements OnInit {
         if(data.token && data.id){
           this.snackBarService.snack('Login Successful', 'snackBarSuccess')
           localStorage.setItem('token', data.token)
-          this.router.navigate([`worker/manager-profile/${data.id}`])
+          this.router.navigate([`admin/manager-profile/${data.id}`])
         } else {
           this.loading = false
           this.snackBarService.snack('Invalid Details', 'snackBarDanger')
