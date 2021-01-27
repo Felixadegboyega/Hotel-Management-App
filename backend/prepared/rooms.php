@@ -14,8 +14,8 @@
 			if($decodedinfo->for == 'manager'){
 				$this->response["for"] = 'manager';
 				$this->response["verify"]=true;
-				$querydb = "INSERT into rooms (room_type, room_price, no_of_rooms_available, total_no_of_rooms) VALUES (?, ?, ?, ?)";
-				$binder = array('ssss', ...$details);
+				$querydb = "INSERT into rooms (room_type, room_price, no_of_rooms_available, total_no_of_rooms, room_picture) VALUES (?, ?, ?, ?, ?)";
+				$binder = array('sssss', ...$details);
 				$this->Query($querydb, $binder);
 			} else{
 				$this->response["verify"]=false;

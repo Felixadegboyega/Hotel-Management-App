@@ -15,14 +15,16 @@
 				$querystaff = "SELECT stage, status, unit_name from staffs join units using(unit_id) WHERE email = ?";
 				$staffbinder = array('s', 'ade@gmail.com');
 				$staffM = $this->Query($querystaff, $staffbinder)->fetch_assoc();
-				// if($staffM['status'] == 'current' && $staffM['stage'] == 'manager'){
-					$this->response["verify"]=true;
-					$querydb = "INSERT into foods (food_name, available_from, available_to) VALUES (?, ?, ?)";
-					$binder = array('sss', ...$details);
+				if($staffM['status'] == 'current' && $staffM['stage'] == 'manager'){
+					$this->response["access"]=true;
+					$querydb = "INSERT into foods (food_name, available_from, available_to, food_picture) VALUES (?, ?, ?, ?)";
+					$binder = array('ssss', ...$details);
 					$this->Query($querydb, $binder);
-				// } else{
-				// 	$this->response["verify"]=false;
-				// }
+				} else{
+					$this->response["access"]=false;
+				}
+			} else {
+				$this->response["access"]=false;
 			}
 			echo JSON_encode($this->response);
 

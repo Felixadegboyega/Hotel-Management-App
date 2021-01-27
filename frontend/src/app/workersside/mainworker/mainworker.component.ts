@@ -1,6 +1,7 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AdminNavService } from 'src/app/services/admin-nav.service';
 import { GetService } from 'src/app/services/get.service';
 import { NavService } from 'src/app/services/nav.service';
 
@@ -16,14 +17,41 @@ export class MainworkerComponent implements OnInit {
   public customerCareServiceManagerLink;
 
   public mobileQuery :MediaQueryList;
+  public condition;
+  public pLink;
   private _mobileQueryListener: () => void;
   
-  constructor(public navService:NavService, public changeDetectorRef: ChangeDetectorRef, public media: MediaMatcher, public getService:GetService, public router :Router) {}
+  constructor(
+    public navService:NavService, 
+    public changeDetectorRef: ChangeDetectorRef, 
+    public media: MediaMatcher, 
+    public getService:GetService, 
+    public router :Router,
+    public adminNavService:AdminNavService,
+  ) {}
 
   ngOnInit(): void {
     this.mobileQuery = this.media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    this.adminNavService.getOnline();
+    this.adminNavService.online.subscribe(data=>{
+      this.condition = data.for;
+      if(data.for == 'main_admin'){
+        this.pLink = 'main-admin'
+      } else if(data.for == 'manager'){
+        this.pLink = `manager-profile/${data.details.manager_id}`
+      } else if(data.for == 'hr'){
+        this.pLink = `hr/${data.details.hr_id}`
+      } else if(data.for == 'staff'){
+        this.pLink = `staff-profile/${data.details.staff_id}`
+      }
+      console.log(this.condition)
+    })
+
+    // this.condition =
+
+
     let data = this.navService.yeah()
     if(data){
       // if(data.for == 'admin'){

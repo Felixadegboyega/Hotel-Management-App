@@ -9,3 +9,6 @@
 ::ng-deep .mat-progress-bar-buffer {
     background: #d1ecec;
 }
+.preview{
+	width:150px;
+}

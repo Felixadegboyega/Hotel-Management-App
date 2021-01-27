@@ -42,6 +42,9 @@ export class GetService {
 getAllUsers(){
     return this.connect.get<any>(`${environment.connectToBackEnd}users/allusers.php`);
   }
+getOnlineUsers(){
+    return this.connect.get<any>(`${environment.connectToBackEnd}users/onlineuser.php`);
+  }
   
   getOrders(){
     return this.connect.get<any>(`${environment.connectToBackEnd}general/orders/allorders.php`);
@@ -53,5 +56,9 @@ getAllUsers(){
   
   customerCareServiceRequests(){
     return this.connect.get<any>(`${environment.connectToBackEnd}general/customercareservice/allrequest.php`);
+  }
+  
+  getOnlineAdmin(){
+    return this.connect.get<any>(`${environment.connectToBackEnd}general/adminauth.php`);
   }
 }

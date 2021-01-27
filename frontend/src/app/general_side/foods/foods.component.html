@@ -15,7 +15,7 @@
 				<div class="col-6 cardin col-sm-4 col-lg-3 p-2 p-md-3 p-lg-2 p-xl-4" *ngFor="let food of foods">
 					<div class="rounded bg-light card">
 						<div [class.imgR]="mobileQuery.matches" class="bg-white img card-img-top">
-							<img src="../../../assets/images/rice.jpg" class="w-100 h-100 rounded-top" alt="">
+							<img [src]="imgUrl+food.food_picture" class="w-100 h-100 rounded-top" alt="food_picture">
 						</div>
 						
 						<div class="p-3 bg-light nameDiv">

@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { GetService } from 'src/app/services/get.service';
 import { PostService } from 'src/app/services/post.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
+import { environment } from 'src/environments/environment';
 
 export interface DialogData {
     food_name:string,
@@ -19,7 +20,7 @@ export interface DialogData {
   styleUrls: ['./foods.component.css']
 })
 export class FoodsComponent implements OnInit {
-  
+  public imgUrl = `${environment.connectToBackEnd}uploads/images/foods/`;
   public foods = [];
 
   public mobileQuery :MediaQueryList;

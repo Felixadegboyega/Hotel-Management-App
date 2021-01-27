@@ -41,6 +41,22 @@
 		}
 
 
+		public function UploadProfilePicture($profile_picture)
+		{
+			$this->connection();
+			$decodedInfo = $this->decodeJwt();
+			if($decodedInfo->for == 'manager'){
+				$this->response["verify"]=true;
+				$querydb = "UPDATE manager set profile_picture = ? WHERE email = ?";
+				$binder = array('ss', $profile_picture, $decodedInfo->email);
+				$this->Query($querydb, $binder);
+			} else{
+				$this->response["verify"]=false;
+			}
+			echo JSON_encode($this->response);
+		}
+
+
 		public function allManagerDetails(){
 			$this->connection();
 			$decodedinfo = $this->decodeJwt();

@@ -6,7 +6,11 @@
 
 	<div *ngIf="staff" class="border-bottom border-top mt-md-n1 pt-2 row m-2 pb-1 infos m-md-3">
 		<div class="col-md-7 col-lg-6 col-sm-8 mx-auto mb-2 d-flex">
-			<span class="fa fa-user-circle profilePics"></span>
+			<span class=" fa fa-user-circle profilePics" *ngIf="!imgURL" (click)="profilePics.click()"></span>
+			<span class="profilePics" *ngIf="imgURL" (click)="profilePics.click()">
+				<img [src]="imgURL" class="rounded-circle ppc w-100 h-100" *ngIf="imgURL">
+			</span>
+			<input type="file" class="d-none" (change)="changePicture($event)" #profilePics>
 			<div class="ml-3 my-auto">
 				<span class="state">Stage : <b>{{staff.stage}}</b></span> <br>
 				<span class="state">Status : <b>{{staff.status}}</b></span>

@@ -26,7 +26,7 @@
 					<td>{{staff.first_name}} {{staff.last_name}}</td>
 					<td>{{staff.phone_number}}</td>
 					<td>{{staff.unit_name}}</td>
-					<td class="staffLink" routerLink="/worker/staff-profile/{{staff.staff_id}}">View more</td>
+					<td class="staffLink" routerLink="/admin/staff-profile/{{staff.staff_id}}">View more</td>
 					<td class="border-left dropdown staffLink fa fa-ellipsis-v " data-toggle="dropdown" id="triggerId" >
 						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
 							<button *ngIf="staff.stage == 'staff'" (click)="changeStage(staff.staff_id)" class="w-100 text-left" mat-button>Make this staff the manager of {{staff.unit_name}} unit</button>

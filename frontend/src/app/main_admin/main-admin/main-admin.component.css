@@ -5,3 +5,13 @@
 ::ng-deep .mat-progress-bar-buffer {
     background: #d1ecec;
 }
+
+.profilePics{
+	cursor: pointer;
+	
+}
+.ppc{
+	width: 130px !important;
+	height: 130px !important;
+
+}

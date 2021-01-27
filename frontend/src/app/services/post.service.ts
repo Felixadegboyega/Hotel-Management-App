@@ -19,6 +19,9 @@ export class PostService {
   updateAdminProfile(info){
     return this.connect.post<any>(`${this.baseUrl}main_admin/editprofile.php`, info);
   }
+  updateAdminProfilePicture(picture){
+    return this.connect.post<any>(`${this.baseUrl}main_admin/editprofilepicture.php`, picture);
+  }
 
 
   managerSignUp(info){
@@ -29,6 +32,9 @@ export class PostService {
   }
   updateManagerInfo(info){
     return this.connect.post<any>(`${this.baseUrl}worker/managers/editprofile.php`, info);
+  }
+  updateManagerProfilePicture(picture){
+    return this.connect.post<any>(`${this.baseUrl}worker/managers/editprofilepicture.php`, picture);
   }
   
   
@@ -41,8 +47,11 @@ export class PostService {
   updateHRInfo(info){
       return this.connect.post<any>(`${this.baseUrl}worker/hr/editprofile.php`, info);
     }
-
-
+    updateHRProfilePicture(picture){
+      return this.connect.post<any>(`${this.baseUrl}worker/hr/editprofilepicture.php`, picture);
+    }
+    
+    
 
     staffSignUp(info){
       return this.connect.post<any>(`${this.baseUrl}worker/staffs/register.php`, info);
@@ -59,9 +68,12 @@ export class PostService {
     updateStaffInfo(info){
       return this.connect.post<any>(`${this.baseUrl}worker/staffs/editprofile.php`, info);
     }
-
-
-
+    updateStaffProfilePicture(picture){
+      return this.connect.post<any>(`${this.baseUrl}worker/staffs/editprofilepicture.php`, picture);
+    }
+    
+    
+    
     UserSignUp(info){
       return this.connect.post<any>(`${this.baseUrl}users/signup.php`, info);
     }
@@ -70,6 +82,9 @@ export class PostService {
     }
     updateUserInfo(info){
       return this.connect.post<any>(`${this.baseUrl}users/editprofile.php`, info);
+    }
+    updateUserProfilePicture(picture){
+      return this.connect.post<any>(`${this.baseUrl}users/editprofilepicture.php`, picture);
     }
     
     

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PostService } from 'src/app/services/post.service';
+import { ProfileLinkService } from 'src/app/services/profile-link.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 
 @Component({
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
     public formB:FormBuilder,
     public router:Router,
     public postService:PostService,
-    public snackBarService:SnackbarService
+    public snackBarService:SnackbarService,
+    public profileLink:ProfileLinkService
   ) { }
   hide = true;
   public loginDetails = this.formB.group({
@@ -50,6 +52,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate([`/user/profile/${data.id}`])
           localStorage.setItem('token', data.token)
           this.snackBarService.snack("Signin Successful", "snackBarSuccess")
+          // this.profileLink.supplyLink(`/user/profile/${data.id}`)
         } else{
           this.snackBarService.snack("An error occured", "snackBarDanger")
         }

@@ -1,6 +1,13 @@
+<app-navbar></app-navbar>
+
+
 <div class="bg-light h-100 w-100 pt-5">
 	<div class="m-5">
-		{{userProfile.profile_picture}}
+		<span class=" fa fa-user-circle profilePics" *ngIf="!imgURL" (click)="profilePics.click()"></span>
+		<span class="profilePics" *ngIf="imgURL" (click)="profilePics.click()">
+			<img [src]="imgURL" class="rounded-circle ppc w-100 h-100" *ngIf="imgURL">
+		</span>
+		<input type="file" class="d-none" (change)="changePicture($event)" #profilePics>
 	</div>
 	<div class="p-5">
 		<div>

@@ -19,39 +19,61 @@ export class NewfoodComponent implements OnInit {
     from:['', [Validators.required,  Validators.max(24),  Validators.min(0)]],
     to:['', [Validators.required, Validators.max(24),  Validators.min(0)]],
   })
-  file_data:any=''
   public loading = false;
   public statusText = "Choose photo";
-  public files =""
+  public im = false;
+  public imagePath;
+  imgURL: any;
+
+
   ngOnInit(): void {
   }
+
+
   choose(event){
-    if(this.foodDetails.value.food_picture != ""){
-      this.statusText = this.foodDetails.value.food_picture.slice(12);
-      const fileList: FileList = event.target.files;
-      const file = fileList[0];
-      if((file.size/1048576)<=4){
-        this.foodDetails.value.food_picture = {size:file.size, name:file.name}
-      }else{
-        this.snackService.snack("File size exceeds 4 MB. Please choose less than 4 MB", "snackBarDanger")
+    const file = event.target.files[0];
+    if (event.target.files.length === 0)
+    return;
+    this.statusText = file.name;
+    if (event.target.files.length > 0) {
+      if(file.type.match(/image\/*/) != null && (file.size/1048576)<=4){
+        this.im = true
+        this.foodDetails.get('food_picture').setValue(file);
+      } else {
+        this.im = false
       }
+    }
+
+
+    var reader = new FileReader();
+    this.imagePath = event.target.files;
+    reader.readAsDataURL(file); 
+    reader.onload = (_event) => { 
+      this.imgURL = reader.result; 
     }
   }
   add(){
-    this.loading = true
-      this.postService.newFood(this.foodDetails.value).subscribe(
-        (data:any)=>{
-          this.loading = false;
-          if(data.query_status){
-            this.snackService.snack("Food added Successfully", "snackBarSuccess")
-          } else {
-            this.snackService.snack("An error occured", "snackBarDanger")
-          }
-        },(err:HttpErrorResponse)=>{
-          this.router.navigate(['/staff/login'])
-          this.loading = false;
+    this.loading = true;
+    const formData = new FormData();
+    formData.append('food_name', this.foodDetails.get('food_name').value)
+    formData.append('to', this.foodDetails.get('to').value)
+    formData.append('from', this.foodDetails.get('from').value)
+    formData.append('food_picture', this.foodDetails.get('food_picture').value);
+    this.postService.newFood(formData).subscribe(
+      (data:any)=>{
+        this.loading = false; 
+        if(data.query_status){
+          this.snackService.snack("Food added Successfully", "snackBarSuccess")
+        } else if(!data.access){
+          this.snackService.snack("Access Denied", "snackBarDanger")
+        } else {
+          this.snackService.snack("An error occured", "snackBarDanger")
         }
-      )
+      },(err:HttpErrorResponse)=>{
+        // this.router.navigate(['/staff/login'])
+        this.loading = false;
+      }
+    )
   }
     hours(){
       return this.foodDetails.value.to - this.foodDetails.value.from

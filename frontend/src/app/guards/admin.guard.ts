@@ -29,10 +29,11 @@ export class AdminGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if(this.stat == 1){
-        alert('hey')
-        return this.check()
-      }
+      // if(this.stat == 1){
+        // alert('hey')
+        // return this.check()
+        return true
+      // }
      
   }
 

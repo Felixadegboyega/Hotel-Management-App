@@ -12,7 +12,8 @@ class Header
 		$dotenv->load();
 	}
 
-
+	
+	
 	
 	
 	public function connection()
@@ -45,7 +46,7 @@ class Header
 		}
 	}
 	
-
+	
 	public function UseJwt($enteredPass, $dbpassword, $email, $for)
 	{
 		$verifypass = password_verify($enteredPass, $dbpassword);
@@ -87,6 +88,38 @@ class Header
 		} else{
 			return false;
 		}
+	}
+
+
+
+	public function AdminAuth()
+	{
+		$this->connection();
+		$decodedInfo = $this->decodeJwt();
+		if($decodedInfo){
+			$this->response['for'] = $decodedInfo->for;
+			if ($decodedInfo->for == 'main_admin') {
+				$this->GetDetails('admin_id', 'main_admin', $decodedInfo->email);
+			} else if($decodedInfo->for == 'manager'){
+				$this->GetDetails('manager_id', 'manager', $decodedInfo->email);
+			} else if($decodedInfo->for == 'hr'){
+				$this->GetDetails('hr_id', 'hr', $decodedInfo->email);
+			} else if($decodedInfo->for == 'staff'){
+				$this->GetDetails('staff_id', 'staff', $decodedInfo->email);
+			}
+		}
+	}
+	
+	private function GetDetails($id_tag, $from, $email)
+	{
+		$queryDb = "SELECT first_name, last_name, $id_tag from $from WHERE email = ?";
+		$binder = array('s', $email);
+		$details = $this->Query($queryDb, $binder)->fetch_assoc();
+		if($details){
+			$this->response['details'] = $details;
+		}
+		echo JSON_encode($this->response);
+
 	}
 }
 

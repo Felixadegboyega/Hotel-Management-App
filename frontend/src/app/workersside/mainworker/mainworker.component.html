@@ -4,7 +4,7 @@
 			<mat-sidenav-container class="h-100 w-100 example-container" autosize>
 				<mat-sidenav #sidenav class="border-left bg-light sidenav" [opened]="mobileQuery.matches ? false : true" [mode]="mobileQuery.matches ? 'over' : 'side'"  >
 					<div>
-						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./main-admin" routerLinkActive="active">Profile</button>
+						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" [routerLink]="'./'+pLink" routerLinkActive="active">Profile</button>
 						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./manager-registration" routerLinkActive="active">Register a Manager</button>
 						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./hr-registration" routerLinkActive="active">Register a HR</button>
 						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./staff-registration" routerLinkActive="active">Register a Staff</button>
@@ -32,7 +32,7 @@
 					</div>
 				</mat-sidenav>
 				<div class="sidenav-content bg-white w-100">
-					<div class="d-flex border-bottom mb-2 bg-light">
+					<div class="d-flex border-bottom mb-2 ">
 						<button class=" ml-2 my-auto d-inline-block small btn-sm menuBut btn-light rounded btn" (click)="sidenav.toggle()">
 							<span class="fa fa-bars"></span>
 						</button>

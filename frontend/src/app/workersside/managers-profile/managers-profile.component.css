@@ -1,1 +1,10 @@
 @import "../../app.component.css";
+.profilePics{
+	cursor: pointer;
+	
+}
+.ppc{
+	width: 130px !important;
+	height: 130px !important;
+
+}

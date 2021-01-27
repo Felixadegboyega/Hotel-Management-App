@@ -85,6 +85,25 @@
 			}
 			echo JSON_encode($this->response);
 		}
+
+
+
+
+
+		public function UploadProfilePicture($profile_picture)
+		{
+			$this->connection();
+			$decodedInfo = $this->decodeJwt();
+			if($decodedInfo->for == 'staff'){
+				$this->response["verify"]=true;
+				$querydb = "UPDATE staffs set profile_picture = ? WHERE email = ?";
+				$binder = array('ss', $profile_picture, $decodedInfo->email);
+				$this->Query($querydb, $binder);
+			} else{
+				$this->response["verify"]=false;
+			}
+			echo JSON_encode($this->response);
+		}
 		
 		
 

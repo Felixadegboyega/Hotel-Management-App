@@ -41,10 +41,10 @@
 		
 		public function admindetails(){
 			$this->connection();
-			$email = $this->decodeJwt();
-			if($email){
+			$decodedInfo = $this->decodeJwt();
+			if($decodedInfo){
 				$querydb = "SELECT first_name, last_name, email, phone_number, profile_picture from main_admin WHERE email = ?";
-				$binder = array('s', $email);
+				$binder = array('s', $decodedInfo->email);
 				$Info = $this->Query($querydb, $binder)->fetch_assoc();
 				if($Info){ 
 					$this->response["verify"]=true;
@@ -55,6 +55,22 @@
 					$this->response["verify"]=false;
 				}
 			} else {
+				$this->response["verify"]=false;
+			}
+			echo JSON_encode($this->response);
+		}
+
+
+		public function UploadProfilePicture($profile_picture)
+		{
+			$this->connection();
+			$decodedInfo = $this->decodeJwt();
+			if($decodedInfo->for == 'main_admin'){
+				$this->response["verify"]=true;
+				$querydb = "UPDATE main_admin set profile_picture = ? WHERE email = ?";
+				$binder = array('ss', $profile_picture, $decodedInfo->email);
+				$this->Query($querydb, $binder);
+			} else{
 				$this->response["verify"]=false;
 			}
 			echo JSON_encode($this->response);

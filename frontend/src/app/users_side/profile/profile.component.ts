@@ -8,6 +8,8 @@ import { PostService } from 'src/app/services/post.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { CustomerServiceComponent } from '../customer-service/customer-service.component';
 import { RequestCleaningComponent } from '../request-cleaning/request-cleaning.component';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-profile',
@@ -16,23 +18,38 @@ import { RequestCleaningComponent } from '../request-cleaning/request-cleaning.c
 })
 export class ProfileComponent implements OnInit {
 
-  public userProfile = {user_id:0, first_name:"Felix", last_name:"Adegboyega", phone_number:"08035292607", email:"felixadegboyega2019@gmail.com", profile_picture:"", room_id:""}
+  public userProfile ;
+  public profileLink ;
+  public im = false;
+  public imagePath;
+  public imgURL;
 
   constructor(
     public getService:GetService,
     public actRoute:ActivatedRoute,
     public matDialog:MatDialog,
-    public router:Router
+    public router:Router,
+    public postService:PostService
   ) { }
 
   ngOnInit(): void {
+    this.getDetails()
+  }
+  
+  getDetails(){
     this.getService.getAllUsers().subscribe(
       (data:any)=>{
+        console.log(data)
         this.userProfile = data.users_details.find((each, i)=>each.user_id == this.actRoute.snapshot.params.id)
+        if(this.userProfile.profile_picture){
+          this.imgURL = `${environment.connectToBackEnd}uploads/images/profile/${this.userProfile.profile_picture}`;
+        }
+        // this.profileLink = `user/profile/${this.userProfile.user_id}`
       },(err:HttpErrorResponse)=>{
         this.router.navigate(['user/login'])
       }
     )
+
   }
 
   clean(){
@@ -47,6 +64,26 @@ export class ProfileComponent implements OnInit {
       width: '500px',
       // data: this.foods.find((each,i)=>each.food_id==id)
     });
+  }
+
+
+  changePicture(event){
+    const file = event.target.files[0];
+    if (event.target.files.length === 0)
+    return;
+    if (event.target.files.length > 0) {
+      if(file.type.match(/image\/*/) != null && (file.size/1048576)<=4){
+        this.im = true
+        let formData = new FormData
+        formData.append('profile_picture', file)
+        this.postService.updateUserProfilePicture(formData).subscribe((data=>{
+          console.log(data)
+          this.getDetails()
+        }))
+      } else {
+        this.im = false
+      }
+    } 
   }
 
 }

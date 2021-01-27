@@ -36,16 +36,37 @@
 		public function UsersDetails(){
 			$this->connection();
 			$decodedInfo = $this->decodeJwt();
-			if($decodedInfo->for == 'user'){
-				$querydb = "SELECT user_id, first_name, last_name, email, phone_number, profile_picture, room_id from users WHERE email = ?";
-				$binder = array('s', $decodedInfo->email);
-				$Info = $this->Query($querydb, $binder)->fetch_all(MYSQLI_ASSOC);
-				if($Info){ 
+			if($decodedInfo->for == 'user' || $decodedInfo->for == 'manager'){
+				$querydb = "SELECT user_id, first_name, last_name, email, phone_number, profile_picture, room_id from users";
+				$Info = $this->Query($querydb, null)->fetch_all(MYSQLI_ASSOC);
+				// if($Info){ 
 					$this->response["verify"]=true;
 					$this->response["users_details"] = $Info;
 					$this->response["for"] = 'user';
+				// } else{
+					// $this->response["users_details"] = null;
+					// $this->response["verify"]=false;
+				// }
+			} else {
+				$this->response["verify"]=false;
+			}
+			echo JSON_encode($this->response);
+		}
+		
+
+		public function OnlineUsersDetails(){
+			$this->connection();
+			$decodedInfo = $this->decodeJwt();
+			if($decodedInfo->for == 'user'){
+				$querydb = "SELECT user_id, first_name, last_name, email, phone_number, profile_picture, room_id from users WHERE email = ?";
+				$binder = array('s', $decodedInfo->email);
+				$Info = $this->Query($querydb, $binder)->fetch_assoc();
+				if($Info){ 
+					$this->response["verify"]=true;
+					$this->response["user_details"] = $Info;
+					$this->response["for"] = 'user';
 				} else{
-					$this->response["users_details"] = null;
+					$this->response["user_details"] = null;
 					$this->response["verify"]=false;
 				}
 			} else {
@@ -53,6 +74,24 @@
 			}
 			echo JSON_encode($this->response);
 		}
+
+
+
+		public function UploadProfilePicture($profile_picture)
+		{
+			$this->connection();
+			$decodedInfo = $this->decodeJwt();
+			if($decodedInfo->for == 'user'){
+				$this->response["verify"]=true;
+				$querydb = "UPDATE users set profile_picture = ? WHERE email = ?";
+				$binder = array('ss', $profile_picture, $decodedInfo->email);
+				$this->Query($querydb, $binder);
+			} else{
+				$this->response["verify"]=false;
+			}
+			echo JSON_encode($this->response);
+		}
+		
 			
 			
 		public function editDetails($fname, $lname, $pnumber, $email, $profile_picture)

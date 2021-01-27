@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GetService } from 'src/app/services/get.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
-
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-rooms',
   templateUrl: './rooms.component.html',
@@ -12,9 +12,10 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 export class RoomsComponent implements OnInit {
 
   public roomArray = []
-
+  public imgUrl = `${environment.connectToBackEnd}uploads/images/rooms/`;
   public mobileQuery :MediaQueryList;
   private _mobileQueryListener: () => void;
+  public envi
 
   constructor(
     public changeDetectorRef: ChangeDetectorRef, 
