@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AdminNavService } from 'src/app/services/admin-nav.service';
 import { PostService } from 'src/app/services/post.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 
@@ -12,7 +13,13 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 })
 export class NewroomComponent implements OnInit {
   
-  constructor(public formB:FormBuilder, public postService:PostService, public snackService:SnackbarService, public router:Router) { }
+  constructor(
+    public formB:FormBuilder, 
+    public postService:PostService, 
+    public snackService:SnackbarService, 
+    public router:Router,
+    public adminNavService:AdminNavService
+  ) { }
   public roomDetails = this.formB.group({
     room_type:['', Validators.required],
     room_price:['', [Validators.required, Validators.min(0)]],
@@ -27,6 +34,7 @@ export class NewroomComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.adminNavService.supplyHeadText("Add New Room")
   }
 
 

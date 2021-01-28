@@ -3,6 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AdminNavService } from 'src/app/services/admin-nav.service';
 import { NavService } from 'src/app/services/nav.service';
 import { PostService } from 'src/app/services/post.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
@@ -21,7 +22,9 @@ export class HrRegistrationComponent implements OnInit {
     public changeDetectorRef: ChangeDetectorRef, 
     public media: MediaMatcher, 
     public postService:PostService, 
-    public router:Router
+    public router:Router,
+    public adminNavService:AdminNavService
+
   ) { }
   public date = new Date();
   public HRSignup = this.formB.group({
@@ -47,6 +50,7 @@ export class HrRegistrationComponent implements OnInit {
     this.mobileQuery = this.media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    this.adminNavService.supplyHeadText("Human Resource ( HR ) Registration")
     
   }
   get form() { return this.HRSignup.controls; }

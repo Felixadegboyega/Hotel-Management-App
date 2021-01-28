@@ -1,10 +1,9 @@
+<app-admin-top></app-admin-top>
+
 <div>
-	<div class="pl-2 pl-md-0 pt-2 mt-md-0 ml-md-5 mr-md-5">
-		<h2>Staff Profile</h2>
-	</div>
 	<mat-progress-bar mode="indeterminate" *ngIf="!staff"></mat-progress-bar>
 
-	<div *ngIf="staff" class="border-bottom border-top mt-md-n1 pt-2 row m-2 pb-1 infos m-md-3">
+	<div *ngIf="staff" class="pt-5 row infos m-md-3">
 		<div class="col-md-7 col-lg-6 col-sm-8 mx-auto mb-2 d-flex">
 			<span class=" fa fa-user-circle profilePics" *ngIf="!imgURL" (click)="profilePics.click()"></span>
 			<span class="profilePics" *ngIf="imgURL" (click)="profilePics.click()">

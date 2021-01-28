@@ -88,6 +88,7 @@ import { RequestCleaningComponent } from './users_side/request-cleaning/request-
 import { CleaningServiceComponent, CleaningServiceRequestDetails } from './workersside/cleaning-service/cleaning-service.component';
 import { CustomerCareServiceComponent, Customercareservicerequest } from './workersside/customer-care-service/customer-care-service.component';
 import { OrderRequestDialog, OrdersComponent } from './workersside/orders/orders.component';
+import { AdminTopComponent } from './workersside/admin-top/admin-top.component';
 
 
 @NgModule({
@@ -135,7 +136,8 @@ import { OrderRequestDialog, OrdersComponent } from './workersside/orders/orders
     Customercareservicerequest,
     CleaningServiceRequestDetails,
     ConfirmStatusDialogue,
-    OrderRequestDialog
+    OrderRequestDialog,
+    AdminTopComponent
   ],
   imports: [
     CdkTreeModule,

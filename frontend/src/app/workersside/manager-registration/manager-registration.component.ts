@@ -4,6 +4,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { AdminNavService } from 'src/app/services/admin-nav.service';
 import { NavService } from 'src/app/services/nav.service';
 import { PostService } from 'src/app/services/post.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
@@ -15,7 +16,16 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 })
 export class ManagerRegistrationComponent implements OnInit {
 
-  constructor(public navSerice:NavService, public snackBarService:SnackbarService,public formB:FormBuilder, public changeDetectorRef: ChangeDetectorRef, public media: MediaMatcher, public postService:PostService, public router:Router) { }
+  constructor(
+    public navSerice:NavService, 
+    public snackBarService:SnackbarService,
+    public formB:FormBuilder, 
+    public changeDetectorRef: ChangeDetectorRef, 
+    public media: MediaMatcher, 
+    public postService:PostService, 
+    public router:Router,
+    public adminNavService:AdminNavService
+  ) { }
   public date = new Date();
   public managerSignup = this.formB.group({
     first_name:['', Validators.required],
@@ -40,6 +50,7 @@ export class ManagerRegistrationComponent implements OnInit {
     this.mobileQuery = this.media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    this.adminNavService.supplyHeadText("Manager Registration")
     
   }
   get form() { return this.managerSignup.controls; }

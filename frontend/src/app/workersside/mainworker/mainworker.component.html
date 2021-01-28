@@ -1,67 +1,42 @@
-<div class="container-fluid h-100 w-100 bg-light pt-5">
-	<div class="row mt-4 profileRow">
-		<div class="col-sm-11 mx-auto row h-100 w-100" [class.pl-2]="mobileQuery.matches" [class.pr-2]="mobileQuery.matches">
-			<mat-sidenav-container class="h-100 w-100 example-container" autosize>
-				<mat-sidenav #sidenav class="border-left bg-light sidenav" [opened]="mobileQuery.matches ? false : true" [mode]="mobileQuery.matches ? 'over' : 'side'"  >
-					<div>
-						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" [routerLink]="'./'+pLink" routerLinkActive="active">Profile</button>
-						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./manager-registration" routerLinkActive="active" *ngIf="condition == 'main_admin'">Register a Manager</button>
-						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./hr-registration" routerLinkActive="active" *ngIf="condition == 'main_admin'">Register a HR</button>
-						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./staff-registration" routerLinkActive="active" *ngIf="condition == 'manager' || condition == 'hr'">Register a Staff</button>
-						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./manager-profile/1" *ngIf="condition != 'manager' && condition != 'staff'" routerLinkActive="active">Manager</button>
-						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./hr/8" *ngIf="condition != 'hr' && condition != 'staff' && condition != 'manager'" routerLinkActive="active">HR</button>
-						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" data-toggle="collapse" *ngIf="condition == 'manager'" data-target="#manage">Manage</button>
-						<div class="collapse w-100"  id="manage">
-							<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./newroom" routerLinkActive="active" *ngIf="condition == 'manager'">Add Room</button>
-							<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./newfood" routerLinkActive="active" *ngIf="condition == 'manager'">Add Food</button>
-						</div>
-						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" data-toggle="collapse" data-target="#requests">User Request</button>
-						<div class="collapse w-100" id="requests">
-							<button mat-list-item class="submenus btn-sm w-100 btn-light text-left" routerLinkActive="active"routerLink="./orders"> - Food orders</button>
-							<button mat-list-item class="submenus btn-sm w-100 btn-light text-left" routerLinkActive="active" routerLink="./cleaning-service"> - Cleaning service</button>
-							<button mat-list-item class="submenus btn-sm w-100 btn-light text-left" routerLinkActive="active" routerLink="./customer-care-service"> - Customer care service</button>
-						</div>
-						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" data-toggle="collapse" data-target="#unitsmanager">Units Manager</button>
-						<div class="collapse w-100" id="unitsmanager">
-							<button mat-list-item class="submenus btn-sm w-100 btn-light text-left"	 (click)="route('kitchen')"  routerLinkActive="active"> - Kitchen Manager</button>
-							<button mat-list-item class="submenus btn-sm w-100 btn-light text-left"  (click)="route('cleaning')" routerLinkActive="active"> - Cleaning Service Manager</button>
-							<button mat-list-item class="submenus btn-sm w-100 btn-light text-left"  (click)="route('customer')" routerLinkActive="active"> - Customer care Service Manager</button>
-						</div>
-						<button mat-list-item class="menus btn-sm w-100 btn-light text-left" routerLink="./staffs" routerLinkActive="active">All Staffs</button>
-						<button mat-list-item class="menus btn-sm w-100 btn-light text-left">Logout <span class="fa fa-sign-out ml-2"></span></button>
+	<div class="w-100 mx-auto h-100 w-100">
+		<mat-sidenav-container class="h-100 w-100 example-container" autosize>
+			<mat-sidenav #sidenav class="border-left bg-light sidenav text-white" [opened]="mobileQuery.matches ? false : true" [mode]="mobileQuery.matches ? 'over' : 'side'"  >
+				<div class="p-0">
+					<div class="text-center pt-3 pb-3">
+						<img [src]="imgURL" *ngIf="imgURL" class="rounded-circle navPics" alt="">
+						<span class="mx-auto navPics fa fa-user-circle" *ngIf="!imgURL"></span> <br>
+						<h2 class="mt-2">{{title}}</h2>
 					</div>
-				</mat-sidenav>
-				<div class="sidenav-content bg-white w-100">
-					<div class="d-flex border-bottom mb-2 ">
-						<button class=" ml-2 my-auto d-inline-block small btn-sm menuBut btn-light rounded btn" (click)="sidenav.toggle()">
-							<span class="fa fa-bars"></span>
-						</button>
-						<nav class="navbar ml-auto navbar-expand-sm navbar-light">
-							<button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-							aria-expanded="false" aria-label="Toggle navigation"></button>
-								<div class="collapse navbar-collapse" id="collapsibleNavId">
-									<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-									<li class="nav-item active">
-										<a class="nav-link text-dark" routerLink="/main-admin/login" routerLinkActive="active">Admin Login</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link text-dark" routerLink="/manager/login" routerLinkActive="active">Manager Login</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link text-dark" routerLink="/hr/login" routerLinkActive="active">HR Login</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link text-dark" routerLink="/staff/login" routerLinkActive="active">Staff Login</a>
-									</li>
-								</ul>
-							</div>
-						</nav>
+					<button mat-button class="menus btn-sm w-100 bg-transparent text-left" [routerLink]="'./'+pLink" routerLinkActive="active">Profile</button>
+					<button mat-button class="menus btn-sm w-100 bg-transparent text-left" routerLink="./manager-registration" routerLinkActive="active" *ngIf="condition == 'main_admin'">Register a Manager</button>
+					<button mat-button class="menus btn-sm w-100 bg-transparent text-left" routerLink="./hr-registration" routerLinkActive="active" *ngIf="condition == 'main_admin'">Register a HR</button>
+					<button mat-button class="menus btn-sm w-100 bg-transparent text-left" routerLink="./staff-registration" routerLinkActive="active" *ngIf="condition == 'manager' || condition == 'hr'">Register a Staff</button>
+					<button mat-button class="menus btn-sm w-100 bg-transparent text-left" routerLink="./manager-profile/1" *ngIf="condition != 'manager' && condition != 'staff'" routerLinkActive="active">Manager</button>
+					<button mat-button class="menus btn-sm w-100 bg-transparent text-left" routerLink="./hr/8" *ngIf="condition != 'hr' && condition != 'staff' && condition != 'manager'" routerLinkActive="active">HR</button>
+					<button mat-button class="menus btn-sm w-100 bg-transparent text-left" data-toggle="collapse" *ngIf="condition == 'manager'" data-target="#manage">Manage</button>
+					<div class="collapse w-100"  id="manage">
+						<button mat-button class="menus btn-sm w-100 bg-transparent text-left" routerLink="./newroom" routerLinkActive="active" *ngIf="condition == 'manager'">Add Room</button>
+						<button mat-button class="menus btn-sm w-100 bg-transparent text-left" routerLink="./newfood" routerLinkActive="active" *ngIf="condition == 'manager'">Add Food</button>
 					</div>
-					
-					<router-outlet></router-outlet>
+					<button mat-button *ngIf="condition != 'main_admin'" class="menus btn-sm w-100 bg-transparent text-left" data-toggle="collapse" data-target="#requests">User Request</button>
+					<div class="collapse w-100" id="requests" *ngIf="condition != 'main_admin'">
+						<button mat-button class="submenus btn-sm w-100 bg-transparent text-left" routerLinkActive="active"routerLink="./orders"> - Food orders</button>
+						<button mat-button class="submenus btn-sm w-100 bg-transparent text-left" routerLinkActive="active" routerLink="./cleaning-service"> - Cleaning service</button>
+						<button mat-button class="submenus btn-sm w-100 bg-transparent text-left" routerLinkActive="active" routerLink="./customer-care-service"> - Customer care service</button>
+					</div>
+					<button mat-button class="menus btn-sm w-100 bg-transparent text-left" data-toggle="collapse" data-target="#unitsmanager">Units Manager</button>
+					<div class="collapse w-100" id="unitsmanager">
+						<button mat-button class="submenus btn-sm w-100 bg-transparent text-left"	 (click)="route('kitchen')"  routerLinkActive="active"> - Kitchen Manager</button>
+						<button mat-button class="submenus btn-sm w-100 bg-transparent text-left"  (click)="route('cleaning')" routerLinkActive="active"> - Cleaning Service Manager</button>
+						<button mat-button class="submenus btn-sm w-100 bg-transparent text-left"  (click)="route('customer')" routerLinkActive="active"> - Customer care Service Manager</button>
+					</div>
+					<button mat-button class="menus btn-sm w-100 bg-transparent text-left" routerLink="./staffs" routerLinkActive="active">All Staffs</button>
+					<button mat-button class="menus btn-sm w-100 bg-transparent text-left">Logout <span class="fa fa-sign-out ml-2"></span></button>
 				</div>
-			</mat-sidenav-container>
-		</div>
+			</mat-sidenav>
+			<div class="sidenav-content bg-white w-100">
+				<router-outlet></router-outlet>
+			</div>
+		</mat-sidenav-container>
 	</div>
-</div>
-<div>
+<!-- </div> -->

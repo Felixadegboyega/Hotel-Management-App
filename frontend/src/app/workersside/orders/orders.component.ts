@@ -1,6 +1,7 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AdminNavService } from 'src/app/services/admin-nav.service';
 import { GetService } from 'src/app/services/get.service';
 import { PostService } from 'src/app/services/post.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
@@ -40,7 +41,8 @@ export class OrdersComponent implements OnInit {
     public media: MediaMatcher,
     public matDialog:MatDialog,
     public postService:PostService,
-    public snackService:SnackbarService
+    public snackService:SnackbarService,
+    public adminNavService:AdminNavService
 
   ) {}
 
@@ -49,6 +51,7 @@ export class OrdersComponent implements OnInit {
     this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
     this.getRequest();
+    this.adminNavService.supplyHeadText("Orders")
   }
   getRequest(){
     this.getService.getOrders().subscribe(

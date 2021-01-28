@@ -1,6 +1,7 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { AdminNavService } from 'src/app/services/admin-nav.service';
 import { GetService } from 'src/app/services/get.service';
 import { PostService } from 'src/app/services/post.service';
 import { environment } from 'src/environments/environment';
@@ -22,7 +23,7 @@ export class MainAdminComponent implements OnInit {
   public imgURL;
   
   constructor(public changeDetectorRef: ChangeDetectorRef, public media: MediaMatcher, public getService : GetService, 
-    public postService:PostService
+    public postService:PostService, public adminNavService:AdminNavService
     ) {}
 
   ngOnInit(): void {
@@ -30,12 +31,11 @@ export class MainAdminComponent implements OnInit {
     this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
     this.getDetails();
+    this.adminNavService.supplyHeadText("Admin Profile")
   }
   
   getDetails(){
-    
     this.getService.getMainAdminInfo().subscribe(data=>{
-      console.log(data);
       this.mainAdminInfo = data.admin_details
       if(this.mainAdminInfo.profile_picture){
         this.imgURL = `${environment.connectToBackEnd}uploads/images/profile/${this.mainAdminInfo.profile_picture}`;
@@ -46,6 +46,7 @@ export class MainAdminComponent implements OnInit {
         console.log(err.error)
       }
     })
+
   }
 
 

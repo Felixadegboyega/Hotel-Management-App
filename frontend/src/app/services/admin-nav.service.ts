@@ -7,8 +7,13 @@ import { GetService } from './get.service';
 })
 export class AdminNavService {
   public online :BehaviorSubject<any> = new BehaviorSubject('');
+  public headText :BehaviorSubject<any> = new BehaviorSubject('');
   supplyData(link){
     this.online.next(link);
+  }
+  
+  supplyHeadText(text){
+    this.headText.next(text);
   }
 
   constructor(

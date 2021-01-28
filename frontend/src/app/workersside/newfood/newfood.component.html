@@ -1,10 +1,9 @@
+<app-admin-top></app-admin-top>
 <form [formGroup]="foodDetails" class="m-auto">
 	<div class="bg-white p-0 pb-4 border rounded col-11 col-sm-10 mt-3 mx-auto col-md-8 col-lg-5 row borderedDiv">
 		<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
 		<div class="col-sm-11 mt-4 mx-auto">
-			<h2 class="heading">Add New Food</h2>
 			<img [src]="imgURL" class="preview" *ngIf="imgURL">
-
 		</div>
 		<mat-form-field appearance="a" class="col-sm-11 mx-auto">
 			<mat-label for="name" class="text-dark">Food Name</mat-label>

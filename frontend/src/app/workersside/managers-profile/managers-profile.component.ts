@@ -2,6 +2,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AdminNavService } from 'src/app/services/admin-nav.service';
 import { GetService } from 'src/app/services/get.service';
 import { PostService } from 'src/app/services/post.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
@@ -30,7 +31,9 @@ export class ManagersProfileComponent implements OnInit {
     public media: MediaMatcher, 
     public actRoute:ActivatedRoute,
     public router:Router,
-    public postService:PostService
+    public postService:PostService,
+    public adminNavService:AdminNavService
+
   ){}
 
   ngOnInit(): void {
@@ -38,6 +41,7 @@ export class ManagersProfileComponent implements OnInit {
     this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
     this.getDetails()
+    this.adminNavService.supplyHeadText("Managers Profile")
   }
   
   getDetails(){

@@ -7,6 +7,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
+import { AdminNavService } from 'src/app/services/admin-nav.service';
 import { GetService } from 'src/app/services/get.service';
 import { PostService } from 'src/app/services/post.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
@@ -50,7 +51,8 @@ export class StaffsComponent implements OnInit {
     public postService:PostService,
     public snackBar:MatSnackBar,
     public snackService:SnackbarService,
-    public matDialog:MatDialog
+    public matDialog:MatDialog,
+    public adminNavService:AdminNavService
   ) {}
 
   ngOnInit(): void {
@@ -58,6 +60,7 @@ export class StaffsComponent implements OnInit {
     this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
     this.getStaff()
+    this.adminNavService.supplyHeadText("All Staffs")
   }
   getStaff(){
     this.getService.getAllStaffs().subscribe(

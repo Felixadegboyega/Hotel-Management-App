@@ -112,7 +112,7 @@ class Header
 	
 	private function GetDetails($id_tag, $from, $email)
 	{
-		$queryDb = "SELECT first_name, last_name, $id_tag from $from WHERE email = ?";
+		$queryDb = "SELECT first_name, last_name, $id_tag, profile_picture from $from WHERE email = ?";
 		$binder = array('s', $email);
 		$details = $this->Query($queryDb, $binder)->fetch_assoc();
 		if($details){

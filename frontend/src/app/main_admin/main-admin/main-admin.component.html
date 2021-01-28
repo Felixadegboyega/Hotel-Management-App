@@ -1,14 +1,12 @@
-<div>
-	<div class="infos pl-2 pl-md-0 pt-2 mt-md-0 ml-md-5 mr-md-5">
-		<h2>Admin Profile</h2>
-	</div>
-	<div class="border-bottom border-top mt-md-n1 row m-2 pb-md-5 infos m-md-5">
+
+<app-admin-top></app-admin-top>
+<div class="h-100 pt-5">
+	<div class=" row pb-md-5 infos m-auto">
 		<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
 
 		<div *ngIf="!loading" class="col-12 row p-0">
-			<!-- <div class="col-md-5 mx-auto mb-3 mt-4 fa fa-user-circle profilePics"></div> -->
-			<span class=" fa fa-user-circle profilePics" *ngIf="!imgURL" (click)="profilePics.click()"></span>
-			<span class="profilePics" *ngIf="imgURL" (click)="profilePics.click()">
+			<span class="col-md-5 mx-auto mb-3 mt-4 fa fa-user-circle profilePics" *ngIf="!imgURL" (click)="profilePics.click()"></span>
+			<span class="col-md-5 mx-auto mb-3 mt-4 profilePics" *ngIf="imgURL" (click)="profilePics.click()">
 				<img [src]="imgURL" class="rounded-circle ppc w-100 h-100" *ngIf="imgURL">
 			</span>
 			<input type="file" class="d-none" (change)="changePicture($event)" #profilePics>

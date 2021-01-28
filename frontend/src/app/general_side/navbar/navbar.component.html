@@ -13,21 +13,21 @@
 						</button>
 					</li>
 					<li class="nav-item" routerLinkActive="active">
-						<button mat-button class="pl-1 pr-1 mr-2 nav-link" routerLink="/rooms">Book a room</button>
+						<a class="pl-1 pr-1 mt-1 mr-2 nav-link" routerLink="/rooms">Book a room</a>
 					</li>
 				
 					<li class="nav-item" routerLinkActive="active">
-						<button mat-button class="pl-1 pr-1 mr-2 nav-link" routerLink="/user/signup">Sign Up</button>
+						<a class="pl-1 pr-1 mt-1 mr-2 nav-link" *ngIf="!profileLink" routerLink="/user/signup">Sign Up</a>
 					</li>
 					<li class="nav-item" routerLinkActive="active">
-						<button mat-button class="pl-1 pr-1 mr-2 nav-link" routerLink="/user/login">Sign In</button>
+						<a class="pl-1 pr-1 mt-1 mr-2 nav-link" *ngIf="!profileLink" routerLink="/user/login">Sign In</a>
 					</li>
 					
-					<li class="nav-item" routerLinkActive="active" *ngIf="profileLink">
-						<button mat-icon-button class="pl-1 my-auto pr-1 mr-2 nav-link" [routerLink]="'/'+profileLink">
+					<li class="nav-item my-auto" routerLinkActive="active" *ngIf="profileLink">
+						<button mat-icon-button [routerLink]="'/'+profileLink">
 							<mat-icon aria-hidden="false" aria-label="Example home icon" *ngIf="!imgURL">account_circle</mat-icon>
 							<span *ngIf="imgURL">
-								<img style="width: 100%; height: 100%; border-radius: 100%;" [src]="imgURL" class="rounded-circle ppc w-100 h-100" >
+								<img [src]="imgURL" class="rounded-circle ppc w-75 h-75 mx-auto mb-1" >
 							</span>
 						</button>
 					</li>

@@ -1,0 +1,26 @@
+<div class="d-flex border-bottom mb-2 ">
+	<button class=" ml-2 my-auto d-inline-block small btn-sm menuBut btn-light rounded btn" (click)="sidenav.toggle()">
+		<span class="fa fa-bars"></span>
+	</button>
+	<h2 class="mr-auto my-auto ml-3 headText" *ngIf="headText">{{headText}}</h2>
+	<nav class="navbar ml-auto navbar-expand-sm navbar-light">
+		<button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+		aria-expanded="false" aria-label="Toggle navigation"></button>
+			<div class="collapse navbar-collapse" id="collapsibleNavId">
+				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+				<li class="nav-item active">
+					<a class="nav-link text-dark" routerLink="/main-admin/login" routerLinkActive="active">Admin Login</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link text-dark" routerLink="/manager/login" routerLinkActive="active">Manager Login</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link text-dark" routerLink="/hr/login" routerLinkActive="active">HR Login</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link text-dark" routerLink="/staff/login" routerLinkActive="active">Staff Login</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+</div>
