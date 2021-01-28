@@ -46,7 +46,6 @@ export class MainworkerComponent implements OnInit {
       } else if(data.for == 'staff'){
         this.pLink = `staff-profile/${data.details.staff_id}`
       }
-      console.log(this.condition)
     })
 
     // this.condition =

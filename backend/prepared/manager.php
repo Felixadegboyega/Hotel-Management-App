@@ -60,7 +60,7 @@
 		public function allManagerDetails(){
 			$this->connection();
 			$decodedinfo = $this->decodeJwt();
-			if($decodedinfo->for == 'manager' || $decodedinfo->for == 'main_admin'){
+			if($decodedinfo->for == 'manager' || $decodedinfo->for == 'main_admin' ||  $decodedinfo->for == 'hr'){
 				$queryManager = "SELECT manager_id, first_name, last_name, email, phone_number, profile_picture, status, date_of_birth, date_employed from manager";
 				$Manager= $this->Query($queryManager, null)->fetch_all(MYSQLI_ASSOC);
 				$this->response["verify"]=true;

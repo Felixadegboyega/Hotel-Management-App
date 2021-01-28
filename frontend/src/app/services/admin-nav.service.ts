@@ -6,7 +6,7 @@ import { GetService } from './get.service';
   providedIn: 'root'
 })
 export class AdminNavService {
-  public online :BehaviorSubject<any> = new BehaviorSubject({});
+  public online :BehaviorSubject<any> = new BehaviorSubject('');
   supplyData(link){
     this.online.next(link);
   }
@@ -18,7 +18,7 @@ export class AdminNavService {
   getOnline(){
     this.getService.getOnlineAdmin().subscribe(
       (data:any)=>{
-        this.supplyData(data.for)
+        this.supplyData(data)
       }
     )
   }
