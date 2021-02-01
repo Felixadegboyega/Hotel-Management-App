@@ -1,33 +1,23 @@
 <app-navbar></app-navbar>
 <div class="container-fluid">
-	<div class="row main p-0 bg-light p-sm-4">
-		<div class="col-11 row mx-auto pb-0 bg-white mainround border rounded">
-			
-			<div class="col-12 mb-n1 mt-sm-2 mb-sm-0 col-sm-6 pl-sm-4">
-				<h3 class="mt-2 mt-sm-3 font-weight-bold">Available Rooms For Booking</h3>
-			</div>
-			<div class="col-12 mt-n5 col-sm-6 mt-sm-2 col-md-5 ml-auto pr-sm-4 col-lg-4">
-				<mat-form-field class="w-100" appearance="a">
-					<mat-label class="d-none d-sm-inline text-dark">Search Room</mat-label>
-					<input class="pb-2" matInput placeholder="Executive" #input>
-				</mat-form-field>
-			</div>
-			<div class="col-12 mainDiv row mt-n5 p-0">
-				<div class="col-6 cardin col-sm-4 col-lg-3 p-2 p-md-3 p-lg-2 p-xl-4" *ngFor="let room of roomArray">
-					<div class="rounded bg-light card">
-						<div [class.imgR]="mobileQuery.matches" class="bg-white img card-img-top">
-							<img [src]="imgUrl+room.room_picture" class="w-100 h-100 rounded-top" alt="room_picture">
-						</div>
-						
-						<div class="p-3 bg-light nameDiv">
-							Type: {{room.room_type}} <br/>
-							Price per day: {{room.room_price}}
-						</div>
-						<div class="pl-3 pr-3 pb-3 bg-light buttonDiv w-100">
-							<button mat-button (click)="book(room.room_id)" class="bookBut text-white w-100 mx-auto">Book</button>
-						</div>
-					</div>
+
+	<div class="row mt-3 main p-sm-5">
+		<div class="col-12">
+			<h2>Available Rooms</h2>
+		</div>
+		<div class="col-6 col-sm-4 col-lg-3 p-2 p-md-3 p-lg-2 p-xl-3" *ngFor="let room of roomArray">
+			<div class="rounded bg-light card">
+				<div [class.imgR]="mobileQuery.matches" class="bg-white img card-img-top">
+					<img [src]="imgUrl+room.room_picture" class="w-100 h-100 rounded-top" alt="room_picture">
 				</div>
+				
+				<div class="p-3 bg-light nameDiv">
+					Type: {{room.room_type}} <br/>
+					Price per day: {{room.room_price}}
+				</div>
+				<!-- <div class="pl-3 pr-3 pb-3 bg-light buttonDiv w-100">
+					<button mat-button (click)="book(room.room_id)" class="bookBut text-white w-100 mx-auto">Book</button>
+				</div> -->
 			</div>
 		</div>
 	</div>

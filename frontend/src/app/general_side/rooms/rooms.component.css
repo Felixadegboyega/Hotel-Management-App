@@ -1,42 +1,10 @@
-@import "../../app.component.css";
-.img{
-	height: 150px;
-}
-.imgR{
-	height: 100px !important;
-}
-.bookBut{
-	background-color: teal;
-	border: none;
-	outline: none;
-}
 
-.mainDiv{
-	max-height: 82%;
-	overflow-y: auto;
-}
 .mainDiv::-webkit-scrollbar{
 	width: 5px;
 	height: 5px;
 	border-radius: 4px;
 	background-color: #ccc;
 }
-.cardin{
-	padding-top: 0% !important;
-}
-.main{
-	padding-bottom: 0% !important;
-	height: 100vh !important;
-}
-.mainround{
-	height: 85% !important;
-	margin-top: 4rem !important;
-	padding-bottom: 0% !important;
-}
-.nameDiv{
-	min-height: 120px;
-}
-.buttonDiv{
-	position: absolute;
-	bottom: 0rem;
+.card-img-top{
+	height: 150px;
 }

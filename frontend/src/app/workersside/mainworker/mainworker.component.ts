@@ -107,11 +107,6 @@ export class MainworkerComponent implements OnInit {
       } else if(data.for == 'staff'){
         this.pLink = `staff-profile/${data.details.staff_id}`
         this.title = 'Staff'
-        if(data.details){
-          this.unit = data.details.unit_name
-
-          console.log(data.details)
-        }
       }
     })
     this.adminNavService.headText.subscribe(text=>{

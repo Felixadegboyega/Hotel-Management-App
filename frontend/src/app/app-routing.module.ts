@@ -35,6 +35,7 @@ import { ManagerProfileExpComponent } from './workersside/manager-profile-exp/ma
 import { HrProfileExpComponent } from './workersside/hr-profile-exp/hr-profile-exp.component';
 import { StaffProfileExpComponent } from './workersside/staff-profile-exp/staff-profile-exp.component';
 import { BookroomComponent } from './users_side/bookroom/bookroom.component';
+import { AdminHomeComponent } from './workersside/admin-home/admin-home.component';
 
 const routes: Routes = [
   {path:"", redirectTo:"/home", pathMatch:"full"},
@@ -42,6 +43,7 @@ const routes: Routes = [
 
 
   {path:"admin", component:MainworkerComponent, children:[
+    {path:"", component:AdminHomeComponent},
     {path:"customer-care-service", component:CustomerCareServiceComponent},
     {path:"cleaning-service", component:CleaningServiceComponent},
     {path:"main-admin", component:MainAdminComponent, canActivate:[AdminGuard]},
@@ -75,7 +77,7 @@ const routes: Routes = [
   {path:"user/login", component:LoginComponent},
 
 
-  {path:"rooms/:id/book", component:BookroomComponent},
+  {path:"book-room", component:BookroomComponent},
 
 
   {path:"user/profile/:id",  component:ProfileComponent},

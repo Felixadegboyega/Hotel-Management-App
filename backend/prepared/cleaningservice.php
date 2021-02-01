@@ -38,7 +38,7 @@
 			$queryStaff = "SELECT unit_name, status, stage from staffs join units using(unit_id) WHERE email = ?";
 			$staffbinder = array('s', $decodedinfo->email);
 			$staff = $this->Query($queryStaff, $staffbinder)->fetch_assoc();
-			if($decodedinfo->for == 'manager' || ($decodedinfo->for == 'staff' && $staff['unit_name'] == "Cleaning service" && $staff['status'] == "current")){
+			if($decodedinfo->for == 'manager' || $decodedinfo->for == "staff" || $decodedinfo->for == "hr" ){
 				$queryrequest = "SELECT service_id, service_time, service_time, service_note, user_id, first_name, last_name, phone_number, profile_picture, room_id, status, staff_id, parts, email, room_id, room_type from cleaning_services join users using(user_id) join rooms using(room_id)";
 				$request = $this->Query($queryrequest, null)->fetch_all(MYSQLI_ASSOC);
 				$this->response['requests'] = $request;
