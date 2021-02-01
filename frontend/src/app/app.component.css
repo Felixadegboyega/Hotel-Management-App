@@ -37,12 +37,13 @@ input, textarea, mat-select{
 .profilePics{
 	font-size: 8rem;
 	color: teal;
+	position: relative;
 }
-.infos{
-	border-color: rgb(222, 227, 227) !important;
+/* .infos{ */
+	/* border-color: rgb(222, 227, 227) !important; */
 	/* max-height: 80%;
 	overflow: auto; */
-}
+/* } */
 .infos div div{
 	overflow: hidden;
 }
@@ -96,4 +97,39 @@ input, textarea, mat-select{
 }
 .status{
 	font-size: 1.3rem !important;
+}
+
+/* .editOverlay{
+	transition: ease-in-out 0.25s;
+	position: absolute;
+	background-color: #023b3b6f;
+	display: none;
+	font-size: 2rem;
+	bottom: 0px;
+	right: 0px;
+	left: 0px;
+	top: 0px;
+}
+.editOverlay:hover{
+	transition: ease-in-out 0.25s;
+	display: block !important;
+} */
+@keyframes subMain{
+	from{opacity:0.3}
+	to{opacity: 1;}
+}
+
+.adminSubMain{
+	height: calc(100% - 60px);
+	animation: subMain 1.5s;
+	
+}
+
+.form-control{
+	box-shadow: none !important;
+	border-bottom: 1px solid #ccc !important;
+}
+.form-control:focus{
+	border-color: teal !important;
+	transition: ease-in-out 0.4s;
 }

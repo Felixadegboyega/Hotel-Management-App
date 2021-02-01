@@ -15,6 +15,7 @@
 
 .borderedDiv{
 	height: fit-content;
+	width: fit-content !important;
 }
 .heading{
 	color:teal;
@@ -26,4 +27,7 @@ input{
 .seepassword{
 	cursor: pointer !important;
 	font-size: small;
+}
+.alert{
+	height: fit-content !important;
 }

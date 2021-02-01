@@ -1,11 +1,10 @@
 <app-admin-top></app-admin-top>
+<mat-progress-bar mode="indeterminate" *ngIf="!cleaningServiceRequests"></mat-progress-bar>
 
-<div class="row p-0 mx-auto">
-	<div class="col-sm-6 mt-n3 mt-sm-0" [class.mx-auto]="mobileQuery.matches" >
-		<!-- <mat-form-field class="ml-auto w-100" appearance="a">
-			<mat-label class="text-dark">Filter</mat-label>
-			<input class="pb-2" matInput (keyup)="filterStaff($event)" placeholder="Kitchen Staff" #input>
-		</mat-form-field> -->
+
+<div class="w-100 row mx-auto adminSubMain">
+	<div class="col-12 p-3">
+		<!-- <input class="form-control " [(ngModel)]='searchText' placeholder="Search..." #input> -->
 	</div>
 	<div class="inside col-12">
 		<table class="table table-hover" [class.table-responsive]="mobileQuery.matches">

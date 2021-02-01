@@ -12,30 +12,26 @@ export class AdminGuard implements CanActivate {
   constructor(public getService:GetService, public router:Router){}
   public stat = 0;
  
-  async check(){
-    this.getService.getMainAdminInfo().subscribe(data => {
+  async check():Promise <boolean  | UrlTree>{
+    await this.getService.getMainAdminInfo().subscribe(data => {
       if (localStorage.getItem('token')) {
         console.log(data);
-        this.stat = 1;
-        this.router.navigate(['/worker/main-admin']);
+        return true
       } else {
         this.router.navigate(['/main-admin/login']);
       }
-    })
-    // if(this.stat == 1){
-      return  true;
-    // }
+    }),(err:HttpErrorResponse)=>{
+      console.log(err)
+      // this.stat = 2
+      this.router.navigate(['/main-admin/login']);
+    }
+    return true
   }
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      // if(this.stat == 1){
-        // alert('hey')
-        // return this.check()
-        return true
-      // }
-     
-  }
+      return this.check()
+    }
 
   
 }

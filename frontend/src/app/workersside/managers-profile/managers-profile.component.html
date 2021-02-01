@@ -1,14 +1,15 @@
 <app-admin-top></app-admin-top>
+<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
 
-<div>
+<div *ngIf="!loading" class="adminSubMain w-100 row mx-auto">
 
-	<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
-	<div *ngIf="!loading" class="border-bottom border-top mt-md-n1 pt-4 row m-2 infos">
+	<div class="m-auto pt-4 row infos">
 
 		<div class="col-md-5 mx-auto mb-3"> 
 			<span class=" fa fa-user-circle profilePics" *ngIf="!imgURL" (click)="profilePics.click()"></span>
-			<span class="profilePics" *ngIf="imgURL" (click)="profilePics.click()">
+			<span  class="profilePics" *ngIf="imgURL" (click)="profilePics.click()">
 				<img [src]="imgURL" class="rounded-circle ppc w-100 h-100" *ngIf="imgURL">
+				<!-- <div class="editOverlay h-100 text-center text-white w-100"><span class="my-auto">Edit</span></div> -->
 			</span>
 			<input type="file" class="d-none" (change)="changePicture($event)" #profilePics>
 			<span class="ml-3 status">Status:<b class="{{managerInfo.status == 'formal' ? 'text-danger' : ''}}">{{managerInfo.status}}</b></span>

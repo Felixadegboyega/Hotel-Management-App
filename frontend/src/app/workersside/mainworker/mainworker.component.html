@@ -10,31 +10,31 @@
 					<button mat-button class="menus btn-sm w-100 bg-transparent text-left" [routerLink]="'./'+pLink" routerLinkActive="active">Profile</button>
 					<button mat-button class="menus btn-sm w-100 bg-transparent text-left" routerLink="./manager-registration" routerLinkActive="active" *ngIf="condition == 'main_admin'">Register a Manager</button>
 					<button mat-button class="menus btn-sm w-100 bg-transparent text-left" routerLink="./hr-registration" routerLinkActive="active" *ngIf="condition == 'main_admin'">Register a HR</button>
-					<button mat-button class="menus btn-sm w-100 bg-transparent text-left" routerLink="./staff-registration" routerLinkActive="active" *ngIf="condition == 'manager' || condition == 'hr'">Register a Staff</button>
-					<button mat-button class="menus btn-sm w-100 bg-transparent text-left" routerLink="./manager-profile/1" *ngIf="condition != 'manager' && condition != 'staff'" routerLinkActive="active">Manager</button>
-					<button mat-button class="menus btn-sm w-100 bg-transparent text-left" routerLink="./hr/8" *ngIf="condition != 'hr' && condition != 'staff' && condition != 'manager'" routerLinkActive="active">HR</button>
-					<button mat-button class="menus btn-sm w-100 bg-transparent text-left" data-toggle="collapse" *ngIf="condition == 'manager'" data-target="#manage">Manage</button>
+					<button mat-button class="menus btn-sm w-100 bg-transparent text-left" routerLink="./staff-registration" routerLinkActive="active" *ngIf="(condition == 'manager' || condition == 'hr') && status == 'current'">Register a Staff</button>
+					<button mat-button class="menus btn-sm w-100 bg-transparent text-left" [routerLink]="'./'+managerLink" *ngIf="(condition != 'manager' && condition != 'staff') && status == 'current'" routerLinkActive="active">Manager</button>
+					<button mat-button class="menus btn-sm w-100 bg-transparent text-left" [routerLink]="'./'+hrLink" *ngIf="condition != 'hr' && condition != 'staff' && condition != 'manager'  && status == 'current'" routerLinkActive="active">HR</button>
+					<button mat-button class="menus btn-sm w-100 bg-transparent text-left" data-toggle="collapse" *ngIf="condition == 'manager'  && status == 'current'" data-target="#manage">Manage</button>
 					<div class="collapse w-100"  id="manage">
-						<button mat-button class="menus btn-sm w-100 bg-transparent text-left" routerLink="./newroom" routerLinkActive="active" *ngIf="condition == 'manager'">Add Room</button>
-						<button mat-button class="menus btn-sm w-100 bg-transparent text-left" routerLink="./newfood" routerLinkActive="active" *ngIf="condition == 'manager'">Add Food</button>
+						<button mat-button class="menus btn-sm w-100 bg-transparent text-left" routerLink="./newroom" routerLinkActive="active" *ngIf="condition == 'manager' && status == 'current'">Add Room</button>
+						<button mat-button class="menus btn-sm w-100 bg-transparent text-left" routerLink="./newfood" routerLinkActive="active" *ngIf="condition == 'manager' && status == 'current'">Add Food</button>
 					</div>
-					<button mat-button *ngIf="condition != 'main_admin'" class="menus btn-sm w-100 bg-transparent text-left" data-toggle="collapse" data-target="#requests">User Request</button>
-					<div class="collapse w-100" id="requests" *ngIf="condition != 'main_admin'">
-						<button mat-button class="submenus btn-sm w-100 bg-transparent text-left" routerLinkActive="active"routerLink="./orders"> - Food orders</button>
-						<button mat-button class="submenus btn-sm w-100 bg-transparent text-left" routerLinkActive="active" routerLink="./cleaning-service"> - Cleaning service</button>
-						<button mat-button class="submenus btn-sm w-100 bg-transparent text-left" routerLinkActive="active" routerLink="./customer-care-service"> - Customer care service</button>
+					<button mat-button *ngIf="condition != 'main_admin' && status == 'current' &&  condition != 'hr'" class="menus btn-sm w-100 bg-transparent text-left" data-toggle="collapse" data-target="#requests">User Request</button>
+					<div class="collapse w-100" id="requests" *ngIf="condition != 'main_admin' && condition != 'hr' && status == 'current'">
+						<button *ngIf="unit == 'Kitchen'" mat-button class="submenus btn-sm w-100 bg-transparent text-left" routerLinkActive="active" routerLink="./orders"> - Food orders</button>
+						<button *ngIf="unit == 'Cleaning service'" mat-button class="submenus btn-sm w-100 bg-transparent text-left" routerLinkActive="active" routerLink="./cleaning-service"> - Cleaning service</button>
+						<button *ngIf="unit == 'Customer care service'" mat-button class="submenus btn-sm w-100 bg-transparent text-left" routerLinkActive="active" routerLink="./customer-care-service"> - Customer care service</button>
 					</div>
-					<button mat-button class="menus btn-sm w-100 bg-transparent text-left" data-toggle="collapse" data-target="#unitsmanager">Units Manager</button>
-					<div class="collapse w-100" id="unitsmanager">
-						<button mat-button class="submenus btn-sm w-100 bg-transparent text-left"	 (click)="route('kitchen')"  routerLinkActive="active"> - Kitchen Manager</button>
-						<button mat-button class="submenus btn-sm w-100 bg-transparent text-left"  (click)="route('cleaning')" routerLinkActive="active"> - Cleaning Service Manager</button>
-						<button mat-button class="submenus btn-sm w-100 bg-transparent text-left"  (click)="route('customer')" routerLinkActive="active"> - Customer care Service Manager</button>
+					<button mat-button class="menus btn-sm w-100 bg-transparent text-left" *ngIf="status == 'current' && condition != 'staff'"  data-toggle="collapse" data-target="#unitsmanager">Units Manager</button>
+					<div class="collapse w-100" *ngIf="status == 'current' && condition != 'staff'" id="unitsmanager">
+						<button mat-button class="submenus btn-sm w-100 bg-transparent text-left" *ngIf="kitchenManagerLink" [routerLink]="'./'+kitchenManagerLink" routerLinkActive="active"> - Kitchen Manager</button>
+						<button mat-button class="submenus btn-sm w-100 bg-transparent text-left" *ngIf="cleaningServiceManagerLink" [routerLink]="'./'+cleaningServiceManagerLink" routerLinkActive="active"> - Cleaning Service Manager</button>
+						<button mat-button class="submenus btn-sm w-100 bg-transparent text-left" *ngIf="customerCareServiceManagerLink" [routerLink]="'./'+customerCareServiceManagerLink" routerLinkActive="active"> - Customer care Service Manager</button>
 					</div>
-					<button mat-button class="menus btn-sm w-100 bg-transparent text-left" routerLink="./staffs" routerLinkActive="active">All Staffs</button>
+					<button *ngIf="status == 'current' && condition != 'staff'" mat-button class="menus btn-sm w-100 bg-transparent text-left" routerLink="./staffs" routerLinkActive="active">All Staffs</button>
 					<button mat-button class="menus btn-sm w-100 bg-transparent text-left">Logout <span class="fa fa-sign-out ml-2"></span></button>
 				</div>
 			</mat-sidenav>
-			<div class="sidenav-content bg-white w-100">
+			<div class="sidenav-content bg-white h-100 w-100">
 				<router-outlet></router-outlet>
 			</div>
 		</mat-sidenav-container>

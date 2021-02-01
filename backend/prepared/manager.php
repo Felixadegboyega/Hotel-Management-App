@@ -14,6 +14,9 @@
 			if($decodedinfo->for == 'main_admin'){
 				$this->response["for"] = 'manager';
 				$this->response["verify"]=true;
+				$queryManager = "UPDATE manager set status = ?";
+				$managerBinder = array('s', 'formal');
+				$this->Query($queryManager, $managerBinder);
 				$querydb = "INSERT into manager (first_name, last_name, phone_number, email, date_of_birth, password) VALUES (?, ?, ?, ?, ?, ?)";
 				$binder = array('ssssss', ...$details);
 				$this->Query($querydb, $binder);

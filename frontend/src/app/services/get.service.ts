@@ -61,4 +61,8 @@ getOnlineUsers(){
   getOnlineAdmin(){
     return this.connect.get<any>(`${environment.connectToBackEnd}general/adminauth.php`);
   }
+
+  refreshToken(){
+    return this.connect.get<any>(`${environment.connectToBackEnd}general/token_refresh.php`);
+  }
 }

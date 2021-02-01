@@ -27,3 +27,6 @@ input{
 	cursor: pointer !important;
 	font-size: small;
 }
+.alert{
+	height: fit-content !important;
+}

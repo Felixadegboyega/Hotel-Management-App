@@ -1,17 +1,15 @@
 <app-admin-top></app-admin-top>
+<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
 
-<div class="row p-0 mx-auto">
-	<div class="col-sm-6 col-lg-4 ml-lg-auto mt-n2 mt-sm-0" [class.mx-auto]="mobileQuery.matches" >
-		<mat-form-field class="ml-auto w-100" appearance="a">
-			<mat-label class="text-dark">Filter</mat-label>
-			<input class="pb-2" matInput [(ngModel)]='searchText' placeholder="Kitchen Staff" #input>
-		</mat-form-field>
+<div class="row w-100 adminSubMain mx-auto">
+	<div class="col-12 p-3">
+		<!-- <input class="form-control " [(ngModel)]='searchText' placeholder="Search..." #input> -->
 	</div>
-	<div class="inside col-12">
-		<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+	<div class="col-12 p-3">
 		<table *ngIf="!loading" class="table">
 			<thead>
 				<tr>
+					<th class="border-bottom-0 border-top-0">#</th>
 					<th class="border-bottom-0 border-top-0">Name</th>
 					<th class="border-bottom-0 border-top-0">Phone Number</th>
 					<th class="border-bottom-0 border-top-0">Unit</th>
@@ -21,11 +19,12 @@
 			</thead>
 			<tbody>
 				<tr *ngFor="let staff of staffs | staffsearch:searchText">
-					<td>{{staff.first_name}} {{staff.last_name}}</td>
-					<td>{{staff.phone_number}}</td>
-					<td>{{staff.unit_name}}</td>
-					<td class="staffLink" routerLink="/admin/staff-profile/{{staff.staff_id}}">View more</td>
-					<td class="border-left dropdown staffLink fa fa-ellipsis-v " data-toggle="dropdown" id="triggerId" >
+					<td class="pt-4 pb-4"></td>
+					<td class="pt-4 pb-4">{{staff.first_name}} {{staff.last_name}}</td>
+					<td class="pt-4 pb-4">{{staff.phone_number}}</td>
+					<td class="pt-4 pb-4">{{staff.unit_name}}</td>
+					<td class="pt-4 pb-4 staffLink" routerLink="/admin/staff-profile/{{staff.staff_id}}">View more</td>
+					<td class="pt-4 pb-4 border-left dropdown staffLink fa fa-ellipsis-v " data-toggle="dropdown" id="triggerId" >
 						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
 							<button *ngIf="staff.stage == 'staff'" (click)="changeStage(staff.staff_id)" class="w-100 text-left" mat-button>Make this staff the manager of {{staff.unit_name}} unit</button>
 							<button *ngIf="staff.status == 'current'" (click)="openDialog(staff)" class="ml-auto w-100 text-left" mat-button>Remove from current staff List</button>

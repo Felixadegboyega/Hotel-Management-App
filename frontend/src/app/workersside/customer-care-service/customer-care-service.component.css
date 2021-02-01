@@ -1,6 +1,6 @@
 @import "../../app.component.css";
 .inside{
-	max-height: 350px !important;
+	max-height: 80% !important;
 	overflow: auto;
 	/* min-width: 500px; */
 }

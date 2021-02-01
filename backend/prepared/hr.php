@@ -14,6 +14,9 @@
 			if($decodedInfo->for == 'main_admin'){
 				$this->response["verifiedFor"] = 'main_admin';
 				$this->response["verify"]=true;
+				$queryHr = "UPDATE hr set status = ?";
+				$hrBinder = array('s', 'formal');
+				$this->Query($queryHr, $hrBinder);
 				$querydb = "INSERT into hr (first_name, last_name, phone_number, email, date_of_birth, password) VALUES (?, ?, ?, ?, ?, ?)";
 				$binder = array('ssssss', ...$details);
 				$this->Query($querydb, $binder);

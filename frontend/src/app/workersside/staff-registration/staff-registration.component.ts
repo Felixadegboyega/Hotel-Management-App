@@ -4,6 +4,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
+import { AdminNavService } from 'src/app/services/admin-nav.service';
 import { GetService } from 'src/app/services/get.service';
 import { PostService } from 'src/app/services/post.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
@@ -22,7 +23,8 @@ export class StaffRegistrationComponent implements OnInit {
     public postService:PostService,
     public snackBarService:SnackbarService,
     public router:Router,
-    public getService:GetService
+    public getService:GetService,
+    public adminNavService:AdminNavService
   ) { }
   public date = new Date();
 
@@ -48,6 +50,7 @@ export class StaffRegistrationComponent implements OnInit {
     this.mobileQuery = this.media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    this.adminNavService.supplyHeadText("Staff Registration")
     this.getService.getUnits().subscribe(
       (data:any)=>{
         this.units = data.units;

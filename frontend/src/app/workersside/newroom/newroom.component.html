@@ -1,9 +1,9 @@
 <app-admin-top></app-admin-top>
 
-<form [formGroup]="roomDetails" class="m-auto">
-	<div class="bg-white p-0 pb-4 border rounded col-11 col-sm-10 mt-3 mx-auto mb-3 col-md-8 col-lg-5 row borderedDiv">
+<form [formGroup]="roomDetails" class="w-100 row mx-auto adminSubMain">
+	<div class="bg-white p-0 pb-4 border rounded col-11 col-sm-10 m-auto col-md-8 col-lg-5 row borderedDiv">
 		<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
-		<div class="col-sm-11 mt-4 mx-auto">
+		<div class="col-sm-11 mt-4 mb-2 mx-auto">
 			<img [src]="imgURL" class="preview" *ngIf="imgURL">
 		</div>
 		<mat-form-field appearance="a" class="col-sm-11 mx-auto">

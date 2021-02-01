@@ -19,10 +19,14 @@ export class MainworkerComponent implements OnInit {
 
   public mobileQuery :MediaQueryList;
   public condition;
-  public pLink;
+  public pLink = ''
   public title;
   public headText = '';
   public imgURL;
+  public managerLink = '';
+  public hrLink = '';
+  public status;
+  public unit;
   private _mobileQueryListener: () => void;
   
   constructor(
@@ -40,28 +44,42 @@ export class MainworkerComponent implements OnInit {
     this.mobileQuery.addListener(this._mobileQueryListener);
     this.getAdminNavService();
     this.getStaffDetails();
+    this.getCurrentHr();
+    this.getCurrentManager();
 
-
-    let data = this.navService.yeah()
-    if(data){
-      // if(data.for == 'admin'){
-      //   this.profileLink = './main-admin'
-      // }
-    }
-   
-    
   }
 
   getStaffDetails(){
     this.getService.getAllStaffs().subscribe((data:any)=>{
       if(data.staffs_details){
-        // console.log(data.staffs_details)
         let kit =  data.staffs_details.find((each,i)=>each.status == 'current' && each.stage == 'manager' && each.unit_name == "Kitchen")
-        this.kitchenManagerLink = `worker/staff-profile/${kit.staff_id}`
-        // let clean =  data.staffs_details.find((each,i)=>each.status == 'current' && each.stage == 'manager' && each.unit_name == "Cleaning service")
-        // this.cleaningServiceManagerLink = `worker/staff-profile/${clean.staff_id}`
-        // let cust =  data.staffs_details.find((each,i)=>each.status == 'current' && each.stage == 'manager' && each.unit_name == "Customer care service")
-        // this.customerCareServiceManagerLink = `worker/staff-profile/${cust.staff_id}`
+        this.kitchenManagerLink = `staff-profile/${kit.staff_id}`
+        let clean =  data.staffs_details.find((each,i)=>each.status == 'current' && each.stage == 'manager' && each.unit_name == "Cleaning service")
+        if(clean){
+          this.cleaningServiceManagerLink = `staff-profile/${clean.staff_id}`
+        }
+        let cust =  data.staffs_details.find((each,i)=>each.status == 'current' && each.stage == 'manager' && each.unit_name == "Customer care service")
+        if(cust){
+          this.customerCareServiceManagerLink = `staff-profile/${cust.staff_id}`
+        }
+      }
+    })
+  }
+
+  getCurrentManager(){
+    this.getService.getManagersInfo().subscribe((data:any)=>{
+      if(data.managers_details){
+        let manager = data.managers_details.find((each,i)=>each.status == 'current');
+        this.managerLink = `manager-profile/${manager.manager_id}`
+      }
+    })
+  }
+
+  getCurrentHr(){
+    this.getService.getHrsInfo().subscribe((data:any)=>{
+      if(data.hr_details){
+        let hr = data.hr_details.find((each,i)=>each.status == 'current');
+        this.hrLink = `hr/${hr.hr_id}`;
       }
     })
   }
@@ -70,8 +88,12 @@ export class MainworkerComponent implements OnInit {
     this.adminNavService.getOnline();
     this.adminNavService.online.subscribe(data=>{
       this.condition = data.for; 
+      console.log(data)
       if(data.details){
-        this.imgURL = `${environment.connectToBackEnd}uploads/images/profile/${data.details.profile_picture}`;
+        if(data.details.profile_picture){
+          this.imgURL = `${environment.connectToBackEnd}uploads/images/profile/${data.details.profile_picture}`;
+        }
+        this.status = data.details.status
       }
       if(data.for == 'main_admin'){
         this.pLink = 'main-admin'
@@ -85,30 +107,24 @@ export class MainworkerComponent implements OnInit {
       } else if(data.for == 'staff'){
         this.pLink = `staff-profile/${data.details.staff_id}`
         this.title = 'Staff'
+        if(data.details){
+          this.unit = data.details.unit_name
+
+          console.log(data.details)
+        }
       }
     })
     this.adminNavService.headText.subscribe(text=>{
       this.headText = text;
     })
   }
-
-  route(p){
-    // if(p=='kitchen'){
-    //   this.router.navigateByUrl(`/worker`, { skipLocationChange: false }).then(() => {
-    //     this.router.navigate([this.kitchenManagerLink]);
-    //  });
-    // } else if(p=='cleaning'){
-    //   this.router.navigateByUrl(`/worker`, { skipLocationChange: false }).then(() => {
-    //     // this.router.navigate([this.cleaningServiceManagerLink]);
-    //  });
-    // } else if(p=='customer'){
-    //   this.router.navigateByUrl(`/worker`, { skipLocationChange: false }).then(() => {
-    //     this.router.navigate([this.customerCareServiceManagerLink]);
-    //  });
-    // }
-  }
+  
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
 }
+
+// this.router.navigateByUrl(`/admin`, {skipLocationChange:false}).then(()=>{
+//   this.router.navigate(['profile'])
+// })

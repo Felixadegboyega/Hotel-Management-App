@@ -1,6 +1,6 @@
 @import "../../app.component.css";
 .inside{
-	height: 440px !important;
+	max-height: 80% !important;
 	overflow: auto;
 }
 .foodInfo{

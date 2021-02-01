@@ -46,28 +46,34 @@ class Header
 		}
 	}
 	
-	
+
 	public function UseJwt($enteredPass, $dbpassword, $email, $for)
 	{
 		$verifypass = password_verify($enteredPass, $dbpassword);
-		if($verifypass){
+		if ($verifypass) {
 			$this->response["verify_password"] = true;
-			$usertoken = [
-				"iss" => 'localhost:4200',
-				"iat" => time(),
-				"nbf" => time(),
-				"exp" => time()  + 3600,
-				"info" => [
-					'email'=>$email,
-					'for'=>$for
-				]
-			];
-			$token = \Firebase\JWT\JWT::encode($usertoken, $_ENV['TOKENPIN']);
-			$this->response["token"] = $token;
+			$this->ConfirmUseJwt($email, $for);
 		} else{
 			$this->response["token"] = null;
 			$this->response["verify_password"] = false;
 		}
+	}
+
+	
+	public function ConfirmUseJwt($email, $for)
+	{
+		$usertoken = [
+			"iss" => 'localhost:4200',
+			"iat" => time(),
+			"nbf" => time(),
+			"exp" => time()  + 3600,
+			"info" => [
+				'email'=>$email,
+				'for'=>$for
+			]
+		];
+		$token = \Firebase\JWT\JWT::encode($usertoken, $_ENV['TOKENPIN']);
+		$this->response["token"] = $token;
 	}
 	
 	
@@ -105,21 +111,33 @@ class Header
 			} else if($decodedInfo->for == 'hr'){
 				$this->GetDetails('hr_id', 'hr', $decodedInfo->email);
 			} else if($decodedInfo->for == 'staff'){
-				$this->GetDetails('staff_id', 'staff', $decodedInfo->email);
+				$this->GetDetails('staff_id', 'staffs', $decodedInfo->email);
 			}
 		}
 	}
 	
 	private function GetDetails($id_tag, $from, $email)
 	{
-		$queryDb = "SELECT first_name, last_name, $id_tag, profile_picture from $from WHERE email = ?";
+		$queryDb = "SELECT first_name, last_name, $id_tag, profile_picture, status from $from WHERE email = ?";
 		$binder = array('s', $email);
 		$details = $this->Query($queryDb, $binder)->fetch_assoc();
 		if($details){
 			$this->response['details'] = $details;
 		}
 		echo JSON_encode($this->response);
-
+		
+	}
+	
+	
+	
+	public function TokenRefresh()
+	{
+		$this->connection();
+		$decodedInfo = $this->decodeJwt();
+		if($decodedInfo){
+			$this->ConfirmUseJwt($decodedInfo->email, $decodedInfo->for);
+		}
+		echo JSON_encode($this->response);
 	}
 }
 
