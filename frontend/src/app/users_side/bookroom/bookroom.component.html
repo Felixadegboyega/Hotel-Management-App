@@ -1,44 +1,91 @@
 <app-navbar></app-navbar>
 
-<form [formGroup]="roomDetails" class="row h-100 w-100">
-	<div class="col-11 p-sm-3 col-sm-10 col-md-9 col-lg-8  m-auto row border rounded big">
+<form [formGroup]="roomDetails" class="row h-100 mx-auto w-100">
+	<div class="col-12 p-3 col-lg-11 p-sm-0 mt-5 mx-auto m-lg-auto row border rounded big">
 		<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
-		<!-- <div class="col-md-6 pl-0 ImgDiv"></div> -->
-		<div class="mt-4 col-sm-5 mx-auto">
-			<h2 class="heading">Book Room</h2>
+		<div class="mt-4 col-sm-11 col-lg-12 mx-auto">
+			<h2 class="heading ml-lg-4">Book Room</h2>
 		</div>
-		<div class="mt-4 col-sm-5 mx-auto"></div>
-		<mat-form-field appearance="a" class="mt-4 col-sm-5 mx-auto">
-			<mat-label class="text-dark">Select Room</mat-label>
-			<mat-select placeholder="Select Room" class="pb-2" formControlName="room"  name="room">
-				<mat-option *ngFor="let room of rooms" [value]="room">{{room.room_type}}</mat-option>
-			</mat-select>
-		</mat-form-field>
-		<mat-form-field appearance="a" class="mt-4 col-sm-5 mx-auto">
-			<mat-label for="price" class="text-dark">Check in date</mat-label>
-			<input required type="date" class="pb-2" formControlName="check_in_date" matInput>
-			<!-- <div *ngIf="roomDetails.get('room_price').errors?.required && roomDetails.get('room_price')?.touched" class="mb-n3 mt-1 error small text-danger">Field can not be empty</div>
-			<div *ngIf="roomDetails.get('room_price').errors?.min && roomDetails.get('room_price')?.dirty" class="mb-n3 mt-1 error small text-danger">Price can not be less than zero</div> -->
-	 	</mat-form-field>
-		<mat-form-field appearance="a" class="mt-n2 col-sm-5 mx-auto">
-			<mat-label for="no" class="text-dark">Check out date</mat-label>
-			<input required type="date" class="pb-2" formControlName="check_out_date" matInput>
-			<!-- <div *ngIf="roomDetails.get('total_no_of_rooms').errors?.required && roomDetails.get('total_no_of_rooms')?.touched" class="mb-n3 mt-1 error small text-danger">Field can not be empty</div>
-			<div *ngIf="roomDetails.get('total_no_of_rooms').errors?.min && roomDetails.get('total_no_of_rooms')?.dirty" class="mb-n3 mt-1 error small text-danger">Value can not be less than zero</div> -->
-		</mat-form-field>
-		<mat-form-field appearance="a" class="mt-n2 col-sm-5 mx-auto">
-			<mat-label for="no" class="text-dark">Total amount to pay</mat-label>
-			<input disabled class="pb-2" [value]="roomDetails.value.amount" matInput>
-			
-			<!-- <div *ngIf="roomDetails.get('total_no_of_rooms').errors?.required && roomDetails.get('total_no_of_rooms')?.touched" class="mb-n3 mt-1 error small text-danger">Field can not be empty</div>
-			<div *ngIf="roomDetails.get('total_no_of_rooms').errors?.min && roomDetails.get('total_no_of_rooms')?.dirty" class="mb-n3 mt-1 error small text-danger">Value can not be less than zero</div> -->
-		</mat-form-field>
-		<div class="col-sm-11 mx-auto">
-			<div class="progress mt-3">
-				<button mat-stroked-button [disabled]="roomDetails.invalid && !loading" class="btn text-white h-100 w-100 submitButton" type="submit" (click)="bookMore()">Book More</button>
+		
+		<div class="col-lg-6 p-0">
+			<div class="row mx-auto">
+				<mat-form-field appearance="a" class="mt-4 col-sm-5 mx-auto">
+					<mat-label class="text-dark">Select Room</mat-label>
+					<mat-select placeholder="Select Room" class="pb-2" formControlName="room"  name="room">
+						<mat-option *ngFor="let room of rooms" [value]="room">{{room.room_type}}</mat-option>
+					</mat-select>
+				</mat-form-field>
+				<mat-form-field appearance="a" class="mt-4 col-sm-5 mx-auto">
+					<mat-label for="price" class="text-dark">Check in date</mat-label>
+					<input required type="date" class="pb-2" formControlName="check_in_date" matInput>
+					<!-- <div *ngIf="roomDetails.get('room_price').errors?.required && roomDetails.get('room_price')?.touched" class="mb-n3 mt-1 error small text-danger">Field can not be empty</div>
+					<div *ngIf="roomDetails.get('room_price').errors?.min && roomDetails.get('room_price')?.dirty" class="mb-n3 mt-1 error small text-danger">Price can not be less than zero</div> -->
+				 </mat-form-field>
+				<mat-form-field appearance="a" class="mt-n2 col-sm-5 mx-auto">
+					<mat-label for="no" class="text-dark">Check out date</mat-label>
+					<input required type="date" class="pb-2" formControlName="check_out_date" matInput>
+					<!-- <div *ngIf="roomDetails.get('total_no_of_rooms').errors?.required && roomDetails.get('total_no_of_rooms')?.touched" class="mb-n3 mt-1 error small text-danger">Field can not be empty</div>
+					<div *ngIf="roomDetails.get('total_no_of_rooms').errors?.min && roomDetails.get('total_no_of_rooms')?.dirty" class="mb-n3 mt-1 error small text-danger">Value can not be less than zero</div> -->
+				</mat-form-field>
+				<mat-form-field appearance="a" class="mt-n2 col-sm-5 mx-auto">
+					<mat-label for="no" class="text-dark">Total amount to pay</mat-label>
+					<input disabled class="pb-2" [value]="roomDetails.value.room_price" matInput>
+					<!-- <div *ngIf="roomDetails.get('total_no_of_rooms').errors?.required && roomDetails.get('total_no_of_rooms')?.touched" class="mb-n3 mt-1 error small text-danger">Field can not be empty</div>
+					<div *ngIf="roomDetails.get('total_no_of_rooms').errors?.min && roomDetails.get('total_no_of_rooms')?.dirty" class="mb-n3 mt-1 error small text-danger">Value can not be less than zero</div> -->
+				</mat-form-field>
 			</div>
-			<div class="progress mt-3">
-				<button mat-stroked-button [disabled]="roomDetails.invalid && !loading" class="btn text-white h-100 w-100 submitButton" type="submit" (click)="proceedToP()">Continue to payment</button>
+			<div class="row mx-auto">
+				<div class="col-sm-5 mx-auto mx-auto">
+					<div class="progress mt-3">
+						<button mat-stroked-button [disabled]="roomDetails.invalid && !loading" class="btn text-white h-100 w-100 submitButton" type="submit" (click)="bookMore()">Book More</button>
+					</div>
+				</div>
+				<div class="col-sm-5 mx-auto mx-auto">
+					<div class="progress mt-3">
+						<button mat-stroked-button [disabled]="bookRooms.length == 0 && !loading" class="btn text-white h-100 w-100 submitButton" type="submit" (click)="reset()">Reset All</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-11 d-none d-md-block mx-auto">
+				<div class="progress mt-3">
+					<button mat-stroked-button [disabled]="roomDetails.invalid && !loading" class="btn text-white h-100 w-100 submitButton" type="submit" (click)="proceedToP()">Continue to payment</button>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-6 row mx-auto p-3 p-md-4">
+			<div class="col-12 headingDiv">
+				<h4>Booking Details</h4>
+			</div>
+			<div class="col-12 p-0 detailsDiv">
+				<table class="table">
+					<thead>
+						<tr>
+							<td class="font-weight-bold border-bottom-0 border-top-0">#</td>
+							<td class="font-weight-bold border-bottom-0 border-top-0">Room Type</td>
+							<td class="font-weight-bold border-bottom-0 border-top-0">Check in date</td>
+							<td class="font-weight-bold border-bottom-0 border-top-0">Check out date</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let booking of bookingTemplate; let i=index">
+							<td>{{i+1}}</td>
+							<td *ngIf="bookingTemplate.length != 0">{{booking.room.room_type}}</td>
+							<td *ngIf="bookingTemplate.length != 0">{{booking.check_in_date}}</td>
+							<td *ngIf="bookingTemplate.length != 0">{{booking.check_out_date}}</td>
+						</tr>
+						<tr>
+							<td>{{bookingTemplate.length+1}}</td>
+							<td>{{roomDetails.value.room.room_type}}</td>
+							<td>{{roomDetails.value.check_in_date}}</td>
+							<td>{{roomDetails.value.check_out_date}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-sm-11 p-0 d-md-none mx-auto">
+				<div class="progress mt-3">
+					<button mat-stroked-button [disabled]="roomDetails.invalid && !loading" class="btn text-white h-100 w-100 submitButton" type="submit" (click)="proceedToP()">Continue to payment</button>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -39,7 +39,6 @@ export class ProfileComponent implements OnInit {
   getDetails(){
     this.getService.getAllUsers().subscribe(
       (data:any)=>{
-        console.log(data)
         this.userProfile = data.users_details.find((each, i)=>each.user_id == this.actRoute.snapshot.params.id)
         if(this.userProfile.profile_picture){
           this.imgURL = `${environment.connectToBackEnd}uploads/images/profile/${this.userProfile.profile_picture}`;

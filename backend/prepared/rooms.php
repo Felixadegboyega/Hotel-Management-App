@@ -56,7 +56,7 @@
 						$check_in_date = $details[$i]->check_in_date;
 						$check_out_date = $details[$i]->check_out_date;
 						$room_id = $details[$i]->room->room_id;
-						$booked_room_price = "";
+						$booked_room_price = $details[$i]->room->room_price;
 						$bookingInfo = array($check_in_date, $check_out_date, $room_id, $booked_room_price, $rand);
 						// $prepared->BookRoom($bookingInfo);
 						$queryvisit = "INSERT into visits (visit_id, user_id) VALUES (?, ?)";

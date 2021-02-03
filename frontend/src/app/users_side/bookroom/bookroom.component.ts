@@ -27,8 +27,9 @@ export class BookroomComponent implements OnInit {
     check_in_date:['', Validators.required],
     check_out_date:['', Validators.required],
     room:['', Validators.required],
-    amount:[this.calc()]
+    room_price:[this.calc()]
   })
+  public bookingTemplate = []
   public loading = false;
   
   ngOnInit(): void {
@@ -39,7 +40,11 @@ export class BookroomComponent implements OnInit {
     )
   }
   calc(){
-    return "00000"
+    if(this.roomDetails && this.roomDetails.value.room_price != ''){
+      return this.roomDetails.value.room.room_price
+    } else {
+      return 0
+    }
     // return parseInt(this.room.room_price)*(parseInt(this.roomDetails.value.check_in_date))
   }
   proceedToP(){
@@ -48,7 +53,18 @@ export class BookroomComponent implements OnInit {
 
   bookMore(){
     this.bookRooms = [...this.bookRooms, {...this.roomDetails.value}];
+    this.bookingTemplate = [...this.bookingTemplate, this.roomDetails.value]
+    this.roomDetails.get('room').setValue("");
     // console.log(this.bookRooms)
+  }
+  
+  reset(){
+    this.roomDetails.get('check_in_date').setValue("");
+    this.roomDetails.get('check_out_date').setValue("");
+    this.roomDetails.get('room').setValue("");
+    this.roomDetails.get('amount').setValue("");
+    this.bookRooms = [];
+    this.bookingTemplate = [];
   }
   
   book(){

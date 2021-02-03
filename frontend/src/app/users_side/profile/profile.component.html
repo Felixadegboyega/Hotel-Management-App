@@ -9,7 +9,7 @@
 		</span>
 		<input type="file" class="d-none" (change)="changePicture($event)" #profilePics>
 	</div>
-	<div class="p-5">
+	<div class="p-5" *ngIf="userProfile">
 		<div>
 			{{userProfile.first_name}} {{userProfile.last_name}}
 		</div>
