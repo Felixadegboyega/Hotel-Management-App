@@ -14,17 +14,17 @@
 			<div class="dropdown">
 				<button id="request" class="dropdown-toggle" mat-stroked-button data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Make a request</button>
 				<div class="dropdown-menu" aria-labelledby="request">
-					<button mat-button class="d-block w-100" routerLink="/foods">Order food</button>
-					<button mat-button class="d-block w-100" (click)="clean()">Cleaning service</button>
-					<button mat-button class="d-block w-100" (click)="comp()">Make a complain</button>
+					<button mat-button class="text-left d-block w-100" routerLink="/foods">Order food</button>
+					<button mat-button class="text-left d-block w-100" (click)="clean()">Cleaning service</button>
+					<button mat-button class="text-left d-block w-100" (click)="comp()">Make a complain</button>
 				</div>
 			</div>	
 			<div class="dropdown ml-3">
 				<button id="history" class="dropdown-toggle" mat-stroked-button data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">History</button>
 				<div class="dropdown-menu" aria-labelledby="history">
-					<button mat-button class="d-block w-100" routerLink="/user/{{userProfile.user_id}}/orders">Orders</button>
-					<button mat-button class="d-block w-100" routerLink="/user/{{userProfile.user_id}}/cleaning-services">Cleaning service</button>
-					<button mat-button class="d-block w-100" routerLink="/user/{{userProfile.user_id}}/customer-care-services">Complaints</button>
+					<button *ngIf="userProfile" mat-button class="text-left d-block w-100" routerLink="/user/{{userProfile.user_id}}/orders">Orders</button>
+					<button *ngIf="userProfile" mat-button class="text-left d-block w-100" routerLink="/user/{{userProfile.user_id}}/cleaning-services">Cleaning service</button>
+					<button *ngIf="userProfile" mat-button class="text-left d-block w-100" routerLink="/user/{{userProfile.user_id}}/customer-care-services">Complaints</button>
 				</div>
 			</div>
 		</div>

@@ -8,30 +8,14 @@
 		}
 		public function NewOrder($details)
 		{
-			$this->connection();
-			$decodedinfo = $this->decodeJwt();
-			if($decodedinfo->for == 'user'){
-				$queryUser = 'SELECT user_id, email from users WHERE email = ?';
-				$userbinder = array('s', $decodedinfo->email);
-				$user = $this->Query($queryUser, $userbinder)->fetch_assoc();
-				if($user){
-					$queryBookedRooms = 'SELECT * from booked_rooms join visits using(visit_id) WHERE user_id = ?';
-					$BookedRoomsBinder = array('s', $user['user_id']);
-					$booked = $this->Query($queryBookedRooms, $BookedRoomsBinder)->fetch_assoc();
-					if($booked){
-						$this->response["verify_room"] = true;
-						$details[2] = $user['user_id'];
-						$queryorders = "INSERT into food_orders (order_note, qty, user_id, food_id) VALUES (?, ?, ?, ?)";
-						$orderbinder = array('ssss', ...$details);
-						$this->Query($queryorders, $orderbinder);
-						$this->response['order_status']=true;
-					} else{
-						$this->response["verify_room"] = false;
-					}
-				} 
-			} else {
-				$this->response["verify_online"] = false;
-			}
+			$this->BookingStatus();
+			if($this->response["verify_room"]){
+				$details[2] = $this->response['user_id'];
+				$queryorders = "INSERT into food_orders (order_note, qty, user_id, food_id) VALUES (?, ?, ?, ?)";
+				$orderbinder = array('ssss', ...$details);
+				$this->Query($queryorders, $orderbinder);
+				$this->response['order_status']=true;
+			} 
 			echo JSON_encode($this->response);
 		}
 

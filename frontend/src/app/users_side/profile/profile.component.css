@@ -18,3 +18,7 @@
 	background-repeat: no-repeat;
 	background-position: center 50%;
 }
+.dropdown-menu{
+	min-width:unset !important;
+	padding:0 0 !important;
+}

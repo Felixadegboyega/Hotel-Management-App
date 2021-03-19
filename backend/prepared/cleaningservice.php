@@ -8,29 +8,13 @@
 		}
 		public function NewRequest($details)
 		{
-			$this->connection();
-			$decodedinfo = $this->decodeJwt();
-			if($decodedinfo->for == 'user'){
-				$queryUser = 'SELECT user_id, email from users WHERE email = ?';
-				$userbinder = array('s', $decodedinfo->email);
-				$user = $this->Query($queryUser, $userbinder)->fetch_assoc();
-				if($user){
-					$queryBookedRooms = 'SELECT * from booked_rooms join visits using(visit_id) WHERE user_id = ?';
-					$BookedRoomsBinder = array('s', $user['user_id']);
-					$booked = $this->Query($queryBookedRooms, $BookedRoomsBinder)->fetch_assoc();
-					if($booked){
-						$this->response["verify_room"] = true;
-						$details[2] = $user['user_id'];
-						$queryservice = "INSERT into cleaning_services (parts, service_note, user_id) VALUES (?, ?, ?)";
-						$servicebinder = array('sss', ...$details);
-						$this->Query($queryservice, $servicebinder);
-						$this->response['request_status']=true;
-					} else{
-						$this->response["verify_room"] = false;
-					}
-				}
-			} else {
-				$this->response["verify_online"] = false;
+			$this->BookingStatus();
+			if($this->response["verify_room"]){
+				$details[2] = $this->response['user_id'];
+				$queryservice = "INSERT into cleaning_services (parts, service_note, user_id) VALUES (?, ?, ?)";
+				$servicebinder = array('sss', ...$details);
+				$this->Query($queryservice, $servicebinder);
+				$this->response['request_status']=true;
 			}
 			echo JSON_encode($this->response);
 		}

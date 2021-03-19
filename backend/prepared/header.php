@@ -157,6 +157,40 @@ class Header
 		echo JSON_encode($this->response);
 		
 	}
+
+	public function BookingStatus()
+	{
+		$this->connection();
+		$decodedinfo = $this->decodeJwt();
+		if($decodedinfo->for == 'user'){
+			$queryUser = 'SELECT user_id, email from users WHERE email = ?';
+			$userbinder = array('s', $decodedinfo->email);
+			$user = $this->Query($queryUser, $userbinder)->fetch_assoc();
+			if($user){
+				$queryBookedRooms = 'SELECT * from booked_rooms join visits using(visit_id) WHERE user_id = ?';
+				$BookedRoomsBinder = array('s', $user['user_id']);
+				$booked = $this->Query($queryBookedRooms, $BookedRoomsBinder)->fetch_all(MYSQLI_ASSOC);
+				$status = false;
+				foreach ($booked as $each) {
+					$out_date = new DateTime($each['check_out_date']);
+					$current_date = new DateTime(date('Y-m-d'));
+					$datediff = (float)$current_date->diff($out_date)->format("%r%a");
+					if($datediff > 0){
+						$status = true;
+					}
+				};
+				if($status){
+					$this->response["verify_room"] = true;
+					$this->response["user_id"] = $user['user_id'];
+				} else {	
+					$this->response["verify_room"] = false;
+				}
+			}
+			
+		} else {
+			$this->response["verify_online"] = false;
+		}
+	}
 }
 
 ?>

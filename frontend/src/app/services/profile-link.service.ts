@@ -24,7 +24,7 @@ export class ProfileLinkService {
         this.supplyLink(`user/profile/${data.user_details.user_id}`)
         this.supplyPicture(`${environment.connectToBackEnd}uploads/images/profile/${data.user_details.profile_picture}`)
       }
-      )
+    )
   }
 
 
