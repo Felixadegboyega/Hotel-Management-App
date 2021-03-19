@@ -23,6 +23,6 @@
 	padding:0 0 !important;
 }
 .historyDiv{
-	max-height: 40rem;
+	max-height: 30rem;
 	overflow: auto;
 }

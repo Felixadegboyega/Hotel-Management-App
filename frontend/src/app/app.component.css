@@ -125,6 +125,10 @@ input, textarea, mat-select{
 	
 }
 
+.fade-animatetion{
+	animation: subMain 1.5s;
+}
+
 .form-control{
 	box-shadow: none !important;
 	border-bottom: 1px solid #ccc !important;

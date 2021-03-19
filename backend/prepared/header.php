@@ -195,10 +195,10 @@ class Header
 	public function getBookings()
 	{
 		$this->connection();
-		$queryBookedRooms = 'SELECT * from booked_rooms join visits using(visit_id)';
-		$BookedRoomsBinder = array('s', $user['user_id']);
-		$booked = $this->Query($queryBookedRooms, $BookedRoomsBinder)->fetch_all(MYSQLI_ASSOC);
-		return $booked;
+		$queryBookedRooms = 'SELECT * from booked_rooms join visits using(visit_id) join rooms using(room_id)';
+		$booked = $this->Query($queryBookedRooms, null)->fetch_all(MYSQLI_ASSOC);
+		$this->response['allbookings'] = $booked;
+		echo JSON_encode($this->response);
 	}
 }
 

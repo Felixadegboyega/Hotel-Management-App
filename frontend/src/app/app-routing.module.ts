@@ -36,6 +36,7 @@ import { HrProfileExpComponent } from './workersside/hr-profile-exp/hr-profile-e
 import { StaffProfileExpComponent } from './workersside/staff-profile-exp/staff-profile-exp.component';
 import { BookroomComponent } from './users_side/bookroom/bookroom.component';
 import { AdminHomeComponent } from './workersside/admin-home/admin-home.component';
+import { BookingsComponent } from './users_side/bookings/bookings.component';
 
 const routes: Routes = [
   {path:"", redirectTo:"/home", pathMatch:"full"},
@@ -83,7 +84,7 @@ const routes: Routes = [
   {path:"user/:id/orders",  component:OrderhistoryComponent},
   {path:"user/:id/customer-care-services",  component:CustomercarehistoryComponent},
   {path:"user/:id/cleaning-services",  component:CleaninghistoryComponent},
-  {path:"user/:id/bookings",  component:CleaninghistoryComponent},
+  {path:"user/:id/bookings",  component:BookingsComponent},
 
   {path:"**", component:NotfoundComponent},
 

@@ -65,4 +65,8 @@ getOnlineUsers(){
   refreshToken(){
     return this.connect.get<any>(`${environment.connectToBackEnd}general/token_refresh.php`);
   }
+  
+  getBookings(){
+    return this.connect.get<any>(`${environment.connectToBackEnd}general/bookings.php`);
+  }
 }

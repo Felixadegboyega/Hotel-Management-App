@@ -14,7 +14,6 @@ export class CleaninghistoryComponent implements OnInit {
   public searchText;
   
   constructor(
-    public changeDetectorRef: ChangeDetectorRef, public media: MediaMatcher,
     public getService:GetService, public actRoute:ActivatedRoute
   ) {}
 

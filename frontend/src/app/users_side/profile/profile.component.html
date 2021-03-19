@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 
 
-<div class="row pr-0 pl-0 pb-0 mt-5 w-100 pt-5">
+<div class="fade-animatetion row pr-0 pl-0 pb-0 mt-5 w-100 pt-5">
 	<div [ngClass]="{'col-md-5': !mobileQuery.matches}" class="">
 		<div class="ml-4 ml-sm-5 mb-5">
 			<span class="ml-2 ml-md-0 rounded-circle fa fa-user-circle profilePics" *ngIf="!imgURL" (click)="profilePics.click()"></span>
@@ -73,11 +73,18 @@
 	</div>
 	<div [ngClass]="{'col-md-7': !mobileQuery.matches}" [hidden]="mobileQuery.matches">
 		<div class="historyDiv">
-			<app-cleaninghistory></app-cleaninghistory>
-			<div [hidden]="historyTitle != 'bookings'">
+			<div *ngIf="historyTitle == 'bookings'">
+				<app-bookings></app-bookings>
+			</div>
+			<div *ngIf="historyTitle == 'cleanings'">
+				<app-cleaninghistory></app-cleaninghistory>
+			</div>
+			<div *ngIf="historyTitle == 'orders'">
 				<app-orderhistory></app-orderhistory>
 			</div>
-			<app-customercarehistory></app-customercarehistory>
+			<div *ngIf="historyTitle == 'complaints'">
+				<app-customercarehistory></app-customercarehistory>
+			</div>
 		</div>
 	</div>
 </div>

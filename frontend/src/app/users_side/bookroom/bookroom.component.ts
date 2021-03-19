@@ -71,9 +71,12 @@ export class BookroomComponent implements OnInit {
   }
   
   book(){
-    let det = [...this.bookRooms, {...this.roomDetails.value}];
+    let details = [...this.bookRooms, {...this.roomDetails.value}];
     this.loading = true;
-    this.postService.BookRoom(det).subscribe(
+    let amountArr = [];
+    details.forEach(each => amountArr.push(each.room_price));
+    let totalamount  = amountArr.reduce((a, b) => a + b, 0);
+    this.postService.BookRoom({details, totalamount}).subscribe(
       (data:any)=>{
         this.loading = false;
         if(data.query_status){

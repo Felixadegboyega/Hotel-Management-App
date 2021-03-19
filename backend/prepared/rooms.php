@@ -43,24 +43,24 @@
 		// }
 		
 		
-		public function BookRoom($details, $rand){
+		public function BookRoom($bookingDetails, $rand){
 			$this->connection();
 			$decodedinfo = $this->decodeJwt();
 			if($decodedinfo->for = 'user'){
-				$count = count($details);
+				$count = count($bookingDetails->details);
 				$queryuser = "SELECT user_id, room_id from users where email = ?";
 				$userbinder = array('s', $decodedinfo->email);
 				$getuser = $this->Query($queryuser, $userbinder)->fetch_assoc();
 				if($getuser){
 					for ($i = 0; $i < $count; $i++) {
-						$check_in_date = $details[$i]->check_in_date;
-						$check_out_date = $details[$i]->check_out_date;
-						$room_id = $details[$i]->room->room_id;
-						$booked_room_price = $details[$i]->room->room_price;
+						$check_in_date = $bookingDetails->details[$i]->check_in_date;
+						$check_out_date = $bookingDetails->details[$i]->check_out_date;
+						$room_id = $bookingDetails->details[$i]->room->room_id;
+						$booked_room_price = $bookingDetails->details[$i]->room->room_price;
 						$bookingInfo = array($check_in_date, $check_out_date, $room_id, $booked_room_price, $rand);
 						// $prepared->BookRoom($bookingInfo);
-						$queryvisit = "INSERT into visits (visit_id, user_id) VALUES (?, ?)";
-						$bindvisit = array("ss", $rand, $getuser['user_id']);
+						$queryvisit = "INSERT into visits (visit_id, user_id, totalamount) VALUES (?, ?, ?)";
+						$bindvisit = array("sss", $rand, $getuser['user_id'], $bookingDetails->totalamount);
 						$this->Query($queryvisit, $bindvisit);
 						$querybooked = "INSERT into booked_rooms (check_in_date, check_out_date, room_id, booked_room_price, visit_id) VALUES (?, ?, ?, ?, ?)";
 						$bindbook = array("sssss", ...$bookingInfo);
