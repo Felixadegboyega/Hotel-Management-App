@@ -1,25 +1,16 @@
 <app-navbar></app-navbar>
 
 
-<div class="bg-light h-100 w-100 pt-5">
-	<div class="m-5">
-		<span class=" fa fa-user-circle profilePics" *ngIf="!imgURL" (click)="profilePics.click()"></span>
+<div class=" h-100 w-100 pt-5">
+	<div class="profileTop">
+
+	</div>
+	<div class="mr-md-5 ml-md-5 ml-2 mb-5 mt-n5">
+		<span class="bg-secondary rounded-circle fa fa-user-circle profilePics" *ngIf="!imgURL" (click)="profilePics.click()"></span>
 		<span class="profilePics" *ngIf="imgURL" (click)="profilePics.click()">
 			<img [src]="imgURL" class="rounded-circle ppc w-100 h-100" *ngIf="imgURL">
 		</span>
-		<input type="file" class="d-none" (change)="changePicture($event)" #profilePics>
-	</div>
-	<div class="p-5" *ngIf="userProfile">
-		<div>
-			{{userProfile.first_name}} {{userProfile.last_name}}
-		</div>
-		<div>
-			{{userProfile.phone_number}}
-		</div>
-		<div>
-			{{userProfile.email}}
-		</div>
-		<div class="d-flex">
+		<div class="ml-3 pt-4 pt-md-0" style="display: inline-flex; width: fit-content;">
 			<div class="dropdown">
 				<button id="request" class="dropdown-toggle" mat-stroked-button data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Make a request</button>
 				<div class="dropdown-menu" aria-labelledby="request">
@@ -37,5 +28,38 @@
 				</div>
 			</div>
 		</div>
+		<input type="file" class="d-none" (change)="changePicture($event)" #profilePics>
+	</div>
+	<div class="p-5 mt-n5" *ngIf="userProfile">
+		<form [formGroup]="editDetails" class="col-md-8">
+			<div class="p-md-2">
+				<!-- {{userProfile.first_name}} {{userProfile.last_name}} -->
+				<mat-form-field appearance="a" class="m-2">
+					<mat-label for="first_name" class="text-dark">First Name</mat-label>
+					<input id="first_name" type="text" class="input pb-2" formControlName="first_name" matInput>
+					<div *ngIf="editDetails.get('first_name')?.required && editDetails.get('first_name')?.touched" class="mb-n3 mt-1 error small text-danger">First Name field can't be empty</div>
+				</mat-form-field>
+				<mat-form-field appearance="a" class="m-2">
+					<mat-label for="first_name" class="text-dark">Last Name</mat-label>
+					<input id="first_name" type="text" class="input pb-2" formControlName="last_name" matInput>
+					<div *ngIf="editDetails.get('last_name')?.required && editDetails.get('last_name')?.touched" class="mb-n3 mt-1 error small text-danger">First Name field can't be empty</div>
+				</mat-form-field>
+			</div>
+			<div class="p-md-2">
+				<!-- {{userProfile.first_name}} {{userProfile.last_name}} -->
+				<mat-form-field appearance="a" class="m-2">
+					<mat-label for="phone_number" class="text-dark">Phone Number</mat-label>
+					<input id="phone_number" type="text" class="input pb-2" formControlName="phone_number" matInput>
+					<div *ngIf="editDetails.get('phone_number')?.required && editDetails.get('phone_number')?.touched" class="mb-n3 mt-1 error small text-danger">First Name field can't be empty</div>
+				</mat-form-field>
+				<mat-form-field appearance="a" class="m-2">
+					<mat-label for="email" class="text-dark">Email</mat-label>
+					<input id="email" type="text" class="input pb-2" formControlName="email" matInput>
+					<div *ngIf="editDetails.get('email')?.required && editDetails.get('email')?.touched" class="mb-n3 mt-1 error small text-danger">First Name field can't be empty</div>
+				</mat-form-field>
+			</div>
+			<button mat-button (click)="logout()">Logout</button>
+		</form>
+		
 	</div>
 </div>

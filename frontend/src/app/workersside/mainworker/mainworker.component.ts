@@ -113,6 +113,11 @@ export class MainworkerComponent implements OnInit {
       this.headText = text;
     })
   }
+
+  logout(){
+    localStorage.removeItem('token');
+    this.router.navigate(['/admin/login'])
+  }
   
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);

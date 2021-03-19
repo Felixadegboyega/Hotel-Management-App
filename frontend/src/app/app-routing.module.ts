@@ -72,7 +72,6 @@ const routes: Routes = [
   {path:"hr/login", component:HrLoginComponent},
   {path:"manager/login", component:ManagerLoginComponent},
   {path:"staff/login", component:StaffLoginComponent},
-  {path:"staff/login", component:StaffLoginComponent},
   {path:"user/signup", component:SignupComponent},
   {path:"user/login", component:LoginComponent},
 

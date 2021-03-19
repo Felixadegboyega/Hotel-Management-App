@@ -29,17 +29,32 @@ export class ProfileComponent implements OnInit {
     public actRoute:ActivatedRoute,
     public matDialog:MatDialog,
     public router:Router,
-    public postService:PostService
+    public postService:PostService,
+    public formB:FormBuilder
   ) { }
 
   ngOnInit(): void {
     this.getDetails()
   }
+
+  public editDetails = this.formB.group({
+    first_name:['', Validators.required],
+    last_name:['', Validators.required],
+    phone_number:['', Validators.required],
+    email:['',[Validators.required, Validators.email]],
+  })
   
   getDetails(){
     this.getService.getAllUsers().subscribe(
       (data:any)=>{
-        this.userProfile = data.users_details.find((each, i)=>each.user_id == this.actRoute.snapshot.params.id)
+        let d = data.users_details.find((each, i)=>each.user_id == this.actRoute.snapshot.params.id)
+        this.userProfile = d;
+        if(this.editDetails){
+          this.editDetails.get('first_name').setValue(d.first_name);
+          this.editDetails.get('last_name').setValue(d.last_name);
+          this.editDetails.get('phone_number').setValue(d.phone_number);
+          this.editDetails.get('email').setValue(d.email);
+        }
         if(this.userProfile.profile_picture){
           this.imgURL = `${environment.connectToBackEnd}uploads/images/profile/${this.userProfile.profile_picture}`;
         }
@@ -83,6 +98,11 @@ export class ProfileComponent implements OnInit {
         this.im = false
       }
     } 
+  }
+
+  logout(){
+    localStorage.removeItem('token');
+    this.router.navigate(['/user/login'])
   }
 
 }

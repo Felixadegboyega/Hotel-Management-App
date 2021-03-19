@@ -43,14 +43,14 @@
 			$queryStaff = "SELECT unit_name, status, stage from staffs join units using(unit_id) WHERE email = ?";
 			$staffbinder = array('s', $decodedinfo->email);
 			$staff = $this->Query($queryStaff, $staffbinder)->fetch_assoc();
-			if($decodedinfo->for == 'manager' || $decodedinfo->for == "staff" || $decodedinfo->for == "hr" ){
+			// if($decodedinfo->for == 'manager' || $decodedinfo->for == "staff" || $decodedinfo->for == "hr" ){
 				$queryOrders = "SELECT * from food_orders join users using(user_id) join foods using(food_id)";
 				$orders = $this->Query($queryOrders, null)->fetch_all(MYSQLI_ASSOC);
 				$this->response['orders'] = $orders;
 				$this->response['access'] = true;
-			} else {
-				$this->response['access'] = false;
-			}
+			// } else {
+			// 	$this->response['access'] = false;
+			// }
 			echo JSON_encode($this->response);
 		}
 

@@ -21,11 +21,11 @@
 			</thead>
 			<tbody>
 				<tr  class="tr" *ngFor="let request of customerCareServiceRequests; let i=index">
-					<td (click)="viewmore(request)">{{i+1}}</td>
-					<td (click)="viewmore(request)">{{request.first_name}} {{request.last_name}}</td>
-					<td (click)="viewmore(request)">{{request.type}}</td>
-					<td (click)="viewmore(request)">{{request.status}}</td>
-					<td (click)="viewmore(request)">{{request.careservice_time}}</td>
+					<td style="cursor: pointer;" (click)="viewmore(request)">{{i+1}}</td>
+					<td style="cursor: pointer;" (click)="viewmore(request)">{{request.first_name}} {{request.last_name}}</td>
+					<td style="cursor: pointer;" (click)="viewmore(request)">{{request.type}}</td>
+					<td style="cursor: pointer;" (click)="viewmore(request)">{{request.status}}</td>
+					<td style="cursor: pointer;" (click)="viewmore(request)">{{request.careservice_time}}</td>
 					<td>
 						<button *ngIf="request.status == 'not_taken'" (click)="attendto(request.careservice_id)" mat-stroked-button>Attend to</button>
 					</td>

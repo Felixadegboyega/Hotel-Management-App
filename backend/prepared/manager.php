@@ -49,6 +49,16 @@
 			$this->connection();
 			$decodedInfo = $this->decodeJwt();
 			if($decodedInfo->for == 'manager'){
+				$querydbManager = "SELECT profile_picture from manager WHERE email = ?";
+				$ManagerBinder = array('s', $decodedInfo->email);
+				$selected = $this->Query($querydbManager, $ManagerBinder)->fetch_assoc();
+				$path = "../uploads/images/profile/";
+				if($selected['profile_picture']){
+					$fileName = $selected['profile_picture'];
+					if(file_exists($path.$fileName)) {
+						unlink($path . $fileName);
+					}
+				}
 				$this->response["verify"]=true;
 				$querydb = "UPDATE manager set profile_picture = ? WHERE email = ?";
 				$binder = array('ss', $profile_picture, $decodedInfo->email);

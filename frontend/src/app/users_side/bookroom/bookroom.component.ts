@@ -27,7 +27,7 @@ export class BookroomComponent implements OnInit {
     check_in_date:['', Validators.required],
     check_out_date:['', Validators.required],
     room:['', Validators.required],
-    room_price:[this.calc()]
+    room_price:[0]
   })
   public bookingTemplate = []
   public loading = false;
@@ -39,13 +39,16 @@ export class BookroomComponent implements OnInit {
       }
     )
   }
-  calc(){
-    if(this.roomDetails && this.roomDetails.value.room_price != ''){
-      return this.roomDetails.value.room.room_price
+  getPrice(){
+    if(this.roomDetails && this.roomDetails?.value.check_in_date != '' && this.roomDetails?.value.check_out_date != '' && this.roomDetails?.value.room != ''){
+      let inn:any = new Date(this.roomDetails?.value.check_in_date);
+      let out:any = new Date(this.roomDetails?.value.check_out_date);
+      let amt = (Math.round((out-inn)/(1000*60*60*24)))*parseInt(this.roomDetails?.value.room.room_price)
+      this.roomDetails.get('room_price').setValue(amt)
+      return amt
     } else {
-      return 0
+      return ''
     }
-    // return parseInt(this.room.room_price)*(parseInt(this.roomDetails.value.check_in_date))
   }
   proceedToP(){
     this.book();
@@ -73,18 +76,18 @@ export class BookroomComponent implements OnInit {
     this.postService.BookRoom(det).subscribe(
       (data:any)=>{
         this.loading = false;
-        // if(data.query_status){
-        //   this.snackService.snack("Room booked Successfully", "snackBarSuccess");
-        // } else if(!data.verify){
-        //   // this.router.navigate(['/user/login'])
-        // } else {
-        //   this.snackService.snack("An error Occured", "snackBarDanger")
-        // }
+        if(data.query_status){
+          this.snackService.snack("Room booked Successfully", "snackBarSuccess");
+        } else if(!data.verify){
+          this.router.navigate(['/user/login'])
+        } else {
+          this.snackService.snack("An error Occured", "snackBarDanger")
+        }
         console.log(data)
       },(err:HttpErrorResponse)=>{
         console.log(err.error)
-        // this.loading = false;
-        // this.router.navigate(['/user/login'])
+        this.loading = false;
+        this.router.navigate(['/user/login'])
       }
     )
   }

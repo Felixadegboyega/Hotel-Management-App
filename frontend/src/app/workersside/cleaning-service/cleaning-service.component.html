@@ -19,10 +19,10 @@
 			</thead>
 			<tbody *ngIf="cleaningServiceRequests">
 				<tr *ngFor="let request of cleaningServiceRequests;let i=index">
-					<td (click)="viewmore(request)">{{i+1}}</td>
-					<td (click)="viewmore(request)">{{request.first_name}} {{request.last_name}}</td>
-					<td (click)="viewmore(request)">{{request.service_time}}</td>
-					<td (click)="viewmore(request)">{{request.status}}</td>
+					<td style="cursor: pointer;" (click)="viewmore(request)">{{i+1}}</td>
+					<td style="cursor: pointer;" (click)="viewmore(request)">{{request.first_name}} {{request.last_name}}</td>
+					<td style="cursor: pointer;" (click)="viewmore(request)">{{request.service_time}}</td>
+					<td style="cursor: pointer;" (click)="viewmore(request)">{{request.status}}</td>
 					<td>
 						<button *ngIf="request.status == 'not_taken'" mat-stroked-button (click)="attendto(request.service_id)">Attend To</button>
 					</td>

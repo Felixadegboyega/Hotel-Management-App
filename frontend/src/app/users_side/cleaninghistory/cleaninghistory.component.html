@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 
-<div class="row p-0 mx-auto">
+<div class="row p-5 mx-auto">
 	<div class="col-sm-6">
 		<h2 class="mt-3">Cleaning Service Request</h2>
 	</div>
@@ -10,7 +10,7 @@
 			<input class="pb-2" matInput (keyup)="filterStaff($event)" placeholder="Kitchen Staff" #input>
 		</mat-form-field> -->
 	</div>
-	<div class="inside col-12 mt-5">
+	<div class="inside col-12 mt-3">
 		<table class="table">
 			<thead>
 				<tr>
@@ -25,8 +25,8 @@
 			<tbody>
 				<tr *ngFor="let service of cleaningServiceHistory; let i=index">
 					<td>{{i+1}}</td>
-					<td>{{service.careservice_time}}</td>
-					<td>{{service.careservice_note}}</td>
+					<td>{{service.service_time}}</td>
+					<td>{{service.service_note}}</td>
 					<!-- <td>{{service.food_name}}</td> -->
 					<!-- <td>{{service.qty}}</td> -->
 					<td>{{service.status}}</td>

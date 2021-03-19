@@ -95,6 +95,16 @@
 			$this->connection();
 			$decodedInfo = $this->decodeJwt();
 			if($decodedInfo->for == 'staff'){
+				$querydbStaff = "SELECT profile_picture from staffs WHERE email = ?";
+				$StaffBinder = array('s', $decodedInfo->email);
+				$selected = $this->Query($querydbStaff, $StaffBinder)->fetch_assoc();
+				$path = "../uploads/images/profile/";
+				if($selected['profile_picture']){
+					$fileName = $selected['profile_picture'];
+					if(file_exists($path.$fileName)) {
+						unlink($path . $fileName);
+					}
+				}
 				$this->response["verify"]=true;
 				$querydb = "UPDATE staffs set profile_picture = ? WHERE email = ?";
 				$binder = array('ss', $profile_picture, $decodedInfo->email);

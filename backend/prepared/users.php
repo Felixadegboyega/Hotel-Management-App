@@ -82,10 +82,21 @@
 			$this->connection();
 			$decodedInfo = $this->decodeJwt();
 			if($decodedInfo->for == 'user'){
+				$querydbUsers = "SELECT profile_picture from users WHERE email = ?";
+				$UsersBinder = array('s', $decodedInfo->email);
+				$selected = $this->Query($querydbUsers, $UsersBinder)->fetch_assoc();
+				$path = "../uploads/images/profile/";
+				if($selected['profile_picture']){
+					$fileName = $selected['profile_picture'];
+					if(file_exists($path.$fileName)) {
+						unlink($path . $fileName);
+					}
+				}
 				$this->response["verify"]=true;
 				$querydb = "UPDATE users set profile_picture = ? WHERE email = ?";
 				$binder = array('ss', $profile_picture, $decodedInfo->email);
 				$this->Query($querydb, $binder);
+
 			} else{
 				$this->response["verify"]=false;
 			}

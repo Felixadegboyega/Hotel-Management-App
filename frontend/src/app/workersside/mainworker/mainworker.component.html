@@ -31,7 +31,7 @@
 						<button mat-button class="submenus btn-sm w-100 bg-transparent text-left" *ngIf="customerCareServiceManagerLink" [routerLink]="'./'+customerCareServiceManagerLink" routerLinkActive="active"> - Customer care Service Manager</button>
 					</div>
 					<button *ngIf="status == 'current' && condition != 'staff'" mat-button class="menus btn-sm w-100 bg-transparent text-left" routerLink="./staffs" routerLinkActive="active">All Staffs</button>
-					<button mat-button class="menus btn-sm w-100 bg-transparent text-left">Logout <span class="fa fa-sign-out ml-2"></span></button>
+					<button mat-button class="menus btn-sm w-100 bg-transparent text-left" (click)="logout()">Logout <span class="fa fa-sign-out ml-2"></span></button>
 				</div>
 			</mat-sidenav>
 			<div class="sidenav-content bg-white h-100 w-100">

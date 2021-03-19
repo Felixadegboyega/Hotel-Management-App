@@ -139,6 +139,24 @@ class Header
 		}
 		echo JSON_encode($this->response);
 	}
+
+
+	public function adminSignin($email, $enteredPass){
+		$this->connection();
+		$querydb = "SELECT manager_id, email, password from manager where email = ?";
+		$binder = array('s', $email);
+		$fetched = $this->Query($querydb, $binder)->fetch_assoc();
+		if($fetched != null){
+			$this->UseJwt($enteredPass, $fetched['password'], $fetched['email'], 'manager');
+			if($this-re)
+			$this->response["email_verify"] = true;
+			$this->response["id"] = $fetched['manager_id'];
+		} else{
+			$this->response["email_verify"] = false;
+		}
+		echo JSON_encode($this->response);
+		
+	}
 }
 
 ?>

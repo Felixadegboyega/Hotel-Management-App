@@ -19,11 +19,11 @@
 			</thead>
 			<tbody *ngIf="ordersArray">
 				<tr *ngFor="let order of ordersArray; let i=index">
-					<td (click)="viewmore(order)">{{i+1}}</td>
-					<td (click)="viewmore(order)">{{order.first_name}} {{order.last_name}}</td>
-					<td (click)="viewmore(order)">{{order.food_name}}</td>
-					<td (click)="viewmore(order)">{{order.status}}</td>
-					<td (click)="viewmore(order)">{{order.order_time}}</td>
+					<td style="cursor: pointer;" (click)="viewmore(order)">{{i+1}}</td>
+					<td style="cursor: pointer;" (click)="viewmore(order)">{{order.first_name}} {{order.last_name}}</td>
+					<td style="cursor: pointer;" (click)="viewmore(order)">{{order.food_name}}</td>
+					<td style="cursor: pointer;" (click)="viewmore(order)">{{order.status}}</td>
+					<td style="cursor: pointer;" (click)="viewmore(order)">{{order.order_time}}</td>
 					<td>
 						<button *ngIf="order.status == 'not_taken'" mat-stroked-button (click)='attendto(order)'>Attend to</button>
 					</td>

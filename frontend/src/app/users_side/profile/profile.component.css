@@ -8,3 +8,13 @@
 	height: 130px !important;
 
 }
+
+.profileTop{
+	height: 200px;
+	background-image: url('../../../assets/images/room.jpg');
+	background-blend-mode: color-burn;
+	background-size: cover;
+	background-color: rgba(0, 0, 0, 0.53);
+	background-repeat: no-repeat;
+	background-position: center 50%;
+}
