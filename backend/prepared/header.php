@@ -191,6 +191,15 @@ class Header
 			$this->response["verify_online"] = false;
 		}
 	}
+
+	public function getBookings()
+	{
+		$this->connection();
+		$queryBookedRooms = 'SELECT * from booked_rooms join visits using(visit_id)';
+		$BookedRoomsBinder = array('s', $user['user_id']);
+		$booked = $this->Query($queryBookedRooms, $BookedRoomsBinder)->fetch_all(MYSQLI_ASSOC);
+		return $booked;
+	}
 }
 
 ?>

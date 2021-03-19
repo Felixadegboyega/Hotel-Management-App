@@ -1,34 +1,24 @@
 <app-navbar></app-navbar>
 
-<div class="row p-5 mx-auto">
-	<div class="col-sm-6">
-		<h2 class="mt-3">Cleaning Service Request</h2>
-	</div>
-	<div class="col-sm-6 mt-n3 mt-sm-0" >
-		<!-- <mat-form-field class="ml-auto w-100" appearance="a">
-			<mat-label class="text-dark">Filter</mat-label>
-			<input class="pb-2" matInput (keyup)="filterStaff($event)" placeholder="Kitchen Staff" #input>
-		</mat-form-field> -->
-	</div>
-	<div class="inside col-12 mt-3">
-		<table class="table">
+<div class="pt-5 pt-md-0 mx-auto">
+	<div class="inside mt-3">
+		<h2 class="mt-3">Cleaning Request</h2>
+		<table class=" table">
 			<thead>
 				<tr>
-					<th>#</th>
-					<th>service Time</th>
-					<th>service Note</th>
-					<!-- <th>Food Name</th> -->
-					<!-- <th>QTY</th> -->
-					<th>service status</th>
+					<th class="border-top-0 border-bottom-0">#</th>
+					<th class="border-top-0 border-bottom-0">service Time</th>
+					<!-- <th>service Note</th> -->
+					<th class="border-top-0 border-bottom-0">Parts</th>
+					<th class="border-top-0 border-bottom-0">service status</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr *ngFor="let service of cleaningServiceHistory; let i=index">
 					<td>{{i+1}}</td>
 					<td>{{service.service_time}}</td>
-					<td>{{service.service_note}}</td>
-					<!-- <td>{{service.food_name}}</td> -->
-					<!-- <td>{{service.qty}}</td> -->
+					<!-- <td>{{service.service_note}}</td> -->
+					<td>{{service.parts}}</td>
 					<td>{{service.status}}</td>
 				</tr>
 			</tbody>

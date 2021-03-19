@@ -1,65 +1,83 @@
 <app-navbar></app-navbar>
 
 
-<div class=" h-100 w-100 pt-5">
-	<div class="profileTop">
-
-	</div>
-	<div class="mr-md-5 ml-md-5 ml-2 mb-5 mt-n5">
-		<span class="bg-secondary rounded-circle fa fa-user-circle profilePics" *ngIf="!imgURL" (click)="profilePics.click()"></span>
-		<span class="profilePics" *ngIf="imgURL" (click)="profilePics.click()">
-			<img [src]="imgURL" class="rounded-circle ppc w-100 h-100" *ngIf="imgURL">
-		</span>
-		<div class="ml-3 pt-4 pt-md-0" style="display: inline-flex; width: fit-content;">
-			<div class="dropdown">
-				<button id="request" class="dropdown-toggle" mat-stroked-button data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Make a request</button>
-				<div class="dropdown-menu" aria-labelledby="request">
-					<button mat-button class="text-left d-block w-100" routerLink="/foods">Order food</button>
-					<button mat-button class="text-left d-block w-100" (click)="clean()">Cleaning service</button>
-					<button mat-button class="text-left d-block w-100" (click)="comp()">Make a complain</button>
+<div class="row pr-0 pl-0 pb-0 mt-5 w-100 pt-5">
+	<div [ngClass]="{'col-md-5': !mobileQuery.matches}" class="">
+		<div class="ml-4 ml-sm-5 mb-5">
+			<span class="ml-2 ml-md-0 rounded-circle fa fa-user-circle profilePics" *ngIf="!imgURL" (click)="profilePics.click()"></span>
+			<span class="ml-2 ml-md-0 profilePics" *ngIf="imgURL" (click)="profilePics.click()">
+				<img [src]="imgURL" class="rounded-circle ppc w-100 h-100" *ngIf="imgURL">
+			</span>
+			<button class="ml-2" mat-stroked-button (click)="logout()">Logout</button> <br>
+			<div class="ml-2 pt-4" style="display: inline-flex; width: fit-content;">
+				<div class="dropdown">
+					<button id="request" class="dropdown-toggle" mat-stroked-button data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Make a request</button>
+					<div class="dropdown-menu" aria-labelledby="request">
+						<button mat-button class="text-left d-block w-100" routerLink="/foods">Order food</button>
+						<button mat-button class="text-left d-block w-100" (click)="clean()">Cleaning service</button>
+						<button mat-button class="text-left d-block w-100" (click)="comp()">Make a complain</button>
+					</div>
 				</div>
-			</div>	
-			<div class="dropdown ml-3">
-				<button id="history" class="dropdown-toggle" mat-stroked-button data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">History</button>
-				<div class="dropdown-menu" aria-labelledby="history">
-					<button *ngIf="userProfile" mat-button class="text-left d-block w-100" routerLink="/user/{{userProfile.user_id}}/orders">Orders</button>
-					<button *ngIf="userProfile" mat-button class="text-left d-block w-100" routerLink="/user/{{userProfile.user_id}}/cleaning-services">Cleaning service</button>
-					<button *ngIf="userProfile" mat-button class="text-left d-block w-100" routerLink="/user/{{userProfile.user_id}}/customer-care-services">Complaints</button>
+				<div *ngIf="mobileQuery.matches" class="dropdown ml-3">
+					<button id="history" class="dropdown-toggle" mat-stroked-button data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">History</button>
+					<div class="dropdown-menu" aria-labelledby="history">
+						<button *ngIf="userProfile" mat-button class="text-left d-block w-100" routerLink="/user/{{userProfile.user_id}}/bookings">Bookings</button>
+						<button *ngIf="userProfile" mat-button class="text-left d-block w-100" routerLink="/user/{{userProfile.user_id}}/orders">Orders</button>
+						<button *ngIf="userProfile" mat-button class="text-left d-block w-100" routerLink="/user/{{userProfile.user_id}}/cleaning-services">Cleaning service</button>
+						<button *ngIf="userProfile" mat-button class="text-left d-block w-100" routerLink="/user/{{userProfile.user_id}}/customer-care-services">Complaints</button>
+					</div>
+				</div>
+				<div *ngIf="!mobileQuery.matches" class="dropdown ml-3">
+					<button id="historyL" class="dropdown-toggle" mat-stroked-button data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">History</button>
+					<div class="dropdown-menu" aria-labelledby="historyL">
+						<button *ngIf="userProfile" mat-button class="text-left d-block w-100" (click)="historyTitle = 'bookings'">Bookings</button>
+						<button *ngIf="userProfile" mat-button class="text-left d-block w-100" (click)="historyTitle = 'orders'">Orders</button>
+						<button *ngIf="userProfile" mat-button class="text-left d-block w-100" (click)="historyTitle = 'cleanings'">Cleaning service</button>
+						<button *ngIf="userProfile" mat-button class="text-left d-block w-100" (click)="historyTitle = 'complaints'">Complaints</button>
+					</div>
 				</div>
 			</div>
+			<input type="file" class="d-none" (change)="changePicture($event)" #profilePics>
 		</div>
-		<input type="file" class="d-none" (change)="changePicture($event)" #profilePics>
+		<div class="p-5 mt-n5" *ngIf="userProfile">
+			<form [formGroup]="editDetails">
+				<div class="">
+					<!-- {{userProfile.first_name}} {{userProfile.last_name}} -->
+					<mat-form-field appearance="a" class="m-2">
+						<mat-label for="first_name" class="text-dark">First Name</mat-label>
+						<input disabled id="first_name" type="text" class="input pb-2" formControlName="first_name" matInput>
+						<div *ngIf="editDetails.get('first_name')?.required && editDetails.get('first_name')?.touched" class="mb-n3 mt-1 error small text-danger">First Name field can't be empty</div>
+					</mat-form-field>
+					<mat-form-field appearance="a" class="m-2">
+						<mat-label for="first_name" class="text-dark">Last Name</mat-label>
+						<input disabled id="first_name" type="text" class="input pb-2" formControlName="last_name" matInput>
+						<div *ngIf="editDetails.get('last_name')?.required && editDetails.get('last_name')?.touched" class="mb-n3 mt-1 error small text-danger">First Name field can't be empty</div>
+					</mat-form-field>
+				</div>
+				<div class="">
+					<!-- {{userProfile.first_name}} {{userProfile.last_name}} -->
+					<mat-form-field appearance="a" class="m-2">
+						<mat-label for="phone_number" class="text-dark">Phone Number</mat-label>
+						<input disabled id="phone_number" type="text" class="input pb-2" formControlName="phone_number" matInput>
+						<div *ngIf="editDetails.get('phone_number')?.required && editDetails.get('phone_number')?.touched" class="mb-n3 mt-1 error small text-danger">First Name field can't be empty</div>
+					</mat-form-field>
+					<mat-form-field appearance="a" class="m-2">
+						<mat-label for="email" class="text-dark">Email</mat-label>
+						<input disabled id="email" type="text" class="input pb-2" formControlName="email" matInput>
+						<div *ngIf="editDetails.get('email')?.required && editDetails.get('email')?.touched" class="mb-n3 mt-1 error small text-danger">First Name field can't be empty</div>
+					</mat-form-field>
+				</div>
+			</form>
+			
+		</div>
 	</div>
-	<div class="p-5 mt-n5" *ngIf="userProfile">
-		<form [formGroup]="editDetails" class="col-md-8">
-			<div class="p-md-2">
-				<!-- {{userProfile.first_name}} {{userProfile.last_name}} -->
-				<mat-form-field appearance="a" class="m-2">
-					<mat-label for="first_name" class="text-dark">First Name</mat-label>
-					<input id="first_name" type="text" class="input pb-2" formControlName="first_name" matInput>
-					<div *ngIf="editDetails.get('first_name')?.required && editDetails.get('first_name')?.touched" class="mb-n3 mt-1 error small text-danger">First Name field can't be empty</div>
-				</mat-form-field>
-				<mat-form-field appearance="a" class="m-2">
-					<mat-label for="first_name" class="text-dark">Last Name</mat-label>
-					<input id="first_name" type="text" class="input pb-2" formControlName="last_name" matInput>
-					<div *ngIf="editDetails.get('last_name')?.required && editDetails.get('last_name')?.touched" class="mb-n3 mt-1 error small text-danger">First Name field can't be empty</div>
-				</mat-form-field>
+	<div [ngClass]="{'col-md-7': !mobileQuery.matches}" [hidden]="mobileQuery.matches">
+		<div class="historyDiv">
+			<app-cleaninghistory></app-cleaninghistory>
+			<div [hidden]="historyTitle != 'bookings'">
+				<app-orderhistory></app-orderhistory>
 			</div>
-			<div class="p-md-2">
-				<!-- {{userProfile.first_name}} {{userProfile.last_name}} -->
-				<mat-form-field appearance="a" class="m-2">
-					<mat-label for="phone_number" class="text-dark">Phone Number</mat-label>
-					<input id="phone_number" type="text" class="input pb-2" formControlName="phone_number" matInput>
-					<div *ngIf="editDetails.get('phone_number')?.required && editDetails.get('phone_number')?.touched" class="mb-n3 mt-1 error small text-danger">First Name field can't be empty</div>
-				</mat-form-field>
-				<mat-form-field appearance="a" class="m-2">
-					<mat-label for="email" class="text-dark">Email</mat-label>
-					<input id="email" type="text" class="input pb-2" formControlName="email" matInput>
-					<div *ngIf="editDetails.get('email')?.required && editDetails.get('email')?.touched" class="mb-n3 mt-1 error small text-danger">First Name field can't be empty</div>
-				</mat-form-field>
-			</div>
-			<button mat-button (click)="logout()">Logout</button>
-		</form>
-		
+			<app-customercarehistory></app-customercarehistory>
+		</div>
 	</div>
 </div>

@@ -9,6 +9,7 @@
 				<mat-option value="food">Food</mat-option>
 				<mat-option value="room">Room</mat-option>
 				<mat-option value="payment">Payment</mat-option>
+				<mat-option value="payment">Others</mat-option>
 			</mat-select>
 			<div *ngIf="serviceDetails.get('type').errors?.required && serviceDetails.get('type')?.touched" class="mb-n3 mt-1 error small text-danger">Field can not be empty</div>
 		</mat-form-field>

@@ -22,3 +22,7 @@
 	min-width:unset !important;
 	padding:0 0 !important;
 }
+.historyDiv{
+	max-height: 40rem;
+	overflow: auto;
+}

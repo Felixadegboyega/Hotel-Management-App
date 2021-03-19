@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -9,6 +9,7 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 import { CustomerServiceComponent } from '../customer-service/customer-service.component';
 import { RequestCleaningComponent } from '../request-cleaning/request-cleaning.component';
 import { environment } from 'src/environments/environment';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 
 @Component({
@@ -23,6 +24,10 @@ export class ProfileComponent implements OnInit {
   public im = false;
   public imagePath;
   public imgURL;
+  public historyTitle = 'bookings';
+  private _mobileQueryListener: () => void;
+  public mobileQuery :MediaQueryList;
+
 
   constructor(
     public getService:GetService,
@@ -30,10 +35,17 @@ export class ProfileComponent implements OnInit {
     public matDialog:MatDialog,
     public router:Router,
     public postService:PostService,
-    public formB:FormBuilder
+    public formB:FormBuilder,
+    public media: MediaMatcher, 
+    public changeDetectorRef: ChangeDetectorRef, 
+
+
   ) { }
 
   ngOnInit(): void {
+    this.mobileQuery = this.media.matchMedia('(max-width: 770px)');
+    this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
     this.getDetails()
   }
 
@@ -43,6 +55,7 @@ export class ProfileComponent implements OnInit {
     phone_number:['', Validators.required],
     email:['',[Validators.required, Validators.email]],
   })
+
   
   getDetails(){
     this.getService.getAllUsers().subscribe(
@@ -103,6 +116,22 @@ export class ProfileComponent implements OnInit {
   logout(){
     localStorage.removeItem('token');
     this.router.navigate(['/user/login'])
+  }
+
+  // showHistory(param){
+  //   if(param == 'bookings'){
+  //     this.historyTitle = "Bookings"
+  //   } else if(param == 'cleanings'){
+  //     this.historyTitle = "Cleaning Request History"
+  //   } else if(param == 'orders'){
+  //     this.historyTitle = "Orders"
+  //   } else if(param == 'complaints'){
+  //     this.historyTitle = "Complaints"
+  //   }
+  // }
+
+  ngOnDestroy(): void {
+    this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
 }

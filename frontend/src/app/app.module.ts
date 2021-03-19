@@ -90,6 +90,7 @@ import { CustomerCareServiceComponent, Customercareservicerequest } from './work
 import { OrderRequestDialog, OrdersComponent } from './workersside/orders/orders.component';
 import { AdminTopComponent } from './workersside/admin-top/admin-top.component';
 import { AdminHomeComponent } from './workersside/admin-home/admin-home.component';
+import { BookingsComponent } from './users_side/bookings/bookings.component';
 
 
 @NgModule({
@@ -139,7 +140,8 @@ import { AdminHomeComponent } from './workersside/admin-home/admin-home.componen
     ConfirmStatusDialogue,
     OrderRequestDialog,
     AdminTopComponent,
-    AdminHomeComponent
+    AdminHomeComponent,
+    BookingsComponent
   ],
   imports: [
     CdkTreeModule,

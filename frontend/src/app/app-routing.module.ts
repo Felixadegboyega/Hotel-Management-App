@@ -83,6 +83,7 @@ const routes: Routes = [
   {path:"user/:id/orders",  component:OrderhistoryComponent},
   {path:"user/:id/customer-care-services",  component:CustomercarehistoryComponent},
   {path:"user/:id/cleaning-services",  component:CleaninghistoryComponent},
+  {path:"user/:id/bookings",  component:CleaninghistoryComponent},
 
   {path:"**", component:NotfoundComponent},
 
